@@ -5,8 +5,11 @@ class VIEW {
 
     public String $html;
 
-    function __construct()
-    {
+    function __construct() {
+        
+    }
+
+    public function load($path) {
         
     }
 
