@@ -1,4 +1,7 @@
 <?php
+/**
+ * @author ILHAMB <durianbohong@gmail.com>
+ */
 namespace classes;
 
 class VIEW {

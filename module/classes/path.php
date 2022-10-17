@@ -1,5 +1,9 @@
 <?php
-//namespace classes;
+/**
+ * @author ILHAMB <durianbohong@gmail.com>
+ */
+
+namespace classes;
 
 class UriManager {
 
