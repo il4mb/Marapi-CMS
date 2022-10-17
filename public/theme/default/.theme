@@ -1,0 +1,6 @@
+@name = Marapi Theme
+@author = ILHAM B
+@description= Ini adalah tema default dari marapi 
+
+#main = index.html
+#content = child.html

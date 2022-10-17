@@ -9,7 +9,7 @@ semua folder yang berisikan ***.theme*** di dalam root akan di anggap sebagai te
 ***.theme*** sendiri memiliki strukture sebagai berikut
 
 > WAJIB
-1. home
+1. main
 2. content
 
 > TIDAK WAJIB
