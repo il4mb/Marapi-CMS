@@ -16,8 +16,18 @@ semua folder yang berisikan ***.theme*** di dalam root akan di anggap sebagai te
 1. nav-fragment
 2. menu-fragment
 
+### CONTOH
+_tree theme_
 
-    theme_dir |- .teme
+        dir |- .teme
             |- index.html
-            |- nav.html
-            |- 
+            |- kontent.html
+
+_file .theme_
+      
+        @name = default theme
+        @description = descripsi tentang tema
+        @author = Jhon smith
+
+        #index = index.html
+        #content = kontent.html
