@@ -1,3 +1,3 @@
 # Marapi-CMS
 
-![This is an image] (/core/assets/svg/Marapi-logo-nontext.svg)
+![This is an image] (/main/core/assets/svg/Marapi-logo-nontext.svg)
