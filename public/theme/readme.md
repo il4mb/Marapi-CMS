@@ -19,15 +19,15 @@ semua folder yang berisikan ***.theme*** di dalam root akan di anggap sebagai te
 ### CONTOH
 _tree theme_
 
-        dir |- .teme
-            |- index.html
-            |- kontent.html
+      dir |- .teme
+          |- index.html
+          |- kontent.html
 
 _file .theme_
       
-        @name = default theme
-        @description = descripsi tentang tema
-        @author = Jhon smith
-
-        #index = index.html
-        #content = kontent.html
+      @name = default theme
+      @description = descripsi tentang tema
+      @author = Jhon smith
+      
+      #index = index.html
+      #content = kontent.html
