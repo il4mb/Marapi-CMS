@@ -1,5 +1,6 @@
 <?php
 
+use classes\Main;
 use classes\UriManager;
 
 $list = scandir($_SERVER['DOCUMENT_ROOT']."/module/classes");
@@ -13,4 +14,7 @@ foreach( $list AS $file ) {
 
 $uriM = new UriManager();
 
-print_r($uriM->in_array());
+//print_r($uriM->in_array());
+$main = new Main();
+
+echo $main->theme->params['@name'];

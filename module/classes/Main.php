@@ -8,5 +8,9 @@ class Main {
     function __construct() {
      
         $this->theme = new THEME();
+        $this->theme->getActiveTheme();
+
+        $view = new VIEW($this);
+        $view->render();
     }
 }
