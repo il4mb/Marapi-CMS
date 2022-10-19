@@ -18,6 +18,11 @@ class VIEW
         $this->html = file_get_contents($path . "/" . $main->theme->params['main']);
     }
 
+    public function brand($brand) {
+
+        $this->html = str_replace("[BRAND]", $brand, $this->html);
+    }
+
     public function render()
     {
         echo $this->html;

@@ -11,6 +11,7 @@ class Main {
         $this->theme->getActiveTheme();
 
         $view = new VIEW($this);
+        $view->brand("TOKO MINYAK");
         $view->render();
     }
 }

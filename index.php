@@ -17,4 +17,4 @@ $uriM = new UriManager();
 //print_r($uriM->in_array());
 $main = new Main();
 
-echo $main->theme->params['@name'];
+//echo $main->theme->params['@name'];
