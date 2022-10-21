@@ -10,7 +10,7 @@ class THEME {
 
     function __construct() {
 
-        $this->path = $_SERVER['DOCUMENT_ROOT']."/public/theme/default";
+        $this->path = $_SERVER['DOCUMENT_ROOT']."/app/theme/default";
         $this->params = [];
         $rawText = file_get_contents($this->path."/.theme");
 
