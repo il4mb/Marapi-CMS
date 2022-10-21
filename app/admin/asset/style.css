@@ -1,0 +1,41 @@
+body {
+
+    font-family: sans-serif;
+}
+input {
+    font-size: 16px;
+}
+input:not([type='file']) {
+
+    width: 100%;
+    padding: .5em .75em;
+    border-radius: 2.5px;
+    border: solid 1px #000000;
+    outline: none;
+    max-width: -webkit-fill-available;
+    margin: 8px auto;
+
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    width: fit-content;
+    max-width: 1200px;
+    padding: 5rem 1rem;
+    margin: auto;
+}
+
+.mrp-logo {
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
+    background: white;
+    padding: 15px;
+    border-radius: 13px;
+    box-shadow: -2px 2px 5px rgb(0 0 0 /.5);
+}
+
+.align-center {
+    text-align: center;
+}
