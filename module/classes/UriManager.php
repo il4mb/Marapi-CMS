@@ -7,7 +7,7 @@ namespace classes;
 
 class UriManager {
 
-    public string $path, $query;
+    public $path, $query;
 
     function __construct() {
 
@@ -15,7 +15,7 @@ class UriManager {
         $exploded = explode("?", $this->path);
 
         $this->path = array_key_exists(0, $exploded) ? $exploded[0] : null;
-        $query = array_key_exists(1, $exploded) ? $exploded[1] : null;
+        $this->query = array_key_exists(1, $exploded) ? $exploded[1] : null;
     }
 
     public function in_array() {
