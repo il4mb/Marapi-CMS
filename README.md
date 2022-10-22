@@ -3,3 +3,4 @@
 
 # Marapi-CMS
 
+required _PHP version >= 8.0_ 
