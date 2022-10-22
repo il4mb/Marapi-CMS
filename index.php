@@ -2,7 +2,7 @@
 /**
  * @author ILHAMB <durianbohong@gmail.com>
  */
-require_once "/module/init.php";
+require_once __DIR__."/module/init.php";
 
 use classes\UriManager;
 use classes\Main;
