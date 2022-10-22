@@ -10,14 +10,16 @@ require_once $_SERVER['DOCUMENT_ROOT']."/module/init.php";
 if(isset($_POST['email'], $_POST['password'])) {
 
     $AUTH = new AUTH();
-    $AUTH->email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+    $AUTH->email = filter_input(INPUT_POST, 'email', FILTER_UNSAFE_RAW);
     $AUTH->password = $_POST['password'];
 
-    $response = $AUTH->Login();
-    if($response) {
+    try {
 
-        echo "success";
-    } else echo "email or password not corrected !";
+        $AUTH->Login();
+    } catch (Exception $e) {
+
+        print $e->getMessage();
+    }
 }
 
 ?>
@@ -39,7 +41,8 @@ if(isset($_POST['email'], $_POST['password'])) {
         <h1>Login to panel</h1>
 
         <form data-width="100" method="POST">
-            <input name="email" type="email" placeholder="Enter email address" required />
+
+            <input name="email" type="text" placeholder="Enter email address" required />
             <input name="password" type="password" placeholder="Enter password" required />
             <input type="submit" value="login"/>
 

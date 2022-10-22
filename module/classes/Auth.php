@@ -5,6 +5,7 @@
 
 namespace classes;
 
+use Exception;
 use PDO;
 
 class AUTH {
@@ -35,8 +36,10 @@ class AUTH {
             if(password_verify($this->password, $result['password'])) {
 
                 return true;
-            }
-        }
+
+            } else throw new Exception("Wrong password!!", 0);
+
+        } else throw new Exception("Account not found!!", 0);
     }
     public function Register() {
 
