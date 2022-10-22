@@ -1,12 +1,16 @@
-body {
-
-    font-family: sans-serif;
+@font-face {
+    font-family: "Ubuntu";
+    src: url("../font/Ubuntu/Ubuntu-Regular.ttf");
 }
+* {
+
+    font-family: Ubuntu, sans-serif;
+}
+
 input {
     font-size: 16px;
 }
 input:not([type='file']) {
-
     width: 100%;
     padding: .5em .75em;
     border-radius: 2.5px;
@@ -14,7 +18,14 @@ input:not([type='file']) {
     outline: none;
     max-width: -webkit-fill-available;
     margin: 8px auto;
-
+}
+input[type="submit"] {
+    background-color: #00c0ff;
+    color: white;
+    font-weight: 700;
+    box-shadow: 0px 1px 3px 1px rgb(0 0 0 /.3);
+    outline: none;
+    border: none;
 }
 
 .container {

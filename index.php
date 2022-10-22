@@ -1,19 +1,13 @@
 <?php
+/**
+ * @author ILHAMB <durianbohong@gmail.com>
+ */
+require_once "/module/init.php";
 
-use classes\Main;
 use classes\UriManager;
-
-$list = scandir($_SERVER['DOCUMENT_ROOT']."/module/classes");
-foreach( $list AS $file ) {
-
-    if(is_file($_SERVER['DOCUMENT_ROOT']."/module/classes/".$file)) {
-
-        include_once $_SERVER['DOCUMENT_ROOT']."/module/classes/".$file;
-    }
-}
+use classes\Main;
 
 $uriM = new UriManager();
-
 //print_r($uriM->in_array());
 $main = new Main();
 
