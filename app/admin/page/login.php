@@ -15,7 +15,11 @@ if(isset($_POST['email'], $_POST['password'])) {
 
     try {
 
-        $AUTH->Login();
+        if($AUTH->Login()) {
+
+            header("Location: /mrp/panel/");
+        }
+
     } catch (Exception $e) {
 
         print $e->getMessage();

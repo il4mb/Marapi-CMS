@@ -41,12 +41,15 @@ class AUTH {
 
         } else throw new Exception("Account not found!!", 0);
     }
+
     public function Register() {
 
     }
+
     public function LostPassword() {
 
     }
+    
     public function LostAccount() {
 
     }
