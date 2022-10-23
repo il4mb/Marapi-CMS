@@ -13,14 +13,22 @@ class DOCUMENT
         if (preg_match('/(?:<body[^>]*>)(.*)<\/body>/isU', $this->html, $match)) $this->body = $match[1];
     }
 
-    function Head() {
+    function getHead() {
 
         return $this->head;
     }
 
-    function Body() {
+    function getBody() {
 
         return $this->body;
+    }
+
+    function setControler($php) {
+
+        if(is_file($php)) {
+            
+            include_once $php;
+        }
     }
 
     /**

@@ -18,7 +18,7 @@ class UriManager {
         $this->query = array_key_exists(1, $exploded) ? $exploded[1] : null;
     }
 
-    public function in_array() {
+    public function getPath() {
 
         
         return array_slice(explode("/", $this->path), 1);
