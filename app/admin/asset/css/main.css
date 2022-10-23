@@ -1,0 +1,17 @@
+@import url("default.css");
+@import url("/core/assets/css/icon.css");
+body {
+    color: #171717;
+    padding: 0;
+    margin: 0;
+}
+nav {
+    display: flex;
+    background-color: #ffffff;
+    padding: 12px;
+    box-shadow: 1px 2px 8px 1px #00000045;
+}
+nav a {
+    color: #171717 !important;
+    text-decoration: none!important;
+}

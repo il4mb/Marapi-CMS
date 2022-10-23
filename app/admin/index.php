@@ -8,6 +8,15 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/module/init.php';
 $uriManager = new UriManager();
 $path = $uriManager->getPath();
 
+if(! array_key_exists('1', $path) ||  array_key_exists('1', $path) && $path[1] == "") {
+
+    header("Location: /mrp/dashboard/");
+}
+if(array_key_exists('1', $path) && $path[1] != "login" && ! isset($_COOKIE['user'])) {
+
+    header("Location: /mrp/login/");
+}
+
 switch ($path[1]) {
 
     case "dashboard":

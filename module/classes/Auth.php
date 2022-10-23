@@ -35,7 +35,7 @@ class AUTH {
 
             if(password_verify($this->password, $result['password'])) {
 
-                return true;
+                return $result;
 
             } else throw new Exception("Wrong password!!", 0);
 

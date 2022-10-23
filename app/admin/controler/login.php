@@ -4,6 +4,7 @@
  */
 
 use classes\AUTH;
+use Module\classes\ENCH;
 
 require_once $_SERVER['DOCUMENT_ROOT']."/module/init.php";
 
@@ -15,7 +16,12 @@ if(isset($_POST['email'], $_POST['password'])) {
 
     try {
 
-        if($AUTH->Login()) {
+        $login = $AUTH->Login();
+
+        if($login) {
+
+            $ench = new ENCH($login);
+            setcookie('user', $ench->encrypt(), time() + (86400 * 30), '/');
 
             header("Location: /mrp/dashboard/");
         }
