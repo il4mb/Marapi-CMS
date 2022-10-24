@@ -6,7 +6,10 @@
 
     font-family: Ubuntu, sans-serif;
 }
-
+img {
+    object-fit: contain;
+    object-position: bottom;
+}
 input {
     font-size: 16px;
 }
