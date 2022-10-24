@@ -43,11 +43,15 @@
     font-weight: 700;
     cursor: pointer;
 }
+.mrp-nav-body > hr {
+    margin-bottom: 2em;
+    border-top: none;
+}
 .mrp-nav-body > a:nth-child(3) {
     margin-top: 1em;
 }
 .mrp-nav-body > a:not(.mrp-nav-body > a:first-child):hover {
 
-    background-color: rgb(0 0 0 /.5);
+    background-color: rgba(0, 0, 0, 0.814);
     color: white;
 }
