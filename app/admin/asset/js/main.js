@@ -13,7 +13,6 @@ window.addEventListener("load", () => {
 
                 TODO[action]();
             }
-            console.log(TODO[action])
         })
     })
 
@@ -28,7 +27,7 @@ window.addEventListener("load", () => {
 })
 
 function Navbar() {
-    console.log(0)
+    
     let navbar = document.querySelectorAll(".mrp-navbar")
     navbar.forEach(E => {
         if (E.classList.contains('close')) {
