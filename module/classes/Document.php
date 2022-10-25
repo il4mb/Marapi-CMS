@@ -5,7 +5,7 @@ namespace classes;
 class DOCUMENT
 {
 
-    private string $html, $head, $body;
+    public string $html, $head, $body;
     function __construct($html) {
 
         $this->html = $html;
