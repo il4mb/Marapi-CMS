@@ -39,14 +39,27 @@ switch ($path[1]) {
                 '<hr/>',
             'setting' => '<a {ATTR} href="/mrp/setting">SETTING</a>'
         ];
-        foreach ($menu as $key => $val) {
-            if($path[1] == $key) {
-                $menu[$key] = str_replace("{ATTR}", "class='active'", $menu[$key]);
-            } else $menu[$key] = str_replace("{ATTR}", "", $menu[$key]);
-        }
 
         $html = file_get_contents(__DIR__ . "/layout/main.html");
         $document = new DOCUMENT($html);
+
+
+        foreach ($menu as $key => $val) {
+
+            if($path[1] == $key) {
+                
+                $menu[$key] = str_replace("{ATTR}", "class='active'", $menu[$key]);
+
+                $controller = $_SERVER['DOCUMENT_ROOT']."/app/admin/controler/" . $path[1] . ".php";
+                if(is_file($controller)) {
+
+                    $document->setControler($controller);
+                }
+
+            } else $menu[$key] = str_replace("{ATTR}", "", $menu[$key]);
+        }
+
+
         $document->body = str_replace("[{LINKS}]", implode("\n", $menu), $document->body);
         $document->body = str_replace("{PAGE_TITLE}", $path[1], $document->body);
 

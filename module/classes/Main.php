@@ -7,7 +7,7 @@ class Main {
 
     function __construct() {
      
-        $this->theme = new THEME();
+        $this->theme = new THEME(null);
         $this->theme->getActiveTheme();
 
         $view = new VIEW($this);
