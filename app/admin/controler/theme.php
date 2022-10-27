@@ -5,7 +5,7 @@ use classes\THEME;
 $theme = new THEME(null);
 $list = $theme->getList();
 
-$html = "<div>";
+$html = "<div class='flex'>";
 foreach ($list as $key => $val) {
 
     /**
