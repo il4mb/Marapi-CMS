@@ -1,6 +1,6 @@
 @name = Dark Theme
 @author = ILHAM B
-@description= Ini adalah tema Dark dari marapi 
+@description= Ini adalah tema mode Dark/Gelap dari marapi 
 
 #main = index.html
 #content = child.html
