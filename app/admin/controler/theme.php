@@ -25,7 +25,14 @@ foreach ($list as $key => $val) {
     $html .= "<h4 class='title'>$title</h4>";
     $html .= "<small class='author'>$author</small>";
     $html .= "<p>$description</p>";
-    $html .= "<div class='footer'><i class='mri'></i></div>";
+    $html .= "<div class='footer'>
+                <a class='tooltip text-danger'>
+                    <i class='mri-trash'></i> Delete
+                </a>
+                <a class='tooltip text-info'>
+                    <i class='mri-exclamation-circle'></i> Info
+                </a>
+                </div>";
     $html .= "</div>";
 }
 $html .= "<div>";
