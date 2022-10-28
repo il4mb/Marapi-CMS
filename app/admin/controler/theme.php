@@ -11,7 +11,13 @@ foreach ($list as $key => $val) {
     /**
      * @var THEME $val - theme --
      */
+    $active = THEME::getActiveTheme();
     $params = $val->params;
+
+    $active_tooltip = "";
+    if(0 == strcmp(strtolower($active->path), strtolower($val->path))) { 
+        $active_tooltip = "<a class='text-success status'><i class='mri-check2-circle'></i> Active</a>";
+    }
 
     $title = $params['@name'];
     $author = $params['@author'];
@@ -23,17 +29,7 @@ foreach ($list as $key => $val) {
     $html .= "<div class='card-theme'>";
     $html .= "<div class='thumbnail'></div>";
     $html .= "<h4 class='title'>$title</h4>";
-    $html .= "<small class='author'>$author</small>";
-    $html .= "<p>$description</p>";
-    $html .= "<div class='footer'>
-                <a class='tooltip text-danger'>
-                    <i class='mri-trash'></i> Delete
-                </a>
-                <a class='tooltip text-info'>
-                    <i class='mri-exclamation-circle'></i> Info
-                </a>
-                </div>";
-    $html .= "</div>";
+    $html .= "$active_tooltip</div>";
 }
 $html .= "<div>";
 

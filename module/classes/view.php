@@ -12,7 +12,6 @@ class VIEW
 
     function __construct(Main $main)
     {
-
         $path = $main->theme->path;
         $this->html = file_get_contents($path . "/" . $main->theme->params['main']);
     }

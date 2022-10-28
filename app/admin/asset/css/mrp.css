@@ -1,20 +1,20 @@
 :root {
     --co-danger: 255 91 91;
     --co-warning: 249 212 2;
-    --co-success: 99 232 128;
+    --co-success: 112 197 101;
     --co-primary: 112 176 224;
-    --co-info : 0 178 191;
+    --co-info: 0 178 191;
 
-    --float-1 : .1;
-    --float-2 : .2;
-    --float-3 : .3;
-    --float-4 : .4;
-    --float-5 : .5;
-    --float-6 : .6;
-    --float-7 : .7;
-    --float-8 : .8;
-    --float-9 : .9;
-    --float-10 : 1.0;
+    --float-1: .1;
+    --float-2: .2;
+    --float-3: .3;
+    --float-4: .4;
+    --float-5: .5;
+    --float-6: .6;
+    --float-7: .7;
+    --float-8: .8;
+    --float-9: .9;
+    --float-10: 1.0;
 }
 
 .cursor-pointer {
@@ -30,7 +30,8 @@
     width: 100%;
     background-color: rgb(0 0 0 /.5);
     box-shadow: 2px 0px 8px 10px rgba(0, 0, 0, 0.095);
-    transition: .75s;
+    transition: .5s;
+    z-index: 9999;
 
 }
 
@@ -99,64 +100,55 @@
 }
 
 .card-theme {
-    border: solid 1px gray;
-    margin: 8px;
-    border-radius: 8px;
+    margin: 18px;
     overflow: hidden;
     width: 400px;
-    box-shadow: -1px 1px 4px 1px grey;
+    box-shadow: -1px 1px 4px -1px grey;
+    position: relative;
 }
 
 .card-theme>.thumbnail {
     background-color: black;
-    height: 100px;
+    background: linear-gradient(203deg, black, #00748f);
+    height: auto;
     width: 100%;
+    aspect-ratio: 2;
+}
+.card-theme>.title {
+    margin: 0.5em 0;
+    padding: 2.5px 15px;
+}
+.card-theme .status {
+    position: absolute;
+    top: 5px;
+    right: 10px;
 }
 
-.card-theme>.title {
-    margin: 0.5em 0 0.25em 0;
-    padding: 5px;
-}
-.card-theme p {
-    padding: 8px;
-    margin: .5em 0em 0em;
-    color: gray;
-}
-.card-theme .footer {
-    height: 1em;
-    background-color: rgb(0 0 0 /.1);
-    padding: 8px;
-    display: flex;
-    justify-content: end;
-}
-.card-theme .footer a {
-    margin-left: 8px;
-}
-.author {
-    color: hwb(0deg 0% 100% / 25%);
-    padding: 0px 7.5px 5px;
-    margin-left: 0.5em;
-    font-size: 14px;
-}
 .tooltip {
     cursor: pointer;
     opacity: var(--float-5)
 }
+
 .tooltip:hover {
     opacity: var(--float-10);
 }
+
 .text-danger {
     color: rgb(var(--co-danger));
 }
+
 .text-warning {
     color: rgb(var(--co-warning))
 }
+
 .text-primary {
     color: rgb(var(--co-primary));
 }
+
 .text-success {
     color: rgb(var(--co-success));
 }
+
 .text-info {
     color: rgb(var(--co-info));
 }

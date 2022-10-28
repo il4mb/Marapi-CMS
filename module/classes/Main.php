@@ -7,8 +7,7 @@ class Main {
 
     function __construct() {
      
-        $this->theme = new THEME(null);
-        $this->theme->getActiveTheme();
+        $this->theme = THEME::getActiveTheme();
 
         $view = new VIEW($this);
         $view->brand("TOKO MINYAK");
