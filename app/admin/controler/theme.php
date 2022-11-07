@@ -14,9 +14,9 @@ foreach ($list as $key => $val) {
     $active = THEME::getActiveTheme();
     $params = $val->params;
 
-    $active_tooltip = "";
+    $active_tooltip = "\n<a trigger='layer' class='action text-primary'><i class='micon-front'></i></a>";
     if(0 == strcmp(strtolower($active->path), strtolower($val->path))) { 
-        $active_tooltip = "<a class='text-success status'><i class='mri-check2-circle'></i> Active</a>";
+        $active_tooltip .= "\n<a class='text-success status'><i class='micon-check2-circle'></i> Active</a>";
     }
 
     $title = $params['@name'];
