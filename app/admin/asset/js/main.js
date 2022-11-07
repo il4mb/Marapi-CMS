@@ -46,9 +46,100 @@ function Navbar() {
     })
 }
 
-function mLayer() {
+function mLayer(element) {
+
+    let rawdata = element.getAttribute("data")
 
     let layer = new Layer();
+
+    if(rawdata) {
+
+        let arr = rawdata.split("."), data = window.MARAPI;
+        arr.forEach( E => {
+
+            data = data[E]
+        })
+
+        if(data && arr) {
+
+            if( arr && arr[0].toLowerCase() == "theme") {
+
+                theme(data)
+            } 
+        }
+    }
     layer.show();
 
+
+    /*************************************************** */
+    /*************************************************** */
+    function theme(data) {
+
+        console.log(data)
+
+        layer.api( E =>{
+
+            E.title.innerHTML = data["params"]['@name']
+            E.body.setInner([
+                DOM("table", {
+                    inner: [
+                        DOM("tr", {
+                            inner: [
+                                DOM('td', {
+                                    inner: "Name"
+                                }),
+                                DOM('td', {
+                                    inner: ":"
+                                }),
+                                DOM('td', {
+                                    inner: data["params"]["@name"]
+                                })
+                            ]
+                        }),
+
+                        DOM("tr", {
+                            inner: [
+                                DOM('td', {
+                                    inner: "Author"
+                                }),
+                                DOM('td', {
+                                    inner: ":"
+                                }),
+                                DOM('td', {
+                                    inner: data["params"]["@author"]
+                                })
+                            ]
+                        }),
+
+                        DOM("tr", {
+                            inner: [
+                                DOM('td', {
+                                    inner: "Description"
+                                }),
+                                DOM('td', {
+                                    inner: ":"
+                                }),
+                                DOM('td', {
+                                    inner: data["params"]["@description"]
+                                })
+                            ]
+                        }),
+                        DOM("tr", {
+                            inner: [
+                                DOM('td', {
+                                    inner: "Installation Path"
+                                }),
+                                DOM('td', {
+                                    inner: ":"
+                                }),
+                                DOM('td', {
+                                    inner: data["path"]
+                                })
+                            ]
+                        })
+                    ]
+                })
+            ])
+        })
+    }
 }

@@ -3,6 +3,7 @@ import { DOM } from "../domcreate/dom.js"
 export class Layer {
 
     constructor() {
+
         this.wrapper = DOM("div", { 
             attr: {class: "layer"}
         })
@@ -16,16 +17,28 @@ export class Layer {
         })
 
         this.closeHandle = DOM("a", {
-            attr: {class: "close"}
+            attr: {class: "close btn cursor-pointer", title: "close"},
+            inner : DOM("i", {
+                attr: {class: "micon-x-fill"}
+            })
         })
         this.title = DOM("h4", {
             attr: {class: "title"},
             inner: "Judul"
         })
 
+        this.closeHandle.addEventListener("click", () => {
+
+            this.hide();
+        })
+
         this.head.append(this.title, this.closeHandle)
         this.wrapper.append(this.head, this.body)
         document.body.append(this.wrapper)
+    }
+
+    api(e) {
+        e(this);
     }
 
     /**
@@ -42,6 +55,7 @@ export class Layer {
     hide() {
 
         this.wrapper.classList.remove("show")
+        setTimeout(() => this.remove(), 200)
     }
 
     /**

@@ -5,6 +5,10 @@ use classes\THEME;
 $theme = new THEME(null);
 $list = $theme->getList();
 
+$_data = ["theme" => $list];
+$passData = "<script>window.MARAPI = " . json_encode($_data) . "</script>";
+$this->head .= $passData;
+
 $html = "<div class='flex justify-center'>";
 foreach ($list as $key => $val) {
 
@@ -14,7 +18,7 @@ foreach ($list as $key => $val) {
     $active = THEME::getActiveTheme();
     $params = $val->params;
 
-    $active_tooltip = "\n<a trigger='layer' class='action text-primary'><i class='micon-front'></i></a>";
+    $active_tooltip = "\n<a trigger='layer' data='theme.". $key ."' class='bottom-right btn text-primary'><i class='micon-front'></i></a>";
     if(0 == strcmp(strtolower($active->path), strtolower($val->path))) { 
         $active_tooltip .= "\n<a class='text-success status'><i class='micon-check2-circle'></i> Active</a>";
     }

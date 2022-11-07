@@ -8,11 +8,16 @@
     opacity: 0;
     transform: translate(-50%, -50%);
 
-    width: 100%;
+    width: 90%;
     max-width: 600px;
-    height: 100%;
-    max-height: 80vh;
+    height: auto;
     background-color: rgba(255, 255, 255);
+    z-index: 11;
+}
+@media only screen and (max-width: 400px) {
+    .layer {
+        width: 95%;
+    }
 }
 
 .layer.show {
@@ -29,7 +34,11 @@ body:has(.layer.show)::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgb( 0 0 0 /.25)
+    background-color: rgb( 0 0 0 /.5);
+    z-index: 10;
+}
+body:has(.layer.show) {
+    overflow: hidden;
 }
 
 .layer>.head {
@@ -38,6 +47,8 @@ body:has(.layer.show)::before {
     padding: 10px 8px;
     border-bottom: solid 1px rgb( 0 0 0 /.5);
     align-items: flex-end;
+    background-color: rgb(37 37 40);
+    color: white;
 }
 
 .layer>.head > * {
@@ -51,10 +62,21 @@ body:has(.layer.show)::before {
 }
 
 .layer > .head > .close {
-
-    background-color: #e93a3a;
-    width: 23px;
-    height: 23px;
+    width: 22px;
+    height: 22px;
     aspect-ratio: 1/1;
     border-radius: 3rem;
+    font-size: 20px;
+    position: relative;
+    color: #da5353;
+}
+
+.layer>.head .btn:has([class^="micon"]) [class^="micon"] {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.layer>.body{
+    padding: 10px;
 }
