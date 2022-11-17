@@ -4,6 +4,7 @@
 @import url("./flex.css");
 @import url("./icon.css");
 @import url("./layer.css");
+@import url("./color.css");
 
 body {
     color: #171717;

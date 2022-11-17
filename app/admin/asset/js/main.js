@@ -46,13 +46,6 @@ function Navbar() {
     })
 }
 
-<<<<<<< HEAD
-function mLayer() {
-
-    let layer = new Layer();
-    layer.show();
-
-=======
 function mLayer(element) {
 
     let rawdata = element.getAttribute("data")
@@ -81,13 +74,13 @@ function mLayer(element) {
     /*************************************************** */
     /*************************************************** */
     function theme(data) {
-
-        console.log(data)
-
         layer.api( E =>{
 
             E.title.innerHTML = data["params"]['@name']
             E.body.setInner([
+                DOM("div", {
+                    attr: {class: "theme-thumbnail"}
+                }),
                 DOM("table", {
                     inner: [
                         DOM("tr", {
@@ -140,14 +133,30 @@ function mLayer(element) {
                                     inner: ":"
                                 }),
                                 DOM('td', {
-                                    inner: data["path"]
+                                    attr: {style: "font-style: italic; color: rgb(0 0 0 /.5)"},
+                                    inner: () => {
+                                        let txt = data["path"]
+                                        if (txt.substr( txt.length -1) !== '/') {
+                                            return txt + '/'
+                                        } else return txt
+                                    }
                                 })
                             ]
                         })
                     ]
                 })
             ])
+        }).setFooter(() => {
+            return [
+                DOM("button", {
+                    attr: {class: 'text-danger bg-danger'},
+                    inner: "delete"
+                }),
+                DOM("button", {
+                    attr: {class: 'text-primary bg-primary'},
+                    inner: "save"
+                })
+            ]
         })
     }
->>>>>>> 4c582f2a152cf6f28e8622623bd15b48591fa31c
 }

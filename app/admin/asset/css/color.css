@@ -1,0 +1,58 @@
+/* COLOR */
+.text-danger {
+    color: rgb(var(--co-danger));
+}
+
+.text-warning {
+    color: rgb(var(--co-warning))
+}
+
+.text-primary {
+    color: rgb(var(--co-primary));
+}
+
+.text-success {
+    color: rgb(var(--co-success));
+}
+
+.text-info {
+    color: rgb(var(--co-info));
+}
+
+/* BACKGROUND */
+.bg-danger {
+    background-color: var(--co-danger);
+}
+
+.bg-warning {
+    background-color: var(--co-warning);
+}
+
+.bg-primary {
+    background-color: rgb(var(--co-primary));
+}
+
+.bg-success {
+    background-color: rgb(var(--co-success));
+}
+
+.bg-info {
+    background-color: rgb(var(--co-info));
+}
+
+/* PARAREL */
+.text-danger.bg-danger {
+    background-color: rgb(var(--co-danger) /var(--float-3));
+}
+.text-warning.bg-warning {
+    background-color: rgb(var(--co-warning) /var(--float-3));
+}
+.text-primary.bg-primary {
+    background-color: rgb(var(--co-primary) /var(--float-3));
+}
+.text-success.bg-success {
+    background-color: rgb(var(--co-success) /var(--float-3));
+}
+.text-info.bg-info {
+    background-color: rgb(var(--co-info) /var(--float-3));
+}

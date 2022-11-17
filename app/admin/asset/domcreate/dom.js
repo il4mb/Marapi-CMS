@@ -30,10 +30,15 @@ export var DOM = (
      */
     a.setInner = (c) => {
         switch (typeof c) {
+            case 'function':
+                a.innerHTML = c()
+                break;
+
             case 'boolean':
             case 'string' :
                 a.innerHTML = c;
                 break;
+                
             case 'object':
                 if(Array.isArray(c)){
                     c.forEach((d)=>{

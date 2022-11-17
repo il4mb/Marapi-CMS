@@ -1,7 +1,7 @@
 :root {
     --co-danger: 255 91 91;
     --co-warning: 249 212 2;
-    --co-success: 112 197 101;
+    --co-success: 56 145 255;
     --co-primary: 112 176 224;
     --co-info: 0 178 191;
 
@@ -17,6 +17,16 @@
     --float-10: 1.0;
 }
 
+
+button {
+    padding: 5px 10px;
+    border: none !important;
+    border-radius: 5px;
+    margin: 5px;
+}
+button:hover {
+    transform: scale(1.1);
+}
 .cursor-pointer {
     cursor: pointer;
 }
@@ -108,7 +118,7 @@
     position: relative;
 }
 
-.card-theme>.thumbnail {
+.card-theme>.thumbnail, .theme-thumbnail {
     background-color: black;
     background: linear-gradient(203deg, black, #00748f);
     height: auto;
@@ -147,26 +157,6 @@
 
 .tooltip:hover {
     opacity: var(--float-10);
-}
-
-.text-danger {
-    color: rgb(var(--co-danger));
-}
-
-.text-warning {
-    color: rgb(var(--co-warning))
-}
-
-.text-primary {
-    color: rgb(var(--co-primary));
-}
-
-.text-success {
-    color: rgb(var(--co-success));
-}
-
-.text-info {
-    color: rgb(var(--co-info));
 }
 
 .btn:has([class^="micon"]):hover {
