@@ -1,8 +1,10 @@
-@import url("default.css");
+@import url("./default.css");
 @import url("/core/assets/css/icon.css");
-@import url("mrp.css");
-@import url("flex.css");
-@import url("icon.css");
+@import url("./mrp.css");
+@import url("./flex.css");
+@import url("./icon.css");
+@import url("./layer.css");
+
 body {
     color: #171717;
     padding: 0;

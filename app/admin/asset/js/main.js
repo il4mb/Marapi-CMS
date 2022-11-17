@@ -1,6 +1,9 @@
+import { DOM } from "../domcreate/dom.js"
+import { Layer } from "../lib/layer.js"
 
 let TODO = {
-    navbar: () => Navbar()
+    navbar: () => Navbar(),
+    layer : (E) => mLayer(E)
 }
 window.addEventListener("load", () => {
 
@@ -11,7 +14,7 @@ window.addEventListener("load", () => {
             let action = E.getAttribute('trigger')
             if (TODO[action]) {
 
-                TODO[action]();
+                TODO[action](E);
             }
         })
     })
@@ -41,4 +44,11 @@ function Navbar() {
             E.classList.add('close')
         }
     })
+}
+
+function mLayer() {
+
+    let layer = new Layer();
+    layer.show();
+
 }
