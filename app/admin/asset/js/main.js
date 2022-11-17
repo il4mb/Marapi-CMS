@@ -9,6 +9,7 @@ let TODO = {
     navbar: () => Navbar(),
     layer: (E) => mLayer(E)
 }
+
 window.addEventListener("load", () => {
 
     let trigger = document.querySelectorAll("[trigger]")
@@ -161,7 +162,7 @@ function mLayer(element) {
                     inner: "save",
                     todo: E => {
                         E.addEventListener('click', () => {
-                            doHook('/test?').doGet(['text'])
+                            doHook('/test?').doGet(['text 7 8 66//'])
                         })
                     }
                 })
@@ -172,13 +173,21 @@ function mLayer(element) {
 
 function doHook(urlString, method = "POST") {
 
-    let xhr = new XMLHttpRequest()
+    let xhr = new XMLHttpRequest(),
+    callBack = {
+        onLoaded: () => {},
+        onProgress: () => {},
+        onError: () => {}
+    }
+    let loadUI = loadingAnimation()
 
     xhr.onload = function () {
         if (xhr.status != 200) { // analyze HTTP status of the response
             alert(`Error ${xhr.status}: ${xhr.statusText}`); // e.g. 404: Not Found
         } else { // show the result
-            alert(`Done, got ${xhr.response.length} bytes`); // response is the server response
+           // alert(`Done, got ${xhr.response.length} bytes`); // response is the server response
+            callBack.onLoaded(this)
+            loadUI.done()
         }
     };
 
@@ -196,8 +205,8 @@ function doHook(urlString, method = "POST") {
     };
 
     return {
-        onSuccess: E => {
-
+        onLoaded: E => {
+            callBack.onLoaded = E
         },
 
         doPost: arrayData => {
@@ -208,7 +217,7 @@ function doHook(urlString, method = "POST") {
                 formData.append(E, arrayData[E])
             })
 
-            xhr.open(method, url, false)
+            xhr.open("POST", urlString, false)
             xhr.send(formData)
         },
 
@@ -216,8 +225,26 @@ function doHook(urlString, method = "POST") {
 
             urlString = urlConstructor(urlString, arrayData)
 
+            xhr.open("GET", urlString, false)
+            xhr.send()
+        }
+    }
+}
 
-            console.log(urlString)
+function loadingAnimation() {
+    let wrapper = DOM("div", {
+        attr: {class: "loading-animation"},
+        inner: "<div></div>"
+    })
+    document.body.querySelectorAll(".loading-animation").forEach( E => {
+        E.remove()
+    })
+
+    document.body.append(wrapper);
+
+    return {
+        done: () => {
+           // setTimeout(() => wrapper.remove(), 500)
         }
     }
 }
@@ -266,7 +293,7 @@ function urlConstructor(url, array = []) {
                 if (ctr > 0) {
                     url += '&'
                 }
-                url += `${E}=${params[E]}`
+                url += `${E}=${encodeURIComponent(params[E])}`
                 ctr++
             })
         }
