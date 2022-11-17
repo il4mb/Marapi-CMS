@@ -3,7 +3,6 @@
     src: url("../font/Ubuntu/Ubuntu-Regular.ttf");
 }
 * {
-
     font-family: Ubuntu, sans-serif;
 }
 img {
@@ -34,9 +33,7 @@ input[type="submit"] {
 .container {
     position: relative;
     width: 100%;
-    width: fit-content;
     max-width: 1200px;
-    padding: 5rem 1rem;
     margin: auto;
 }
 

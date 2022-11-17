@@ -31,6 +31,3 @@ if(isset($_POST['email'], $_POST['password'])) {
         print $e->getMessage();
     }
 }
-
-?>
-<!DOCTYPE html>

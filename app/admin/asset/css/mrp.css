@@ -102,7 +102,8 @@
 .card-theme {
     margin: 18px;
     overflow: hidden;
-    width: 400px;
+    width: 100%;
+    max-width: 360px;
     box-shadow: -1px 1px 4px -1px grey;
     position: relative;
 }
@@ -114,6 +115,7 @@
     width: 100%;
     aspect-ratio: 2;
 }
+
 .card-theme>.title {
     margin: 0.5em 0;
     padding: 2.5px 15px;
@@ -125,6 +127,13 @@
     right: calc(5%);
 }
 .action {
+    position: absolute;
+    bottom: calc(5%);
+    right: calc(5%);
+}
+
+
+.bottom-right {
     position: absolute;
     bottom: calc(5%);
     right: calc(5%);
@@ -160,6 +169,8 @@
     color: rgb(var(--co-info));
 }
 
-.xx {
-    color: rgb(var(--co-danger) / var(--float-8));
+.btn:has([class^="micon"]):hover {
+    transition: .25s;
+    color: rgb(80, 80, 80) !important;
+    transform: scale(1.1);
 }
