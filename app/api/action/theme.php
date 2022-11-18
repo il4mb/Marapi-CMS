@@ -16,4 +16,4 @@ if($kode == 1) {
     fclose($stream);
 
     echo "success";
-} 
+}
