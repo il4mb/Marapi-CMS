@@ -4,6 +4,7 @@
     --co-success: 48 255 152;
     --co-primary: 56 145 255;
     --co-info: 0 178 191;
+    --co-secondary: 138 138 138;
 
     --float-1: .1;
     --float-2: .2;
@@ -36,7 +37,23 @@ button:hover {
     z-index: 99999;
     overflow: hidden;
 }
-.loading-animation > div {
+.loading-animation::before {
+    content: "Loading...";
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 10px;
+    background-color: rgb(247, 247, 247);
+    border-radius: 5px;
+    border-radius: 5px;
+    padding: 5px 15px;
+    box-shadow: 0px 1px rgb(0 0 0 /.5);
+}
+.loading-animation::after {
+    content: "";
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
     background: linear-gradient(to right, rgb(var(--co-danger)), rgb(var(--co-primary)), rgb(var(--co-danger)));
     background-size: 100vw;
     background-position: center;
@@ -159,6 +176,7 @@ button:hover {
     height: auto;
     width: 100%;
     aspect-ratio: 2;
+    position: relative;
 }
 
 .card-theme>.title {

@@ -31,7 +31,8 @@ export var DOM = (
     a.setInner = (c) => {
         switch (typeof c) {
             case 'function':
-                a.innerHTML = c()
+                a.innerHTML = null
+                a.append(c())
                 break;
 
             case 'boolean':

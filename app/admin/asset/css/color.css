@@ -56,3 +56,10 @@
 .text-info.bg-info {
     background-color: rgb(var(--co-info) /var(--float-3));
 }
+button:disabled {
+    color: rgb(var(--co-secondary) /var(--float-4)) !important;
+    background-color: rgb(var(--co-secondary) /var(--float-2)) !important;
+}
+button:disabled:hover {
+    transform: none !important;
+}

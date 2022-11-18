@@ -79,6 +79,7 @@ body:has(.layer.show) {
 }
 .layer>.body{
     padding: 10px;
+    position: relative !important;
 }
 
 .layer .footer {

@@ -8,7 +8,8 @@ import { Layer } from "../lib/layer.js"
 let TODO = {
     navbar: () => Navbar(),
     layer: (E) => mLayer(E)
-}
+},
+    hookUrl = "/mrp/api/hook"
 
 window.addEventListener("load", () => {
 
@@ -79,12 +80,25 @@ function mLayer(element) {
     /*************************************************** */
     /*************************************************** */
     function theme(data) {
+
         layer.api(E => {
 
             E.title.innerHTML = data["params"]['@name']
             E.body.setInner([
                 DOM("div", {
-                    attr: { class: "theme-thumbnail" }
+                    attr: { class: "theme-thumbnail" },
+                    inner: () => {
+
+                        if (data['active'] === true) {
+                            return DOM("a", {
+                                attr: { class: 'text-success status' },
+                                inner: [
+                                    DOM("i", { attr: { class: "micon-check2-circle" } }),
+                                    " active"
+                                ]
+                            })
+                        }
+                    }
                 }),
                 DOM("table", {
                     inner: [
@@ -159,10 +173,18 @@ function mLayer(element) {
                 }),
                 DOM("button", {
                     attr: { class: 'text-primary bg-primary' },
-                    inner: "save",
+                    inner: "active",
                     todo: E => {
+                        if (data['active'] === true) { E.disabled = true }
+
                         E.addEventListener('click', () => {
-                            doHook('/test?').doGet(['text 7 8 66//'])
+                            let hook = doHook(hookUrl)
+                            hook.onLoaded(() => {
+                                window.location.reload()
+                            })
+
+                            hook.doPost({ "key": 'theme', 'kode': 1, "value": data['path'] })
+                            
                         })
                     }
                 })
@@ -174,20 +196,20 @@ function mLayer(element) {
 function doHook(urlString, method = "POST") {
 
     let xhr = new XMLHttpRequest(),
-    callBack = {
-        onLoaded: () => {},
-        onProgress: () => {},
-        onError: () => {}
-    }
+        callBack = {
+            onLoaded: () => { },
+            onProgress: () => { },
+            onError: () => { }
+        }
     let loadUI = loadingAnimation()
 
     xhr.onload = function () {
         if (xhr.status != 200) { // analyze HTTP status of the response
             alert(`Error ${xhr.status}: ${xhr.statusText}`); // e.g. 404: Not Found
         } else { // show the result
-           // alert(`Done, got ${xhr.response.length} bytes`); // response is the server response
-            callBack.onLoaded(this)
-            loadUI.done()
+            // alert(`Done, got ${xhr.response.length} bytes`); // response is the server response
+            
+            loadUI.done(() => callBack.onLoaded(this))
         }
     };
 
@@ -214,7 +236,10 @@ function doHook(urlString, method = "POST") {
             let formData = new FormData();
             let keys = Object.keys(arrayData)
             keys.forEach(E => {
-                formData.append(E, arrayData[E])
+                if (typeof arrayData[E] == 'object' || typeof arrayData[E] == 'array') {
+                    formData.append(E, JSON.stringify(arrayData[E]))
+                } else formData.append(E, arrayData[E])
+
             })
 
             xhr.open("POST", urlString, false)
@@ -233,18 +258,22 @@ function doHook(urlString, method = "POST") {
 
 function loadingAnimation() {
     let wrapper = DOM("div", {
-        attr: {class: "loading-animation"},
-        inner: "<div></div>"
+        attr: { class: "loading-animation" },
     })
-    document.body.querySelectorAll(".loading-animation").forEach( E => {
+    document.body.querySelectorAll(".loading-animation").forEach(E => {
         E.remove()
     })
 
     document.body.append(wrapper);
 
     return {
-        done: () => {
-           // setTimeout(() => wrapper.remove(), 500)
+        done: E => {
+            setTimeout(() => {
+                if (typeof E == "function") {
+                    E()
+                }
+                wrapper.remove()
+            }, 1000)
         }
     }
 }

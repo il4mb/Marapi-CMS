@@ -37,14 +37,13 @@ class THEME
      *
      * @return THEME - will return active THEME object
      */
-    public static function getActiveTheme(): THEME
+    public static function getActiveTheme()
     {
         $conf_path = $_SERVER['DOCUMENT_ROOT'] . "/conf-data.json";
 
         $json = new Json($conf_path);
-
         $pathActive = $_SERVER['DOCUMENT_ROOT'] . $json->data['theme'];
-
+        
         if (file_exists($pathActive . "/.theme") && is_file($pathActive . "/.theme")) {
 
             $theme = new THEME(file_get_contents($pathActive . "/.theme"));
@@ -68,12 +67,18 @@ class THEME
                 return file_exists($path . "/" . $value . "/.theme") && is_file($path . "/" . $value . "/.theme");
             }));
 
+            $active = THEME::getActiveTheme();
+
             foreach ($list as $key => $val) {
 
                 $rawText = file_get_contents($this->path . "/$val/.theme");
 
                 $listTheme[$key] = new THEME($rawText);
-                $listTheme[$key]->path = $this->path . "/$val";
+                $listTheme[$key]->path = $path . "/$val";
+                if($active && 0 == strcmp(strtolower($active->path), strtolower($listTheme[$key]->path))) {
+                    $listTheme[$key]->active = true;
+                } else $listTheme[$key]->active = false;
+
             }
         }
 
