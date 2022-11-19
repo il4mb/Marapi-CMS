@@ -19,6 +19,13 @@
     <script type="module">
 
         import { DOM } from "/app/asset/domcreate/dom.js"
+        var title = DOM("h1", {
+            inner: "Marapi installation"
+        }),
+            progress = DOM("div", {
+                attr: { class: "progress", step: 0 }
+            }),
+            begin, second, last;
 
         window.addEventListener("load", () => {
             window.wrapper = DOM("div", {
@@ -27,19 +34,21 @@
 
             document.body.prepend(window.wrapper)
 
-            let progress = DOM("div", {
-                attr: { class: "progress", step: 0 }
-            }), title = DOM("h1", {
-                inner: "Marapi installation"
-            })
-            window.wrapper.append(progress, title, begin())
+            begin = methodBegin()
+            second = methodSecond()
+
+            window.wrapper.append(progress, title, begin)
         })
 
-        function begin() {
+        function methodBegin() {
 
             return DOM("form", {
                 attr: { method: "post" },
                 inner: [
+                    DOM("h2", {
+                        attr: { class: "subtitle" },
+                        inner: "Setup Connection"
+                    }),
 
                     DOM("div", {
                         attr: { style: "margin-top: 1em" },
@@ -117,20 +126,232 @@
                                     })
                                 ]
                             }),
-
-                            DOM("input", {
-                                attr: { type: "submit" }
+                        ]
+                    }),
+                    DOM("div", {
+                        attr: { style: "margin-top: 1em" },
+                        inner: [
+                            DOM("label", {
+                                inner: "Database"
+                            }),
+                            DOM("div", {
+                                attr: { class: "input-group" },
+                                inner: [
+                                    DOM("label", {
+                                        attr: { for: "db" },
+                                        inner: "DB name"
+                                    }),
+                                    DOM("input", {
+                                        attr: { type: "text", id: "db", color: "merah", name: "db", required: true }
+                                    })
+                                ]
                             })
                         ]
+                    }),
+
+                    DOM("input", {
+                        attr: { type: "submit" }
                     })
-                ]
+                ],
+                todo: E => {
+                    E.addEventListener("submit", event => {
+                        event.preventDefault();
+                        let fd = new FormData(E)
+
+                        httpRequest(fd).onLoad(e => {
+
+                            document.querySelectorAll("[class^='alert-']").forEach(E => {
+                                E.classList.add("hide")
+                                setTimeout(() => E.remove(), 500)
+                            })
+
+                            if (e != "success") {
+                                let position = 2
+                                if (document.querySelector("[class^='alert-']")) {
+                                    position = 3
+                                }
+
+                                window.wrapper.insertBefore(
+                                    DOM("div", {
+                                        attr: { class: "alert-danger" },
+                                        inner: e
+                                    }),
+                                    window.wrapper.children[position]
+                                )
+                            } else {
+
+                                progress.setAttribute('step', 1)
+                                begin.remove();
+                                window.wrapper.append(second)
+                            }
+                        })
+
+                    })
+                }
             })
         }
 
+        function methodSecond() {
 
-        function httpRequest() {
+            return DOM('form', {
+                attr: { method: "post" },
+                inner: [
+                    DOM("h2", {
+                        attr: { class: "subtitle" },
+                        inner: "Change Admin Account"
+                    }),
 
+                    DOM("div", {
+                        attr: { style: "margin-top: 1em" },
+                        inner: [
+                            DOM("label", {
+                                inner: "Enter Username"
+                            }),
+                            DOM("div", {
+                                attr: { class: "input-group" },
+                                inner: [
+                                    DOM("label", {
+                                        attr: { for: "username" },
+                                        inner: "username"
+                                    }),
+                                    DOM("input", {
+                                        attr: { type: "text", id: "username", name: "username", value: "admin", required: true }
+                                    })
+                                ]
+                            })
+                        ]
+                    }),
+
+                    DOM("div", {
+                        attr: { style: "margin-top: 1em" },
+                        inner: [
+                            DOM("label", {
+                                inner: "Enter Password"
+                            }),
+                            DOM("div", {
+                                attr: { class: "input-group" },
+                                inner: [
+                                    DOM("label", {
+                                        attr: { for: "password" },
+                                        inner: "password"
+                                    }),
+                                    DOM("input", {
+                                        attr: { type: "password", id: "password", name: "password", value: "admin", required: true },
+                                        todo: E => {
+                                            var password = E
+                                        }
+                                    })
+                                ]
+                            }),
+
+                            DOM("div", {
+                                attr: { style: "margin-left: 6em" },
+                                inner: [
+                                    DOM("input", {
+                                        attr: { id: "showpass2", type: "checkbox" },
+                                        todo: E => {
+                                            E.addEventListener("change", C => {
+                                                if (E.checked) {
+                                                    password.type = "text"
+                                                } else password.type = "password"
+                                            })
+                                        }
+                                    }),
+                                    DOM("label", {
+                                        attr: { for: "showpass2" },
+                                        inner: "show password"
+                                    })
+                                ]
+                            }),
+                        ]
+                    }),
+
+                    DOM("input", { attr: { type: "submit" } })
+
+                ],
+                todo: E => {
+                    E.addEventListener("submit", event => {
+
+                        event.preventDefault();
+                        let fd = new FormData(E)
+
+                        httpRequest(fd).onLoad(e => {
+
+                            document.querySelectorAll("[class^='alert-']").forEach(E => {
+                                E.classList.add("hide")
+                                setTimeout(() => E.remove(), 500)
+                            })
+
+                            if (e != "success") {
+                                let position = 2
+                                if (document.querySelector("[class^='alert-']")) {
+                                    position = 3
+                                }
+
+                                window.wrapper.insertBefore(
+                                    DOM("div", {
+                                        attr: { class: "alert-danger" },
+                                        inner: e
+                                    }),
+                                    window.wrapper.children[position]
+                                )
+                            } else {
+
+                                progress.setAttribute('step', 2)
+                                second.remove();
+                                
+                                setTimeout(() => methodLast(), 500)
+                            }
+                        })
+
+                    })
+                }
+            })
         }
+
+        function methodLast() {
+
+            setTimeout(() => {
+                progress.classList.add("run")
+                title.classList.add("hide")
+                progress.classList.add("finishing")
+            }, 500)
+
+            setTimeout(() => window.location.href = "/mrp/login", 4000)
+
+            return "";
+        }
+        function httpRequest(formData) {
+
+            progress.classList.add("run")
+            let callBack = {
+                onLoad: () => { }
+            }
+
+            let xhr = new XMLHttpRequest();
+
+            xhr.onload = function () {
+
+                if (xhr.status != 200) { // analyze HTTP status of the response
+                    alert(`Error ${xhr.status}: ${xhr.statusText}`); // e.g. 404: Not Found
+
+                } else {
+
+                    callBack.onLoad(this.responseText)
+                }
+
+                setTimeout(() => progress.classList.remove("run"), 500)
+            };
+            xhr.open("post", "#self")
+            xhr.send(formData)
+
+            return {
+                onLoad: E => {
+                    callBack.onLoad = E
+                }
+            }
+        }
+
         function showPasword(id) {
             let input = document.querySelector(id)
             if (input) {

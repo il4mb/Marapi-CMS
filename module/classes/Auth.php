@@ -13,7 +13,7 @@ class AUTH {
     /**
      * Undocumented variable
      *
-     * @var string $email - email account
+     * @var string $email - username or email account
      * @var string $password - password account
      */
     public string $email, $password;
@@ -27,7 +27,7 @@ class AUTH {
 
     public function Login() {
 
-        $stmt = $this->DB->prepare("SELECT * FROM users WHERE email=?");
+        $stmt = $this->DB->prepare("SELECT * FROM users WHERE username=?");
         $stmt->execute([$this->email]);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
