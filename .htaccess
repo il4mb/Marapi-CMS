@@ -5,6 +5,7 @@ RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 RewriteCond %{REQUEST_FILENAME} -f 
 RewriteRule .+ - [L]
 
+RewriteRule ^mrp/install(.*)$ /app/install/index.php?p=$1 [QSA,L]
 RewriteRule ^mrp/api/hook(.*)$ /app/api/hook/main.php?p=$1 [QSA,L]
 RewriteRule ^mrp(.*)$ /app/admin/index.php?p=$1 [QSA,L]
 

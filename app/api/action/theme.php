@@ -21,11 +21,11 @@ if($kode == 1) {
 } else if ($kode == 0) {
 
     $theme = THEME::getThemeFromPath($value);
+    if(file_exists($theme->path)) {
 
-    echo json_encode([
-        "title" => "Confirm Deletion",
-        "body" => "Are you sure to delete Theme <span class='text-primary'>". $theme->params['@name']."</span> ? 
-                   path : <span class='fn-i text-secondary'>".$theme->path."</span>
-                   \n<span class='fn-i text-warning'>This will delete all file in this theme folder</span>"
-    ]);
+        if(deleteDirectory($theme->path)) {
+            
+            echo "success";
+        }
+    }
 }

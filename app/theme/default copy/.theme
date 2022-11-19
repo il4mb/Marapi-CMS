@@ -1,0 +1,6 @@
+@name = Marapi Theme v2
+@author = nabil
+@description= Ini adalah tema default dari marapi 
+
+#main = index.html
+#content = child.html
