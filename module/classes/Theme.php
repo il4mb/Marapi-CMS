@@ -29,7 +29,18 @@ class THEME
                 } else $this->params[preg_replace("/[^a-z@]+/i", "", $param[0])] = $param[1];
             }
         }
-        // print_r($this->params);
+    }
+
+    public static function getThemeFromPath($path) {
+
+        if (file_exists($path . "/.theme") && is_file($path . "/.theme")) {
+
+            $theme = new THEME(file_get_contents($path . "/.theme"));
+            $theme->path = $path;
+            return $theme;
+
+        } else echo "path does't containt Theme";
+
     }
 
     /**
@@ -44,12 +55,8 @@ class THEME
         $json = new Json($conf_path);
         $pathActive = $_SERVER['DOCUMENT_ROOT'] . $json->data['theme'];
         
-        if (file_exists($pathActive . "/.theme") && is_file($pathActive . "/.theme")) {
-
-            $theme = new THEME(file_get_contents($pathActive . "/.theme"));
-            $theme->path = $_SERVER['DOCUMENT_ROOT'] . $json->data['theme'];
-            return $theme;
-        }
+        return self::getThemeFromPath($pathActive);
+        
     }
 
     function getList(): array

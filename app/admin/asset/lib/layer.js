@@ -32,13 +32,15 @@ export class Layer {
             this.hide();
         })
 
+        this.currentLayer = document.body.querySelectorAll(".layer")
+
         this.head.append(this.title, this.closeHandle)
         this.wrapper.append(this.head, this.body)
         document.body.append(this.wrapper)
     }
 
     api(e) {
-        
+
         e(this);
 
         return {
@@ -60,6 +62,16 @@ export class Layer {
     show() {
 
         setTimeout(() => this.wrapper.classList.add("show"), 200)
+
+        this.currentLayer.forEach(E => {
+
+
+            setTimeout(() => {
+                E.classList.remove("show")
+                setTimeout(() => E.remove(), 200)
+            }, 200)
+
+        })
     }
 
     /**

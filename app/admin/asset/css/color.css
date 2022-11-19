@@ -18,6 +18,16 @@
 .text-info {
     color: rgb(var(--co-info));
 }
+.text-secondary {
+    color: rgb(var(--co-secondary))
+}
+
+.fn-i {
+    font-style: italic;
+}
+.white-s-prel {
+    white-space: pre-line;
+}
 
 /* BACKGROUND */
 .bg-danger {
@@ -39,6 +49,9 @@
 .bg-info {
     background-color: rgb(var(--co-info));
 }
+.bg-secondary {
+    background-color: rgb(var(--co-secondary))
+}
 
 /* PARAREL */
 .text-danger.bg-danger {
@@ -56,6 +69,10 @@
 .text-info.bg-info {
     background-color: rgb(var(--co-info) /var(--float-3));
 }
+.text-secondary.bg-secondary {
+    background-color: rgb(var(--co-secondary) /var(--float-3))
+}
+
 button:disabled {
     color: rgb(var(--co-secondary) /var(--float-4)) !important;
     background-color: rgb(var(--co-secondary) /var(--float-2)) !important;

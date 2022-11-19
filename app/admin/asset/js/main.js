@@ -170,6 +170,28 @@ function mLayer(element) {
                 DOM("button", {
                     attr: { class: 'text-danger bg-danger' },
                     inner: "delete",
+                    todo: E => {
+                        if (data['active'] === true) { E.disabled = true }
+
+                        E.addEventListener('click', () => {
+                            let hook = doHook(hookUrl)
+                            hook.onLoaded(E => {
+                                // window.location.reload()
+
+                                try {
+                                    let response = JSON.parse(E.responseText)
+                                    actionConfirm(response, null)
+
+                                } catch {
+
+                                }
+
+                            })
+
+                            hook.doPost({ "key": 'theme', 'kode': 0, "value": data['path'] })
+
+                        })
+                    }
                 }),
                 DOM("button", {
                     attr: { class: 'text-primary bg-primary' },
@@ -184,13 +206,50 @@ function mLayer(element) {
                             })
 
                             hook.doPost({ "key": 'theme', 'kode': 1, "value": data['path'] })
-                            
+
                         })
                     }
                 })
             ]
         })
     }
+}
+
+
+function actionConfirm(data) {
+
+    let layer = new Layer();
+    layer.api(E => {
+
+        E.title.innerHTML = data['title']
+
+        E.body.setInner(DOM("div", {
+            attr: { class: "white-s-prel" },
+            inner: [
+                DOM("div", {
+                    inner: data['body']
+                })
+            ]
+        }))
+    }).setFooter(() => {
+
+        return [
+            DOM("button", {
+                attr : {class: "text-secondary bg-secondary"},
+                inner: "close",
+                todo : E => {
+                    E.addEventListener('click', () => layer.hide())
+                }
+            }),
+            DOM("button", {
+                attr : {class: "text-danger bg-danger"},
+                inner: "confirm"
+            })
+        ]
+    })
+
+    layer.show()
+
 }
 
 function doHook(urlString, method = "POST") {
@@ -208,7 +267,7 @@ function doHook(urlString, method = "POST") {
             alert(`Error ${xhr.status}: ${xhr.statusText}`); // e.g. 404: Not Found
         } else { // show the result
             // alert(`Done, got ${xhr.response.length} bytes`); // response is the server response
-            
+
             loadUI.done(() => callBack.onLoaded(this))
         }
     };
