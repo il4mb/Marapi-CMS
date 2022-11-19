@@ -1,4 +1,9 @@
 <?php
+/**
+ * Intallation code 
+ * @Author @ilh4mb 
+ */
+
 $html = file_get_contents("./index.html");
 
 if(isset($_POST['host'], $_POST['user'], $_POST['password'])) {
