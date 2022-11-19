@@ -11,36 +11,135 @@
     <meta name='msapplication-square310x310logo' content='/core/assets/png/Marapi-square-logo-nontext.png'>
     <title>Marapi installation</title>
 
-    <link rel="stylesheet" href="./style.css" />
-
+    <link rel="stylesheet" href="/app/install/style.css" />
 </head>
 
 <body>
-    <div class="container">
 
-        <h1>Marapi installation</h1>
+    <script type="module">
 
-        <div style="margin-top: 1em;">
-            <label>Mysql server</label>
-            <div class="input-group">
-                <label>Host</label>
-                <input color="merah">
-            </div>
-        </div>
+        import { DOM } from "/app/asset/domcreate/dom.js"
 
-        <div style="margin-top: 1em;">
-            <label>Account</label>
-            <div class="input-group">
-                <label>User</label>
-                <input color="merah">
-            </div>
-            <div class="input-group">
-                <label>Password</label>
-                <input color="merah">
-            </div>
-        </div>
-        
-    </div>
+        window.addEventListener("load", () => {
+            window.wrapper = DOM("div", {
+                attr: { class: "container" }
+            })
+
+            document.body.prepend(window.wrapper)
+
+            let progress = DOM("div", {
+                attr: { class: "progress", step: 0 }
+            }), title = DOM("h1", {
+                inner: "Marapi installation"
+            })
+            window.wrapper.append(progress, title, begin())
+        })
+
+        function begin() {
+
+            return DOM("form", {
+                attr: { method: "post" },
+                inner: [
+
+                    DOM("div", {
+                        attr: { style: "margin-top: 1em" },
+                        inner: [
+                            DOM("label", {
+                                inner: "Mysql server"
+                            }),
+                            DOM("div", {
+                                attr: { class: "input-group" },
+                                inner: [
+                                    DOM("label", {
+                                        attr: { for: "host" },
+                                        inner: "Host"
+                                    }),
+                                    DOM("input", {
+                                        attr: { type: "text", id: "host", color: "merah", name: "host", required: true }
+                                    })
+                                ]
+                            })
+                        ]
+                    }),
+
+                    DOM("div", {
+                        attr: { style: "margin-top: 1em" },
+                        inner: [
+
+                            DOM("label", {
+                                inner: "Account"
+                            }),
+
+                            DOM("div", {
+                                attr: { class: "input-group" },
+                                inner: [
+                                    DOM("label", {
+                                        attr: { for: "usr" },
+                                        inner: "User"
+                                    }),
+                                    DOM("input", {
+                                        attr: { type: "text", id: "usr", color: "merah", name: "user", required: true }
+                                    })
+                                ]
+                            }),
+
+                            DOM("div", {
+                                attr: { class: "input-group" },
+                                inner: [
+
+                                    DOM("label", {
+                                        attr: { for: "pwd" },
+                                        inner: "Password"
+                                    }),
+                                    DOM("input", {
+                                        attr: { type: "password", id: "pwd", color: "merah", name: "password" },
+                                        todo: E => { var pwd = E }
+                                    })
+                                ]
+                            }),
+
+                            DOM("div", {
+                                attr: { style: "margin-left: 6em" },
+                                inner: [
+                                    DOM("input", {
+                                        attr: { id: "showpass", type: "checkbox" },
+                                        todo: E => {
+                                            E.addEventListener("change", C => {
+                                                if (E.checked) {
+                                                    pwd.type = "text"
+                                                } else pwd.type = "password"
+                                            })
+                                        }
+                                    }),
+                                    DOM("label", {
+                                        attr: { for: "showpass" },
+                                        inner: "show password"
+                                    })
+                                ]
+                            }),
+
+                            DOM("input", {
+                                attr: { type: "submit" }
+                            })
+                        ]
+                    })
+                ]
+            })
+        }
+
+
+        function httpRequest() {
+
+        }
+        function showPasword(id) {
+            let input = document.querySelector(id)
+            if (input) {
+                if (input.type == "password") {
+                    input.type = "text"
+                } else input.type = "password"
+            }
+        }
+    </script>
 </body>
 
 </html>

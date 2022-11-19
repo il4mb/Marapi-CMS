@@ -1,21 +1,16 @@
-( () => {
-
-    console.log("HALLO NERD :)")
-
-} )();
-
-export var DOM = (
-    element = "div", 
+var DOM = (
+    element = "div",
     data = {
-        attr: {}, 
-        inner: [], 
-        todo: null}
-        ) => {
+        attr: {},
+        inner: [],
+        todo: null
+    }
+) => {
 
     let a = document.createElement(element),
-    attr = data ? data.attr : {},
-    inner = data ? data.inner : '',
-    todo = data ? data.todo : null;
+        attr = data ? data.attr : {},
+        inner = data ? data.inner : '',
+        todo = data ? data.todo : null;
 
     if (attr) {
         Object.keys(attr).forEach((b) => {
@@ -36,13 +31,13 @@ export var DOM = (
                 break;
 
             case 'boolean':
-            case 'string' :
+            case 'string':
                 a.innerHTML = c;
                 break;
-                
+
             case 'object':
-                if(Array.isArray(c)){
-                    c.forEach((d)=>{
+                if (Array.isArray(c)) {
+                    c.forEach((d) => {
                         a.append(d);
                     });
                 } else {
@@ -70,7 +65,7 @@ export var DOM = (
      * @param {int} maxLength - Minimum karakter
      * @param {regex} exeption - Karakter ilegal
      */
-    a.onInput = function(minLength, maxLength, exeption = "//g") {
+    a.onInput = function (minLength, maxLength, exeption = "//g") {
         a.addEventListener("keypress", event => {
             if (event.keyCode != 8 && event.key.match(exeption)) {
                 event.preventDefault();
@@ -95,9 +90,11 @@ export var DOM = (
             a.setAttribute("minlength", minLength);
         });
     };
-    
+
     if (inner) a.setInner(inner);
     if (todo) todo(a);
-    
+
     return a;
 }
+
+export {DOM};

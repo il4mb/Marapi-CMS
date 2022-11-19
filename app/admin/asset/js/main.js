@@ -2,8 +2,8 @@
  * author :  @ilh4mb
  * Email  : <durianbohong@gmail.com>
  */
-import { DOM } from "../domcreate/dom.js"
-import { Layer } from "../lib/layer.js"
+import { DOM } from "../../../asset/domcreate/dom.js"
+import { Layer } from "../../../asset/lib/layer.js"
 
 let TODO = {
     navbar: () => Navbar(),
