@@ -77,8 +77,10 @@ function mLayer(element) {
     layer.show();
 
 
-    /*************************************************** */
-    /*************************************************** */
+    /**
+     * LAYER LAYOUT THEME
+     * @param {JSON} data - theme data
+     */
     function theme(data) {
 
         layer.api(E => {
@@ -97,7 +99,7 @@ function mLayer(element) {
                                     " active"
                                 ]
                             })
-                        }
+                        } else return ""
                     }
                 }),
                 DOM("table", {
@@ -174,21 +176,78 @@ function mLayer(element) {
                         if (data['active'] === true) { E.disabled = true }
 
                         E.addEventListener('click', () => {
-                            let hook = doHook(hookUrl)
-                            hook.onLoaded(E => {
-                                // window.location.reload()
 
-                                try {
-                                    let response = JSON.parse(E.responseText)
-                                    actionConfirm(response, null)
+                            // SHOW CONFIRM BEFORE DELETE
+                            actionConfirm({
 
-                                } catch {
+                                title: E => {
+                                    E.classList.add("text-danger")
+                                    return "Deletion Confirmation"
+                                },
+                                body: DOM("div", {
+                                    inner: [
+                                        DOM("p", {
+                                            inner: E => {
+                                                return "Are you sure want to delete ?"
+                                            }
+                                        }),
+                                        DOM("table", {
+                                            attr: { class: "text-secondary" },
+                                            inner: [
+                                                DOM("tr", {
+                                                    inner: [
+                                                        DOM("td", {
+                                                            inner: "name"
+                                                        }),
+                                                        DOM("td", {
+                                                            inner: ":"
+                                                        }),
+                                                        DOM("td", {
+                                                            inner: data['params']['@name']
+                                                        })
+                                                    ]
+                                                }),
 
-                                }
+                                                DOM("tr", {
+                                                    inner: [
+                                                        DOM("td", {
+                                                            inner: "author"
+                                                        }),
+                                                        DOM("td", {
+                                                            inner: ":"
+                                                        }),
+                                                        DOM("td", {
+                                                            inner: data['params']['@author']
+                                                        })
+                                                    ]
+                                                }),
 
+                                                DOM("tr", {
+                                                    inner: [
+                                                        DOM("td", {
+                                                            inner: "path"
+                                                        }),
+                                                        DOM("td", {
+                                                            inner: ":"
+                                                        }),
+                                                        DOM("td", {
+                                                            inner: data['path']
+                                                        })
+                                                    ]
+                                                })
+                                            ]
+                                        })
+                                    ]
+                                })
+                            }).onConfirm(() => {
+
+                                let hook = doHook(hookUrl)
+                                hook.onLoaded(() => {
+                                   window.location.reload()
+                                })
+
+                                hook.doPost({ "key": 'theme', 'kode': 0, "value": data['path'] })
                             })
-
-                            hook.doPost({ "key": 'theme', 'kode': 0, "value": data['path'] })
 
                         })
                     }
@@ -216,12 +275,22 @@ function mLayer(element) {
 }
 
 
+/**
+ * ACTION CONFIRM LAYER LAYOUT
+ * @param {*} data 
+ * @returns 
+ */
 function actionConfirm(data) {
 
-    let layer = new Layer();
+    let layer = new Layer(),
+        callBack = {
+            confirm: () => layer.hide(),
+            cancel: () => layer.hide()
+        }
+
     layer.api(E => {
 
-        E.title.innerHTML = data['title']
+        E.title.setInner(data['title'])
 
         E.body.setInner(DOM("div", {
             attr: { class: "white-s-prel" },
@@ -231,27 +300,47 @@ function actionConfirm(data) {
                 })
             ]
         }))
+
     }).setFooter(() => {
 
         return [
             DOM("button", {
-                attr : {class: "text-secondary bg-secondary"},
+                attr: { class: "text-secondary bg-secondary" },
                 inner: "close",
-                todo : E => {
-                    E.addEventListener('click', () => layer.hide())
+                todo: E => {
+                    E.addEventListener('click', () => callBack.cancel(layer))
                 }
             }),
             DOM("button", {
-                attr : {class: "text-danger bg-danger"},
-                inner: "confirm"
+                attr: { class: "text-danger bg-danger" },
+                inner: "confirm",
+                todo: E => {
+                    E.addEventListener('click', () => callBack.confirm(layer))
+                }
             })
         ]
     })
 
     layer.show()
 
+    return {
+
+        onConfirm: E => {
+            callBack.confirm = E
+        },
+        onCancel: E => {
+            callBack.cancel = E
+        }
+    }
+
 }
 
+/**
+ * DO HTTP REQUEST TO BACK-END
+ * @param {String} urlString 
+ * @param {String} method 
+ * @returns 
+ */
 function doHook(urlString, method = "POST") {
 
     let xhr = new XMLHttpRequest(),

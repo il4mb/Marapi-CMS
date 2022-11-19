@@ -32,7 +32,7 @@ export var DOM = (
         switch (typeof c) {
             case 'function':
                 a.innerHTML = null
-                a.append(c())
+                a.append(c(a))
                 break;
 
             case 'boolean':

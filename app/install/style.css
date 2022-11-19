@@ -1,0 +1,47 @@
+.container {
+    max-width: 600px;
+    width: 100%;
+    min-height: 50vh;
+
+    background-color: white;
+    box-shadow: -1px 1px 4px rgb(0 0 0 /.5);
+    margin: auto;
+    padding: 10px;
+    
+}
+
+.input-group {
+    margin-top: 8px;
+    display: flex;
+    align-items: baseline;
+    box-shadow: 0px 1px 4px rgb(0 0 0 /.5);
+    padding: 0;
+}
+.input-group * {
+    margin: 0;
+}
+.input-group input {
+    box-shadow: none !important;
+}
+.input-group label {
+    padding: 8px 15px;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    width: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+input {
+    width: calc(100% - 20px);
+    margin-bottom: 1em;
+    padding: 8px;
+    outline: none !important;
+    border: none !important;
+
+    box-shadow: 0px 1px 4px rgb(0 0 0 /.5);
+}
+
+input[color="merah"] {
+    color: red
+}
