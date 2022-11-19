@@ -1,12 +1,13 @@
 <?php
 ### GENERATE BY SYSTEM
 $host = "localhost";
+$database = "marapi";
 $user = "root";
 $pass = "";
 
 try {
 
-	$DB = new PDO("mysql:host=$host;dbname=marapi", $user, $pass);
+	$DB = new PDO("mysql:host=$host;dbname=$database", $user, $pass);
 	$DB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
 

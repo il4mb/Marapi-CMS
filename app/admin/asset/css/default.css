@@ -30,11 +30,14 @@ input[type="submit"] {
     border: none;
 }
 
-.container {
+[class^="container"] {
     position: relative;
     width: 100%;
     max-width: 1200px;
     margin: auto;
+}
+.container-sm {
+    max-width: 800px;
 }
 
 .mrp-logo {
