@@ -16,13 +16,16 @@ class Main
         $this->theme = THEME::getActiveTheme();
     
         // INIT PLUGIN
-        $listPlugin = Plugin::getListPlugin();
+        $listPlugin = Plugin::getActivePlugin();
 
         // INIT VIEW
         $this->view = new VIEW($this);
         $this->view->brand("TOKO MINYAK");
 
         foreach ($listPlugin as $plugin) {
+            /**
+             * @var Plugin $plugin
+             */
             // CALL PLUGIN
             $plugin->callOnFront($this);
         }

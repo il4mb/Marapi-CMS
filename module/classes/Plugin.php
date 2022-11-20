@@ -1,16 +1,32 @@
 <?php
 
+/**
+ * @author @ilh4mb
+ */
+
 namespace classes;
 
 use PDO;
 
+/**
+ * Plugin Class **Marapi CMS**
+ */
 class Plugin
 {
 
     public $path = null;
     private static $relativeDirectory = "/app/plugin";
 
-
+    /**
+     * **__construct()**
+     * 
+     * Constructor of Plugin
+     * 
+     * Required :
+     * - full path address
+     * @param String $path full path directory address of plugin
+     * @return Plugin
+     */
     function __construct($path)
     {
 
@@ -37,6 +53,11 @@ class Plugin
         }
     }
 
+    /**
+     * module()
+     * - call theme module
+     * @return PluginInterface of plugin module
+     */
     public function module()
     {
 
@@ -49,17 +70,33 @@ class Plugin
         }
     }
 
+    /**
+     * callOnPanel()
+     * - call this plugin on admin panel
+     */
     public function callOnPanel()
     {
 
         $this->module()->onPanel();
     }
 
+    /**
+     * callOnFront()
+     * - call this plugin on public area
+     * 
+     * This method will passing main object to this plugin
+     * @param Main $main Main object
+     */
     public function callOnFront(Main $main)
     {
 
         $this->module()->onFront($main);
     }
+
+    /**
+     * setActive()
+     * - enable this plugin
+     */
     public function setActive()
     {
 
@@ -81,8 +118,53 @@ class Plugin
         } else echo "01";
     }
 
+    /**
+     * deActive()
+     * - disable this plugin
+     */
+    public function deActive()
+    {
+
+        $relativePath = substr($this->path, strlen($_SERVER['DOCUMENT_ROOT']));
+        $conn = new CONN();
+        $DB = $conn->_PDO();
+
+        $stmt = $DB->prepare("DELETE * FROM plugin WHERE path=?");
+        $stmt->execute([$relativePath]);
+    }
+
+    public function delete()
+    {
+
+        deleteDirectory($this->path);
+    }
+    /**
+     * - Check plugin is active
+     * @return bool
+     */
+    public function is_active(): bool
+    {
+
+        $relativePath = substr($this->path, strlen($_SERVER['DOCUMENT_ROOT']));
+        $conn = new CONN();
+        $DB = $conn->_PDO();
+
+        $stmt = $DB->prepare("SELECT * FROM `plugin` WHERE `path`=?");
+        $stmt->execute([$relativePath]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($result) {
+            return true;
+        } else return false;
+    }
 
 
+    /**
+     * is_plugin()
+     * 
+     * Check directory is plugin
+     * @param String $path full path directory address
+     */
     public static function is_plugin($path)
     {
         if (is_file($path . "/.plugin")) {
@@ -91,6 +173,11 @@ class Plugin
         } else return false;
     }
 
+    /**
+     * getActivePlugin()
+     * 
+     * Get all plugin has enabled
+     */
     public static function getActivePlugin()
     {
         $plugins = [];
@@ -116,6 +203,11 @@ class Plugin
         return $plugins;
     }
 
+    /**
+     * getListPlugin()
+     * 
+     * Get all plugin no matter enabled or disabled
+     */
     public static function getListPlugin()
     {
 

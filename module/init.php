@@ -20,6 +20,12 @@ foreach( $list AS $file ) {
     }
 }
 
+/**
+ * deleteDirectory()
+ * - Delete not empty directory
+ * 
+ * @param String $dir - full path directory address
+ */
 function deleteDirectory($dir) {
     if (!file_exists($dir)) {
         return true;

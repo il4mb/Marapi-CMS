@@ -16,5 +16,9 @@ if(isset($_POST['key'], $_POST['kode'])) {
     if(0 == strcmp(strtolower($key), "theme")) {
 
         require_once __DIR__."/../action/theme.php";
+    } else
+    if(0 == strcmp(strtolower($key), "plugin")) {
+
+        require_once __DIR__."/../action/plugin.php";
     }
 }

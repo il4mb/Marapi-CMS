@@ -7,8 +7,12 @@ $html = "<ul class='list-item'>";
 $plugins = Plugin::getListPlugin();
 
 foreach ($plugins as $plugin) {
-
-    //$plugin->setActive();
+    
+    $is_active = function() use ($plugin) {
+        if($plugin->is_active()) {
+            return "<a class='action-btn'>Deactive</a>";
+        } else return "<a class='action-btn'>Active</a>";
+    };
 
     $html .= "<li class='item'>
 
@@ -20,7 +24,7 @@ foreach ($plugins as $plugin) {
 
                 <div class='action-wrapper'>
 
-                    <a class='action-btn'>Active</a>
+                    ".$is_active()."
 
                     <a class='action-btn text-danger'>Delete</a>
 

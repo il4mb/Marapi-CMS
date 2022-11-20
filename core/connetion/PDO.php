@@ -15,4 +15,3 @@ try {
 	print $e->getMessage();
 	exit;
 }
-return $DB;
