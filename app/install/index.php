@@ -70,9 +70,9 @@ if (0 == strcmp(strtolower($_SERVER["HTTP_SEC_FETCH_MODE"]), "cors")) {
             /**
              * @var PDO $DB - Database
              */
-            $sql = "UPDATE users SET username=?, password=?, role=1 WHERE username=?";
+            $sql = "INSERT INTO `users` (`username`, `password`, `role`) VALUES (?, ?, ?);";
             $stmt = $DB->prepare($sql);
-            if ($stmt->execute([$username, $password, "admin"])) {
+            if ($stmt->execute([$username, $password, 1])) {
                 $message = "success";
             } else $message = "ERROR";
         } catch (Exception $e) {

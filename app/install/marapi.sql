@@ -38,9 +38,6 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `role`) VALUES
-(1, 'admin', '$2y$10$VgZWyNFwZNGWCb6Qrg1d8ujJZ/d7t.7So1DcWEjuGTYdt39cZRYsC', 1);
-
 --
 -- Indexes for dumped tables
 --
