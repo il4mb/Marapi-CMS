@@ -2,24 +2,51 @@
 
 use classes\Plugin;
 
-$dir = $_SERVER['DOCUMENT_ROOT']."/app/plugin";
-$listDir = scandir($dir);
+$html = "<ul class='list-item'>";
 
-$html = "<div class='flex justify-center'>";
+$plugins = Plugin::getListPlugin();
 
-foreach($listDir AS $child) {
+foreach ($plugins as $plugin) {
 
-    $pluginPath = $dir."/$child";
+    //$plugin->setActive();
 
-    if (Plugin::is_plugin($pluginPath)) {
-        
-        $plugin = new Plugin($pluginPath);
+    $html .= "<li class='item'>
 
-        $html .= "<div class='card-theme'>".$plugin->meta['@name']."</div>";
-    }
-    
+        <div class='item-body d-flex'>
+
+            <div class='col'>
+
+                <h4 class='item-title'>" . $plugin->meta['@name'] . "</h4>
+
+                <div class='action-wrapper'>
+
+                    <a class='action-btn'>Active</a>
+
+                    <a class='action-btn text-danger'>Delete</a>
+
+                    <a class='action-btn'>Edit</a>
+
+                </div>
+
+            </div>
+
+            <div class='col'>
+
+                <p>".$plugin->meta['@description']."</p>
+
+                <div class='action-wrapper'>
+
+                    <span>By <span class='text-primary'>".$plugin->meta['@author']."</span></span>
+
+                </div>
+
+            </div>
+            
+        </div>
+
+    </li>";
 }
-$html .= "</div>";
+$html .= "</ul>";
 
 
 $this->body = str_replace("[{CONTENT}]", $html, $this->body);

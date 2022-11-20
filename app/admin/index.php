@@ -19,7 +19,8 @@ if (array_key_exists('1', $path) && $path[1] != "login" && !isset($_COOKIE['user
 }
 
 
-$listPlugin = Plugin::getListPlugin();
+$listPlugin = Plugin::getActivePlugin();
+
 foreach($listPlugin AS $plugin) {
 
     $plugin->callOnPanel();

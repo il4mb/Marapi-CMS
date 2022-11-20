@@ -2,6 +2,13 @@
     font-family: "Ubuntu";
     src: url("../font/Ubuntu/Ubuntu-Regular.ttf");
 }
+html {
+    box-sizing: border-box;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+
 * {
     font-family: Ubuntu, sans-serif;
 }
@@ -38,6 +45,12 @@ input[type="submit"] {
 }
 .container-sm {
     max-width: 800px;
+}
+
+@media only screen and (max-width: 800px) {
+    [class^="container"] {
+        padding: 0 .5em;
+    }
 }
 
 .mrp-logo {

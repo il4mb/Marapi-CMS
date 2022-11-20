@@ -18,6 +18,7 @@ interface PluginInterface {
      * Description onFront()
      * plugin will call in website or public area
      * - dont print any sensitive while use this method
+     * @param Main $main - Main Object
      */
     public function onFront($main);
 

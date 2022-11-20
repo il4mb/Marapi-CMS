@@ -16,6 +16,8 @@
     --float-8: .8;
     --float-9: .9;
     --float-10: 1.0;
+
+    --cl-primary: rgb(var(--co-primary));
 }
 
 
@@ -25,9 +27,11 @@ button {
     border-radius: 5px;
     margin: 5px;
 }
+
 button:hover {
     transform: scale(1.1);
 }
+
 .loading-animation {
     position: fixed;
     top: 0;
@@ -37,6 +41,7 @@ button:hover {
     z-index: 99999;
     overflow: hidden;
 }
+
 .loading-animation::before {
     content: "Loading...";
     position: fixed;
@@ -49,6 +54,7 @@ button:hover {
     padding: 5px 15px;
     box-shadow: 0px 1px rgb(0 0 0 /.5);
 }
+
 .loading-animation::after {
     content: "";
     position: fixed;
@@ -70,9 +76,11 @@ button:hover {
     0% {
         width: 10%;
     }
+
     50% {
         width: 100%;
     }
+
     100% {
         width: 10%;
     }
@@ -170,7 +178,8 @@ button:hover {
     position: relative;
 }
 
-.card-theme>.thumbnail, .theme-thumbnail {
+.card-theme>.thumbnail,
+.theme-thumbnail {
     background-color: black;
     background: linear-gradient(203deg, black, #00748f);
     height: auto;
@@ -189,6 +198,7 @@ button:hover {
     top: calc(2.5%);
     right: calc(5%);
 }
+
 .action {
     position: absolute;
     bottom: calc(5%);
@@ -216,4 +226,73 @@ button:hover {
     transition: .25s;
     color: rgb(80, 80, 80) !important;
     transform: scale(1.1);
+}
+
+.list-item {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+}
+.list-item,
+.list-item>li {
+    list-style: none !important;
+}
+
+ul.list-item>li {
+    border-bottom: #d2d2d2 solid .5px;
+}
+
+ul.list-item>li:nth-of-type(odd) {
+    background-color: #f1f1f1;
+}
+
+.list-item>li:last-child {
+    border-bottom: none !important;
+}
+
+
+
+.item {
+    padding: 12px 0;
+}
+
+.item .item-title {
+    margin-top: 0 !important;
+}
+.item-body {
+    padding: 2.5px 8px;
+}
+.item-body.d-flex {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: space-around;
+    align-items: flex-end;
+}
+
+.action-wrapper {
+    display: flex;
+}
+
+.action-wrapper>* {
+    transition: .25s;
+    border-right: #b7b7b7 solid 0.5px;
+    padding: 0 12px;
+}
+
+.action-wrapper>*:last-child {
+    border-right: none !important;
+}
+
+.action-wrapper>*:first-child {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+}
+
+.action-wrapper>.action-btn:hover {
+    cursor: pointer;
+    color: var(--cl-primary);
+}
+.d-flex>.col {
+    flex-grow: 1;
 }
