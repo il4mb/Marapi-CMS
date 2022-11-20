@@ -6,8 +6,14 @@ $html = "<ul class='list-item'>";
 
 $plugins = Plugin::getListPlugin();
 
+$_data = ["plugin" => $plugins];
+$passData = "<script>window.MARAPI = " . json_encode($_data) . "</script>";
+$this->head .= $passData;
+
 foreach ($plugins as $plugin) {
-    
+    /**
+     * @var Plugin $plugin
+     */
     $is_active = function() use ($plugin) {
         if($plugin->is_active()) {
             return "<a class='action-btn'>Deactive</a>";

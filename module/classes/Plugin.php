@@ -14,7 +14,14 @@ use PDO;
 class Plugin
 {
 
-    public $path = null;
+    /**
+     * @var Array $meta Meta data about plugin
+     * 
+     * - @name - *name plugin*
+     * - @author - *author plugin*
+     * - @description - *plugin description*
+     */
+    public $path = null, $meta;
     private static $relativeDirectory = "/app/plugin";
 
     /**
