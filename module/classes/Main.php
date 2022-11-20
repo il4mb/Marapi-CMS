@@ -1,16 +1,32 @@
 <?php
+/**
+ * @author @ilhamb
+ */
 namespace classes;
 
-class Main {
-    
+class Main
+{
+
     public THEME $theme;
 
-    function __construct() {
-     
-        $this->theme = THEME::getActiveTheme();
+    function __construct()
+    {
 
-        $view = new VIEW($this);
-        $view->brand("TOKO MINYAK");
-        $view->render();
+        // INIT THEME
+        $this->theme = THEME::getActiveTheme();
+    
+        // INIT PLUGIN
+        $listPlugin = Plugin::getListPlugin();
+
+        // INIT VIEW
+        $this->view = new VIEW($this);
+        $this->view->brand("TOKO MINYAK");
+
+        foreach ($listPlugin as $plugin) {
+            // CALL PLUGIN
+            $plugin->callOnFront($this);
+        }
+
+        $this->view->render(); # RENDER
     }
 }

@@ -4,6 +4,7 @@ namespace classes;
 class Plugin {
 
     public $path = null;
+    private static $relativeDirectory = "/app/plugin";
 
 
     function __construct($path) {
@@ -43,6 +44,16 @@ class Plugin {
         }
     }
 
+    public function callOnPanel() {
+
+        $this->module()->onPanel();
+    }
+
+    public function callOnFront(Main $main) {
+        
+        $this->module()->onFront($main);
+    }
+
     
 
     public static function is_plugin($path) {
@@ -51,5 +62,29 @@ class Plugin {
             return true;
 
         } else return false;
+    }
+
+    public static function getListPlugin() {
+
+        $directory = $_SERVER["DOCUMENT_ROOT"].self::$relativeDirectory;
+        $listDir = scandir($directory);
+
+        $plugins = [];
+
+        foreach($listDir AS $child) {
+
+            $pluginPath = $directory."/$child";
+        
+            if (Plugin::is_plugin($pluginPath)) {
+                
+                $plugin = new Plugin($pluginPath);
+
+                array_push($plugins, $plugin);
+        
+            }
+            
+        }
+
+        return $plugins;
     }
 }

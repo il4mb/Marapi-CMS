@@ -19,6 +19,6 @@ interface PluginInterface {
      * plugin will call in website or public area
      * - dont print any sensitive while use this method
      */
-    public function onFront();
+    public function onFront($main);
 
 }

@@ -15,7 +15,7 @@ foreach($listDir AS $child) {
         
         $plugin = new Plugin($pluginPath);
 
-        $html .= "<div class='card-theme'>".json_encode($plugin)."</div>";
+        $html .= "<div class='card-theme'>".$plugin->meta['@name']."</div>";
     }
     
 }

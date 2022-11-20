@@ -1,6 +1,7 @@
 <?php
 
 use classes\DOCUMENT;
+use classes\Plugin;
 use classes\UriManager;
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/module/init.php';
@@ -15,6 +16,13 @@ if (!array_key_exists('1', $path) ||  array_key_exists('1', $path) && $path[1] =
 if (array_key_exists('1', $path) && $path[1] != "login" && !isset($_COOKIE['user'])) {
 
     header("Location: /mrp/login/");
+}
+
+
+$listPlugin = Plugin::getListPlugin();
+foreach($listPlugin AS $plugin) {
+
+    $plugin->callOnPanel();
 }
 
 switch ($path[1]) {
