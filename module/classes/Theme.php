@@ -29,6 +29,8 @@ class THEME
                 } else $this->params[preg_replace("/[^a-z@]+/i", "", $param[0])] = $param[1];
             }
         }
+
+        
     }
 
     public static function getThemeFromPath($path) {
