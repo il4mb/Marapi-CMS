@@ -90,4 +90,3 @@ if (0 == strcmp(strtolower($_SERVER["HTTP_SEC_FETCH_MODE"]), "cors")) {
 }
 
 echo file_get_contents("./index.html");
-}
