@@ -2,30 +2,26 @@
 
 namespace classes;
 
-use PDO, PDOException;
+use PDO;
 
 class CONN
 {
-
-    public PDO $DB;
-    public function PDO(): PDO
+    public function _PDO()
     {
+        global $DB;
+        /**
+         * @var PDO $DB
+         */
 
         if (is_file($_SERVER['DOCUMENT_ROOT'] . "/core/connetion/PDO.php")) {
-            try {
-                require_once $_SERVER['DOCUMENT_ROOT'] . "/core/connetion/PDO.php";
-                /**
-                 * @var PDO $DB - Database connection
-                 */
-                $this->DB = $DB;
-                return $this->DB;
-            } catch (PDOException $e) {
 
-                print $e;
-                exit;
-            }
+            if(require_once($_SERVER['DOCUMENT_ROOT'] . "/core/connetion/PDO.php"))
+                return $DB;
+            else 
+                echo "unable to call database";
+
         } else {
-            
+
             header("Location: /mrp/install/");
         }
     }

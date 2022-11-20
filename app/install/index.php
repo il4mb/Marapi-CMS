@@ -22,7 +22,7 @@ if (0 == strcmp(strtolower($_SERVER["HTTP_SEC_FETCH_MODE"]), "cors")) {
 
             if ($DB) {
 
-                $text = "<?php\n### GENERATE BY SYSTEM\n\$host = \"$host\";\n\$database = \"$database\";\n\$user = \"$user\";\n\$pass = \"$password\";\n\ntry {\n\n\t\$DB = new PDO(\"mysql:host=\$host;dbname=\$database\", \$user, \$pass);\n\t\$DB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);\n} catch (PDOException \$e) {\n\n\tprint \$e->getMessage();\n\texit;\n}";
+                $text = "<?php\n### GENERATE BY SYSTEM\n\$host = \"$host\";\n\$database = \"$database\";\n\$user = \"$user\";\n\$pass = \"$password\";\n\n\$DB = null;\ntry {\n\n\t\$DB = new PDO(\"mysql:host=\$host;dbname=\$database\", \$user, \$pass);\n\t\$DB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);\n} catch (PDOException \$e) {\n\n\tprint \$e->getMessage();\n\texit;\n}\nreturn \$DB;";
 
                 $stream = fopen($_SERVER['DOCUMENT_ROOT'] . "/core/connetion/PDO.php", "w+");
                 fwrite($stream, $text);

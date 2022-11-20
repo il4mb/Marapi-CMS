@@ -1,10 +1,11 @@
 <?php
 ### GENERATE BY SYSTEM
 $host = "localhost";
-$database = "marapi";
+$database = "mrp";
 $user = "root";
 $pass = "";
 
+$DB = null;
 try {
 
 	$DB = new PDO("mysql:host=$host;dbname=$database", $user, $pass);
@@ -14,3 +15,4 @@ try {
 	print $e->getMessage();
 	exit;
 }
+return $DB;

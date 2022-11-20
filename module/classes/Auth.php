@@ -22,7 +22,7 @@ class AUTH {
     function __construct() {
 
         $conn = new CONN();
-        $this->DB = $conn->PDO();
+        $this->DB = $conn->_PDO();
     }
 
     public function Login() {

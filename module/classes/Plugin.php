@@ -66,7 +66,7 @@ class Plugin
         $relativePath = substr($this->path, strlen($_SERVER['DOCUMENT_ROOT']));
 
         $conn = new CONN();
-        $DB = $conn->PDO();
+        $DB = $conn->_PDO();
 
         $stmt = $DB->prepare("SELECT * FROM `plugin` WHERE `path`=?");
         $stmt->execute([$relativePath]);
@@ -96,7 +96,7 @@ class Plugin
         $plugins = [];
 
         $conn = new CONN();
-        $DB = $conn->PDO();
+        $DB = $conn->_PDO();
 
         $stmt = $DB->prepare("SELECT * FROM plugin");
         $stmt->execute();
