@@ -18,13 +18,6 @@ if (array_key_exists('1', $path) && $path[1] != "login" && !isset($_COOKIE['user
     header("Location: /mrp/login/");
 }
 
-$listPlugin = Plugin::getActivePlugin();
-
-foreach($listPlugin AS $plugin) {
-
-    $plugin->callOnPanel();
-}
-
 switch ($path[1]) {
 
     case "dashboard":
@@ -76,24 +69,28 @@ switch ($path[1]) {
             } else $menu[$key] = str_replace("{ATTR}", "", $menu[$key]);
         }
 
+        $document->setMenu($menu);
+        $document->setBody(str_replace("{PAGE_TITLE}", $path[1], $document->getBody()));
 
-        $document->body = str_replace("[{LINKS}]", implode("\n", $menu), $document->body);
-        $document->body = str_replace("{PAGE_TITLE}", $path[1], $document->body);
-
-        print($document->render());
         break;
 
     case "login":
         $html = file_get_contents(__DIR__ . "/layout/login.html");
         $document = new DOCUMENT($html);
         $document->setControler(__DIR__ . "/controler/login.php");
-        print($document->render());
         break;
 
     default:
         $html = file_get_contents(__DIR__ . "/layout/404.html");
         $document = new DOCUMENT($html);
-        print($document->render());
 }
 
+
+$listPlugin = Plugin::getActivePlugin();
+foreach($listPlugin AS $plugin) {
+
+    $plugin->callOnPanel($document);
+}
+
+print($document->render());
 exit;

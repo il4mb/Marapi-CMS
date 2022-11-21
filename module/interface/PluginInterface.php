@@ -11,14 +11,15 @@ interface PluginInterface {
      * Description onPanel()
      * plugin will call in admin panel or private area
      * - you can print anything here
+     * @param DOCUMENT $document DOCUMENT Object
      */
-    public function onPanel();
+    public function onPanel($document);
 
     /**
      * Description onFront()
      * plugin will call in website or public area
      * - dont print any sensitive while use this method
-     * @param Main $main - Main Object
+     * @param Main $main Main Object
      */
     public function onFront($main);
 

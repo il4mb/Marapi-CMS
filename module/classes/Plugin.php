@@ -82,10 +82,10 @@ class Plugin
      * callOnPanel()
      * - call this plugin on admin panel
      */
-    public function callOnPanel()
+    public function callOnPanel($document)
     {
 
-        $this->module()->onPanel();
+        $this->module()->onPanel($document);
     }
 
     /**
