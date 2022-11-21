@@ -35,14 +35,7 @@ if (array_key_exists('1', $path) && $path[1] != "login" && !isset($_COOKIE['user
 }
 
 $menu = [
-    "dashboard" => "<a {ATTR} style=\"font-weight: 900; padding: 15px 15px;\" href=\"/mrp/dashboard/\">
-    <svg width=\"40\" height=\"28\" color=\"currentColor\" version=\"1.1\" viewBox=\"0 0 126.4 97.009\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:cc=\"http://creativecommons.org/ns#\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\">
-        <g transform=\"translate(-38.675 -125.31)\">
-            <path d=\"m93.979 136.81 8.7573 11.332 13.744-22.837 48.59 96.886-20.335-0.0209-29.298-58.489-10.509 14.449-8.472-8.9149-31.166 52.807s-26.691 0.2253-26.615 0.10806z\" fill=\"currentColor\" stroke-width=\".26458\"/>
-        </g>
-    </svg><span style='margin-left:-2px'>arapi</span>
-    <small class='text-secondary'><i>Dasborad</i></small>
-</a>",
+    "dashboard" => "<a {ATTR} style=\"font-weight: 900; padding: 15px 15px;\" href=\"/mrp/dashboard/\">\n\t<svg width=\"40\" height=\"28\" color=\"currentColor\" version=\"1.1\" viewBox=\"0 0 126.4 97.009\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:cc=\"http://creativecommons.org/ns#\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\">\n\t\t<g transform=\"translate(-38.675 -125.31)\">\n\t\t\t<path d=\"m93.979 136.81 8.7573 11.332 13.744-22.837 48.59 96.886-20.335-0.0209-29.298-58.489-10.509 14.449-8.472-8.9149-31.166 52.807s-26.691 0.2253-26.615 0.10806z\" fill=\"currentColor\" stroke-width=\".26458\"/>\n\t\t</g>\n\t</svg>\n\t<span style='margin-left:-2px'>arapi</span>\n\t<small class='text-secondary'><i>Dasborad</i></small>\n</a>",
     "<hr/>",
     'content' => '<a {ATTR} href="/mrp/content/">CONTENT</a>',
     'page' => '<a {ATTR} href="/mrp/page/">PAGE</a>',
