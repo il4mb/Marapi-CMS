@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
-
 <svg
+   style="color: currentColor;"
    width="126.39526mm"
    height="97.009232mm"
    viewBox="0 0 126.39526 97.009232"
    version="1.1"
-   id="svg5"
    sodipodi:docname="Marapi-logo-nontext.svg"
    inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -16,65 +15,11 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:cc="http://creativecommons.org/ns#"
    xmlns:dc="http://purl.org/dc/elements/1.1/">
-  <sodipodi:namedview
-     id="namedview7"
-     pagecolor="#ffffff"
-     bordercolor="#000000"
-     borderopacity="0.25"
-     inkscape:showpageshadow="2"
-     inkscape:pageopacity="0.0"
-     inkscape:pagecheckerboard="0"
-     inkscape:deskcolor="#d1d1d1"
-     inkscape:document-units="mm"
-     showgrid="false"
-     inkscape:zoom="0.49449362"
-     inkscape:cx="133.46987"
-     inkscape:cy="104.14695"
-     inkscape:window-width="1920"
-     inkscape:window-height="1001"
-     inkscape:window-x="-9"
-     inkscape:window-y="-9"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="layer1" />
-  <defs
-     id="defs2">
-    <marker
-       id="Arrow2Sstart"
-       inkscape:isstock="true"
-       inkscape:stockid="Arrow2Sstart"
-       orient="auto"
-       refX="0"
-       refY="0"
-       style="overflow:visible">
-      <path
-         d="M 8.72,4.03 -2.21,0.02 8.72,-4 c -1.75,2.37 -1.74,5.62 0,8.03 z"
-         id="Arrow2SstartPath"
-         style="fill:#000000;fill-opacity:1;stroke:none"
-         transform="matrix(0.3,0,0,0.3,-0.69,0)" />
-    </marker>
-    <marker
-       id="Arrow2Send"
-       inkscape:isstock="true"
-       inkscape:stockid="Arrow2Send"
-       orient="auto"
-       refX="0"
-       refY="0"
-       style="overflow:visible">
-      <path
-         d="M 8.72,4.03 -2.21,0.02 8.72,-4 c -1.75,2.37 -1.74,5.62 0,8.03 z"
-         id="Arrow2SendPath"
-         style="fill:#000000;fill-opacity:1;stroke:none"
-         transform="matrix(-0.3,0,0,-0.3,0.69,0)" />
-    </marker>
-  </defs>
   <g
-     inkscape:label="Layer 1"
-     inkscape:groupmode="layer"
-     id="layer1"
      transform="translate(-38.675447,-125.30911)">
     <path
        id="path1041"
-       style="stroke-width:0.264583"
+       style="stroke-width:0.264583;fill:currentColor;"
        d="m 93.979158,136.81404 8.757312,11.3316 13.74442,-22.83653 48.58982,96.88618 -17.89571,-0.0502 -31.90803,-66.13824 -11.53251,19.73887 -8.813258,-12.49825 -37.791533,59.07087 c 0,0 -18.529613,-0.066 -18.453991,-0.18322 z"
        sodipodi:nodetypes="ccccccccccc" />
   </g>

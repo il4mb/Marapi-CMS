@@ -5,7 +5,7 @@ use classes\THEME;
 $conf_path = $_SERVER['DOCUMENT_ROOT'] . "/conf-data.json";
 $json = new Json($conf_path);
 
-if($kode == 1) { 
+if($code == 1) { 
     /**
      * CHANGE ACTIVE THEME
      */
@@ -18,7 +18,7 @@ if($kode == 1) {
 
     echo "success";
 
-} else if ($kode == 0) {
+} else if ($code == 0) {
 
     $theme = THEME::getThemeFromPath($value);
     if(file_exists($theme->path)) {

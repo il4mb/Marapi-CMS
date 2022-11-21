@@ -1,5 +1,5 @@
 <?php
-namespace plugins;
+namespace MarapiPlugin;
 
 use classes\PluginInterface;
 

@@ -47,9 +47,27 @@ input[type="submit"] {
     max-width: 800px;
 }
 
+[class^="container"] {
+    padding: 0 .5em;
+}
+
 @media only screen and (max-width: 800px) {
     [class^="container"] {
         padding: 0 .5em;
+    }
+}
+@media only screen and (min-width: 1199px) {
+    .mrp-navbar {
+        max-width: 250px !important;
+    }
+    .mrp-navbar .mrp-nav-body {
+        margin-left: 0 !important;
+    }
+    body {
+        margin-left: 251px !important;
+    }
+    [trigger="navbar"] {
+        display: none !important;
     }
 }
 

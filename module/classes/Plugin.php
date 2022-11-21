@@ -6,6 +6,7 @@
 
 namespace classes;
 
+use Exception;
 use PDO;
 
 /**
@@ -126,28 +127,34 @@ class Plugin
     }
 
     /**
-     * deActive()
+     * setInactive()
      * - disable this plugin
      */
-    public function deActive()
+    public function setInactive()
     {
 
         $relativePath = substr($this->path, strlen($_SERVER['DOCUMENT_ROOT']));
         $conn = new CONN();
         $DB = $conn->_PDO();
 
-        $stmt = $DB->prepare("DELETE * FROM plugin WHERE path=?");
+        $sql = "DELETE FROM plugin WHERE path=?";
+        $stmt = $DB->prepare($sql);
         $stmt->execute([$relativePath]);
     }
 
+    /**
+     * delete()
+     * - Remove this plugin
+     */
     public function delete()
     {
 
+        $this->setInactive();
         deleteDirectory($this->path);
     }
     /**
      * - Check plugin is active
-     * @return bool
+     * @return bool|int
      */
     public function is_active(): bool
     {

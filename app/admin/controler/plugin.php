@@ -10,14 +10,14 @@ $_data = ["plugin" => $plugins];
 $passData = "<script>window.MARAPI = " . json_encode($_data) . "</script>";
 $this->head .= $passData;
 
-foreach ($plugins as $plugin) {
+foreach ($plugins AS $key => $plugin) {
     /**
      * @var Plugin $plugin
      */
-    $is_active = function() use ($plugin) {
+    $is_active = function() use ($plugin, $key) {
         if($plugin->is_active()) {
-            return "<a class='action-btn'>Deactive</a>";
-        } else return "<a class='action-btn'>Active</a>";
+            return "<a trigger='switch' data-act='plugin' act-key='$key' class='action-btn text-secondary'>Deactive</a>";
+        } else return "<a trigger='switch' data-act='plugin' act-key='$key' class='action-btn text-success'>Active</a>";
     };
 
     $html .= "<li class='item'>
@@ -32,7 +32,7 @@ foreach ($plugins as $plugin) {
 
                     ".$is_active()."
 
-                    <a class='action-btn text-danger'>Delete</a>
+                    <a trigger='delete' data-act='plugin' act-key='$key' class='action-btn text-danger'>Delete</a>
 
                     <a class='action-btn'>Edit</a>
 
