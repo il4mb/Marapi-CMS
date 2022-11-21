@@ -63,12 +63,16 @@ input[type="submit"] {
     .mrp-navbar .mrp-nav-body {
         margin-left: 0 !important;
     }
-    body {
+    body:has(>.mrp-navbar) {
         margin-left: 251px !important;
     }
     [trigger="navbar"] {
         display: none !important;
     }
+    nav .brand {
+        display: none;
+    }
+
 }
 
 .mrp-logo {

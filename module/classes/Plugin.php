@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2022 Ilham B
  *
@@ -18,6 +19,7 @@
 namespace classes;
 
 use Exception;
+use Module\classes\ENCH;
 use PDO;
 
 /**
@@ -80,9 +82,29 @@ class Plugin
     public function module()
     {
 
+        global $value;
+
         if ($this->path && is_file($this->path . "/module.php")) {
 
-            return include_once($this->path . "/module.php");
+            $file = $this->path . "/module.php";
+
+            $buffer = file_get_contents($file);
+
+            preg_match("/(?<=class\s)(\w+)(?=\s)/i", $buffer, $match);
+            $className = $match[1];
+
+            if ($className != null) {
+
+                $tempClass = generateRandomString();
+
+                $buffer = str_replace($className, $tempClass, $buffer);
+                $file = $this->path . "/" . $tempClass . ".php";
+                file_put_contents($file, $buffer);
+                $value = include_once($file);
+                unlink($file);
+
+                return $value;
+            }
         } else {
 
             echo "Error: Cant call plugin module";

@@ -1,7 +1,7 @@
 <?php
 ### GENERATE BY SYSTEM
 $host = "localhost";
-$database = "mrp";
+$database = "marapi";
 $user = "root";
 $pass = "";
 
