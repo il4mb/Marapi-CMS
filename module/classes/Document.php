@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2022 Ilham B
  *
@@ -24,10 +25,12 @@ class DOCUMENT
     function __construct($html)
     {
 
-        $this->setDocument($html);
+        if ($html != null)
+            $this->setDocument($html);
     }
 
-    function setDocument($html) {
+    function setDocument($html)
+    {
 
         $this->html = $html;
         if (preg_match('/(?:<head[^>]*>)(.*)<\/head>/isU', $this->html, $match)) $this->head = $match[1];
