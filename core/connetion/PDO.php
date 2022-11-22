@@ -12,6 +12,6 @@ try {
 	$DB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
 
-	print $e->getMessage();
+	throw new PDOException($e);
 	exit;
 }

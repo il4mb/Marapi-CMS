@@ -21,7 +21,7 @@ namespace classes;
 class DOCUMENT
 {
 
-    private $html, $head, $body, $menu = [];
+    private $html, $head, $body, $menu = [], $container= "";
     function __construct($html)
     {
 
@@ -71,7 +71,7 @@ class DOCUMENT
 
         if (is_file($php)) {
 
-            include_once $php;
+            $this->container = include_once $php;
         }
     }
 
@@ -82,9 +82,13 @@ class DOCUMENT
      */
     function render()
     {
-
+       
         $this->body = str_replace("[{MENUS}]", implode("\n", $this->menu), $this->body);
+        $this->body = str_replace("[{CONTAINER}]", $this->container, $this->body);
 
-        return "<!DOCTYPE html>\r\n<html>\n  <head>\n" . $this->head . "\n  </head>\n  <body>\n" . $this->body . "\n  </body>\n</html>";
+        if(strlen($this->body) > 0 && strlen($this->head) > 0) {
+            
+            return "<!DOCTYPE html>\r\n<html>\n  <head>\n" . $this->head . "\n  </head>\n  <body>\n" . $this->body . "\n  </body>\n</html>";
+        } else if(strlen($this->container) > 0) return $this->container; 
     }
 }

@@ -59,4 +59,4 @@ foreach ($plugins AS $key => $plugin) {
 $html .= "</ul>";
 
 
-$this->body = str_replace("[{CONTENT}]", $html, $this->body);
+return $html;

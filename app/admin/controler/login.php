@@ -31,3 +31,5 @@ if(isset($_POST['email'], $_POST['password'])) {
         print $e->getMessage();
     }
 }
+
+return file_get_contents(__DIR__ . "/../layout/login.html");

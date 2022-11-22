@@ -37,4 +37,4 @@ foreach ($list as $key => $val) {
 }
 $html .= "<div>";
 
-$this->body = str_replace("[{CONTENT}]", $html, $this->body);
+return $html;

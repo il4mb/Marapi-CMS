@@ -98,7 +98,7 @@ class Plugin
                 $tempClass = generateRandomString();
 
                 $buffer = str_replace($className, $tempClass, $buffer);
-                $file = $this->path . "/" . $tempClass . ".php";
+                $file = $this->path . "/temp.php";
                 file_put_contents($file, $buffer);
                 $value = include_once($file);
                 unlink($file);
