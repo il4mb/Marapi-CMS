@@ -61,10 +61,12 @@ try {
         default:
             $html = file_get_contents(__DIR__ . "/layout/main.html");
             $document->setMenu($menu);
+            $document->setShortCodes(["container", "page_title", "menus"]);
     }
 
     $document->setDocument($html);
 
+    
     $listPlugin = Plugin::getActivePlugin();
     foreach ($listPlugin as $plugin) {
 
@@ -85,10 +87,25 @@ try {
             }
         } else $menu[$key] = str_replace("{ATTR}", "", $menu[$key]);
     }
+    $document->addOnGetShortCodeHandler(function($code) use ($menu, $path, $html, $document) { 
 
+        $_html = "";
+        switch ($code) {
+            case "menus" :
+                $_html = implode("\n", $menu);
+                break;
+            case "page_title":
+                $_html = $path[1];
+                break;
+            case "container" :
+                $_html = $document->getController();
+                break;
+        }
+        return $_html; 
+    });
 
     $document->setMenu($menu);
-    $document->setBody(str_replace("{PAGE_TITLE}", $path[1], $document->getBody()));
+   // $document->setBody(str_replace("{PAGE_TITLE}", $path[1], $document->getBody()));
 
     print($document->render());
     

@@ -19,11 +19,12 @@ namespace classes;
 
 class VIEW
 {
-
-    public String $html;
+    
+    public $html, $main, $shortCode = ["index", "menu", "nav"];
 
     function __construct(Main $main)
     {
+        $this->main = $main;
         $path = $main->theme->path;
         $this->html = file_get_contents($path . "/" . $main->theme->params['main']);
     }
@@ -35,6 +36,9 @@ class VIEW
 
     public function render()
     {
+
+        $this->html = str_replace("{FULL_PATH}", str_replace($_SERVER["DOCUMENT_ROOT"], "", $this->main->theme->path), $this->html);
+
         echo $this->html;
     }
 }

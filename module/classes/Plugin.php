@@ -100,6 +100,7 @@ class Plugin
                 $buffer = str_replace($className, $tempClass, $buffer);
                 $file = $this->path . "/temp.php";
                 file_put_contents($file, $buffer);
+                
                 $value = include_once($file);
                 unlink($file);
 
@@ -118,7 +119,9 @@ class Plugin
     public function callOnPanel($document)
     {
 
+        ob_start();
         $this->module()->onPanel($document);
+        ob_clean();
     }
 
     /**

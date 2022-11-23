@@ -1,0 +1,28 @@
+.bg-gradien {
+    background: linear-gradient(59deg, #ff09ff, #ec3636, #2bafe1, #ff07ff9e);
+    background-size: 600% 600%;
+    height: 200px;
+    width: 100%;
+    
+    animation: gradient-run 10s infinite ease-in;
+}
+.container {
+    position: relative;
+    margin: 0 auto;
+    max-width: 800px;
+    width: 100%;
+    background-color: white;
+    border-radius: 3px;
+    min-height: 500px;
+}
+@keyframes gradient-run {
+    0% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 100% 0%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
+}

@@ -21,12 +21,34 @@ namespace classes;
 class DOCUMENT
 {
 
-    private $html, $head, $body, $menu = [], $container= "";
+    private $html, $head, $body, $menu = [], $container= "", $shortCode = [], $onGetShortCodeHandlers = [];
     function __construct($html)
     {
 
         if ($html != null)
             $this->setDocument($html);
+    }
+
+    function setShortCodes($shortCodes)
+    {
+        $this->shortCode = $shortCodes;
+    }
+    function getShortCodes()
+    {
+        return $this->shortCode;
+    }
+
+    function addOnGetShortCodeHandler($handler) {
+        array_push($this->onGetShortCodeHandlers, $handler);
+    }
+    function onGetShortcode($callBack) {
+
+        if(gettype($callBack) == "object") {
+
+            return $callBack();
+
+        } else return "";
+        
     }
 
     function setDocument($html)
@@ -74,6 +96,12 @@ class DOCUMENT
             $this->container = include_once $php;
         }
     }
+    function getController()
+    {
+
+        return $this->container;
+        
+    }
 
     /**
      * render new html document
@@ -83,8 +111,18 @@ class DOCUMENT
     function render()
     {
        
-        $this->body = str_replace("[{MENUS}]", implode("\n", $this->menu), $this->body);
-        $this->body = str_replace("[{CONTAINER}]", $this->container, $this->body);
+       // $this->body = str_replace("[{MENUS}]", implode("\n", $this->menu), $this->body);
+        
+        foreach( $this->onGetShortCodeHandlers AS $handler ) {
+
+            foreach( $this->shortCode AS $code ) {
+
+                $response = $handler( $code );
+                $this->body = str_replace("{".strtoupper($code)."}", $response, $this->body);
+            }
+            
+        }
+        
 
         if(strlen($this->body) > 0 && strlen($this->head) > 0) {
             

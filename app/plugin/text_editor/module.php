@@ -33,7 +33,7 @@ class TextEditor implements PluginInterface {
 
     public function onFront($main) {
         
-        echo "im in front <i>'print from plugin text editor'</i>";
+       // echo "im in front <i>'print from plugin text editor'</i>";
     }
 }
 
