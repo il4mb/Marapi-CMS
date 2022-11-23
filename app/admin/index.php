@@ -23,6 +23,7 @@ use classes\UriManager;
 require_once $_SERVER['DOCUMENT_ROOT'] . '/module/init.php';
 
 try {
+    
     $uriManager = new UriManager();
     $path = $uriManager->getPath();
 
@@ -60,7 +61,6 @@ try {
 
         default:
             $html = file_get_contents(__DIR__ . "/layout/main.html");
-            $document->setMenu($menu);
             $document->setShortCodes(["container", "page_title", "menus"]);
     }
 
@@ -73,7 +73,6 @@ try {
         $plugin->callOnPanel($document);
     }
 
-    $menu = $document->getMenu();
     foreach ($menu as $key => $val) {
 
         if ($path[1] == $key) {
@@ -103,9 +102,6 @@ try {
         }
         return $_html; 
     });
-
-    $document->setMenu($menu);
-   // $document->setBody(str_replace("{PAGE_TITLE}", $path[1], $document->getBody()));
 
     print($document->render());
     

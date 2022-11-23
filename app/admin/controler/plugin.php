@@ -3,12 +3,7 @@
 use classes\Plugin;
 
 $html = "<ul class='list-item'>";
-
 $plugins = Plugin::getListPlugin();
-
-$_data = ["plugin" => $plugins];
-$passData = "<script>window.MARAPI = " . json_encode($_data) . "</script>";
-$this->head .= $passData;
 
 foreach ($plugins AS $key => $plugin) {
     /**
@@ -18,6 +13,12 @@ foreach ($plugins AS $key => $plugin) {
         if($plugin->is_active()) {
             return "<a trigger='switch' data-act='plugin' act-key='$key' class='action-btn text-secondary'>Deactive</a>";
         } else return "<a trigger='switch' data-act='plugin' act-key='$key' class='action-btn text-success'>Active</a>";
+    };
+    $setting = function() use ($plugin) {
+
+        if($plugin->is_active() && $plugin->is_setting_exist()) {
+            return "<a href='/mrp/setting/".$plugin->regCode()."' class='action-btn'>Setting</a>";
+        }
     };
 
     $html .= "<li class='item'>
@@ -34,7 +35,7 @@ foreach ($plugins AS $key => $plugin) {
 
                     <a trigger='delete' data-act='plugin' act-key='$key' class='action-btn text-danger'>Delete</a>
 
-                    <a class='action-btn'>Edit</a>
+                    ".$setting()."
 
                 </div>
 

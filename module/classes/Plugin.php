@@ -74,6 +74,10 @@ class Plugin
         }
     }
 
+    function is_setting_exist() {
+
+        return is_file($this->path."/.setting");
+    }
     /**
      * module()
      * - call theme module
@@ -95,7 +99,7 @@ class Plugin
 
             if ($className != null) {
 
-                $tempClass = generateRandomString();
+                $tempClass = $this->regCode();
 
                 $buffer = str_replace($className, $tempClass, $buffer);
                 $file = $this->path . "/temp.php";
@@ -109,6 +113,31 @@ class Plugin
         } else {
 
             echo "Error: Cant call plugin module";
+        }
+    }
+
+    function regCode() {
+
+        $code = "";
+
+        if(is_file($this->path."/.reg")) {
+
+            $code = file_get_contents($this->path."/.reg");
+
+        } else {
+
+            $code = generateRandomString();
+            $stream = fopen($this->path."/.reg", "w+");
+            fwrite($stream, $code);
+            fclose($stream);
+        }
+
+        return $code;
+    }
+
+    function unReg() {
+        if(is_file($this->path."/.reg")) {
+            unlink($this->path."/.reg");
         }
     }
 
@@ -247,6 +276,10 @@ class Plugin
 
                 $plugin = new Plugin($_SERVER['DOCUMENT_ROOT'] . $relativePath);
                 array_push($plugins,  $plugin);
+            } else {
+
+                $stmt = $DB->prepare("DELETE FROM `plugin` WHERE `path`=?");
+                $stmt->execute([$value["path"]]);
             }
         }
 
@@ -273,11 +306,36 @@ class Plugin
             if (Plugin::is_plugin($pluginPath)) {
 
                 $plugin = new Plugin($pluginPath);
+                if(! $plugin->is_active()) {
+
+                    $plugin->unReg();
+                } 
 
                 array_push($plugins, $plugin);
             }
         }
 
         return $plugins;
+    }
+
+    static function getByRegCode($regCode) {
+
+        $directory = $_SERVER["DOCUMENT_ROOT"] . self::$relativeDirectory;
+        $listDir = scandir($directory);
+
+        foreach ($listDir as $child) {
+
+            $pluginCodePath = $directory . "/$child/.reg";
+
+            $code = "";
+            if (is_file($pluginCodePath)) {
+
+                $code = file_get_contents($pluginCodePath);
+            }
+            if(strtolower($code) == strtolower($regCode)) {
+            
+                return new Plugin($directory . "/$child");
+            }
+        }
     }
 }

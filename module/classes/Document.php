@@ -21,7 +21,7 @@ namespace classes;
 class DOCUMENT
 {
 
-    private $html, $head, $body, $menu = [], $container= "", $shortCode = [], $onGetShortCodeHandlers = [];
+    private $html, $head, $body, $container = "", $shortCode = [], $onGetShortCodeHandlers = [];
     function __construct($html)
     {
 
@@ -38,17 +38,17 @@ class DOCUMENT
         return $this->shortCode;
     }
 
-    function addOnGetShortCodeHandler($handler) {
+    function addOnGetShortCodeHandler($handler)
+    {
         array_push($this->onGetShortCodeHandlers, $handler);
     }
-    function onGetShortcode($callBack) {
+    function onGetShortcode($callBack)
+    {
 
-        if(gettype($callBack) == "object") {
+        if (gettype($callBack) == "object") {
 
             return $callBack();
-
         } else return "";
-        
     }
 
     function setDocument($html)
@@ -57,15 +57,6 @@ class DOCUMENT
         $this->html = $html;
         if (preg_match('/(?:<head[^>]*>)(.*)<\/head>/isU', $this->html, $match)) $this->head = $match[1];
         if (preg_match('/(?:<body[^>]*>)(.*)<\/body>/isU', $this->html, $match)) $this->body = $match[1];
-    }
-
-    function setMenu($menu)
-    {
-        $this->menu = $menu;
-    }
-    function getMenu()
-    {
-        return $this->menu;
     }
 
     function setHead($html)
@@ -100,7 +91,6 @@ class DOCUMENT
     {
 
         return $this->container;
-        
     }
 
     /**
@@ -110,23 +100,23 @@ class DOCUMENT
      */
     function render()
     {
-       
-       // $this->body = str_replace("[{MENUS}]", implode("\n", $this->menu), $this->body);
-        
-        foreach( $this->onGetShortCodeHandlers AS $handler ) {
 
-            foreach( $this->shortCode AS $code ) {
+        foreach ($this->onGetShortCodeHandlers as $handler) {
 
-                $response = $handler( $code );
-                $this->body = str_replace("{".strtoupper($code)."}", $response, $this->body);
+            foreach ($this->shortCode as $code) {
+
+                $response = $handler($code);
+                if (strlen($response) > 0) {
+
+                    $this->body = str_replace("{" . strtoupper($code) . "}", $response, $this->body);
+                }
             }
-            
         }
-        
 
-        if(strlen($this->body) > 0 && strlen($this->head) > 0) {
-            
+
+        if (strlen($this->body) > 0 && strlen($this->head) > 0) {
+
             return "<!DOCTYPE html>\r\n<html>\n  <head>\n" . $this->head . "\n  </head>\n  <body>\n" . $this->body . "\n  </body>\n</html>";
-        } else if(strlen($this->container) > 0) return $this->container; 
+        } else if (strlen($this->container) > 0) return $this->container;
     }
 }
