@@ -45,7 +45,7 @@ try {
         '<hr/>',
         'theme' => '<a {ATTR} href="/mrp/theme/">THEME</a>',
         'plugin' => '<a {ATTR} href="/mrp/plugin/">PLUGIN</a>',
-        'user' => '<a {ATTR} href="/mrp/user/">USER</a>',
+        'users' => '<a {ATTR} href="/mrp/users/">USERS</a>',
         '<hr/>',
         'setting' => '<a {ATTR} href="/mrp/setting">SETTING</a>'
     ];
