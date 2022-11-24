@@ -5,6 +5,7 @@
     --co-primary: 56 145 255;
     --co-info: 0 178 191;
     --co-secondary: 138 138 138;
+    --co-white: 255 255 255;
 
     --float-1: .1;
     --float-2: .2;
@@ -298,4 +299,25 @@ ul.list-item>li:nth-of-type(odd) {
 }
 .align-items-center {
     align-items: center;
+}
+.input-group {
+    border: .5px solid grey;
+    border-radius: 5px;
+    display: flex;
+    padding: 0;
+    margin: 5px;
+    overflow: hidden !important;
+
+}
+.input-group > * {
+    margin: 0 !important;
+}
+.input-group > input {
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+button 
+{
+    cursor: pointer;
 }

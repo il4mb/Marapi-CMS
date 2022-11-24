@@ -21,6 +21,9 @@
 .text-secondary {
     color: rgb(var(--co-secondary))
 }
+.text-white {
+    color: rgb(var(--co-white))
+}
 
 .fn-i {
     font-style: italic;
@@ -52,6 +55,9 @@
 .bg-secondary {
     background-color: rgb(var(--co-secondary))
 }
+.bg-white {
+    background-color: rgb(var(--co-white))
+}
 
 /* PARAREL */
 .text-danger.bg-danger {
@@ -72,6 +78,10 @@
 .text-secondary.bg-secondary {
     background-color: rgb(var(--co-secondary) /var(--float-3))
 }
+.text-white.bg-white {
+    background-color: rgb(var(--co-white) /var(--float-2))
+}
+
 
 button:disabled {
     color: rgb(var(--co-secondary) /var(--float-4)) !important;
