@@ -61,11 +61,11 @@ try {
 
         default:
             $html = file_get_contents(__DIR__ . "/layout/main.html");
-            $document->setShortCodes(["container", "page_title", "menus", "tool_item"]);
+          //  $document->setShortCodes(["container", "page_title", "menus", "tool_item"]);
     }
 
+    // SET DOCUMENT HTML
     $document->setDocument($html);
-
     
     $listPlugin = Plugin::getActivePlugin();
     foreach ($listPlugin as $plugin) {
@@ -90,14 +90,17 @@ try {
     $document->addOnGetShortCodeHandler(function($code) use ($menu, $path, $html, $document) { 
         $_html = "";
         switch ($code) {
-            case "menus" :
+            case "MENUS" :
                 $_html = implode("\n", $menu);
                 break;
-            case "page_title":
+            case "PAGE_TITLE":
                 $_html = $path[1];
                 break;
-            case "container" :
+            case "CONTAINER" :
                 $_html = $document->getController();
+                break;
+            case "TOOL_ITEM":
+                $_html = require_once __DIR__.'/controler/_toolitem.php';
                 break;
         }
         return $_html; 

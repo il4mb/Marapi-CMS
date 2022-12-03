@@ -57,6 +57,10 @@ class DOCUMENT
         $this->html = $html;
         if (preg_match('/(?:<head[^>]*>)(.*)<\/head>/isU', $this->html, $match)) $this->head = $match[1];
         if (preg_match('/(?:<body[^>]*>)(.*)<\/body>/isU', $this->html, $match)) $this->body = $match[1];
+
+
+        preg_match_all('/(?<=\{)[A-Z_]+(?=\})/', $this->html, $matchSc);
+        $this->setShortCodes($matchSc[0]);
     }
 
     function setHead($html)

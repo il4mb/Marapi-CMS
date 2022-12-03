@@ -89,12 +89,20 @@ input[type="submit"] {
     text-align: center;
 }
 .toolbar {
-    background-color: rgb(202, 202, 202);
-
+    background-color: rgb(246 246 246);
     display: flex;
-    align-content: center;
-    align-items: center;
+    align-content: stretch;
+    align-items: stretch;
 }
 .toolbar .body {
     margin-left: auto;
+    display: flex;
+    align-content: center;
+    align-items: stretch;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+.toolbar .body > * {
+    margin: 0 15px;
 }
