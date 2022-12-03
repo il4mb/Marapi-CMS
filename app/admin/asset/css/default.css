@@ -12,10 +12,7 @@ html {
 * {
     font-family: Ubuntu, sans-serif;
 }
-img {
-    object-fit: contain;
-    object-position: bottom;
-}
+
 input {
     font-size: 16px;
 }
@@ -23,7 +20,7 @@ input:not([type='file']) {
     width: 100%;
     padding: .5em .75em;
     border-radius: 2.5px;
-    border: solid 1px #000000;
+    border: 1px solid #dadada;
     outline: none;
     max-width: -webkit-fill-available;
     margin: 8px auto;
@@ -36,6 +33,22 @@ input[type="submit"] {
     outline: none;
     border: none;
 }
+textarea {
+    width: 100%;
+    outline: none;
+    border: 1px solid #dadada;
+    border-radius: 5px;
+    padding: 0.5em 0.75em;
+}
+textarea:focus-visible, input:focus-visible {
+    outline: none;
+    border: #00c0ff 1px solid;
+}
+img {
+    object-fit: contain;
+    object-position: bottom;
+}
+
 
 [class^="container"] {
     position: relative;

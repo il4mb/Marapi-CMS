@@ -24,7 +24,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/module/init.php';
 try {
     $uriManager = new UriManager();
     $path = $uriManager->getPath();
-    
+
 
     if (array_key_exists(1, $path) && $path[1] == "api") {
 
@@ -93,16 +93,21 @@ try {
             $menu[$key] = str_replace("{ATTR}", "class='active'", $menu[$key]);
 
             $controller = $_SERVER['DOCUMENT_ROOT'] . "/app/admin/controler/" . $path[1] . ".php";
+            
             if (is_file($controller)) {
 
                 $document->setControler($controller);
             }
+
         } else $menu[$key] = str_replace("{ATTR}", "", $menu[$key]);
     }
 
-    $document->ShortCode->addOnRender(function($code) use ($menu, $path, $html, $document) { 
+    $document->ShortCode->addOnRender(function($code) 
+        use ($menu, $path, $document) { 
+
         $_html = "";
         switch ($code) {
+
             case "MENUS" :
                 $_html = implode("\n", $menu);
                 break;

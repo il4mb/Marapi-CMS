@@ -23,10 +23,10 @@ $html = "";
 $uriManager = new UriManager();
 $path = $uriManager->getPath();
 
-if(array_key_exists(2, $path) && $path[2] == "new" ) {
+if( array_key_exists(2, $path) && $path[2] == "new" ) {
 
     
-    return "under";
+    return file_get_contents(__DIR__."/html/editing.html");
 }
 
 

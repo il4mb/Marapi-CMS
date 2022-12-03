@@ -33,8 +33,10 @@ class module implements PluginInterface
             && $path[1] == "content" 
             && $path[2] == "new") {
 
-            $document->head .= "<script src=\"https://code.jquery.com/jquery-3.6.1.min.js\" integrity=\"sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=\" crossorigin=\"anonymous\"></script>\n
-            <script src=\"https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.26.0/trumbowyg.min.js\" integrity=\"sha512-ZfWLe+ZoWpbVvORQllwYHfi9jNHUMvXR4QhjL1I6IRPXkab2Rquag6R0Sc1SWUYTj20yPEVqmvCVkxLsDC3CRQ==\" crossorigin=\"anonymous\" referrerpolicy=\"no-referrer\"></script>";
+            $document->head .= "
+            \n<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.26.0/ui/trumbowyg.min.css\" integrity=\"sha512-Zi7Hb6P4D2nWzFhzFeyk4hzWxBu/dttyPIw/ZqvtIkxpe/oCAYXs7+tjVhIDASEJiU3lwSkAZ9szA3ss3W0Vug==\" crossorigin=\"anonymous\" referrerpolicy=\"no-referrer\" />
+            \n<script src=\"https://code.jquery.com/jquery-3.6.1.min.js\" integrity=\"sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=\" crossorigin=\"anonymous\"></script>
+            \n<script src=\"https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.26.0/trumbowyg.min.js\" integrity=\"sha512-ZfWLe+ZoWpbVvORQllwYHfi9jNHUMvXR4QhjL1I6IRPXkab2Rquag6R0Sc1SWUYTj20yPEVqmvCVkxLsDC3CRQ==\" crossorigin=\"anonymous\" referrerpolicy=\"no-referrer\"></script>";
 
             
             $document->body .= "<script>".file_get_contents(__DIR__."/script.js")."</script>";
