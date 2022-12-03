@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2022 Ilham B
  *
@@ -16,23 +17,44 @@
  */
 
 use classes\PluginInterface;
+use classes\UriManager;
 
-class module implements PluginInterface {
+class module implements PluginInterface
+{
 
-    public function onPanel($document) {
+    public function onPanel($document)
+    {
 
-     //   $menu["text_editing"]= "<a {ATTR} href='/mrp/text_editing'>Text editor</a>";
-        echo "SAYA AKTIV";
+        $uriManager = new UriManager();
+        $path = $uriManager->getPath();
+
+        if (array_key_exists(1, $path) 
+            && array_key_exists(2, $path) 
+            && $path[1] == "content" 
+            && $path[2] == "new") {
+
+            $document->head .= "<script src=\"https://code.jquery.com/jquery-3.6.1.min.js\" integrity=\"sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=\" crossorigin=\"anonymous\"></script>\n
+            <script src=\"https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.26.0/trumbowyg.min.js\" integrity=\"sha512-ZfWLe+ZoWpbVvORQllwYHfi9jNHUMvXR4QhjL1I6IRPXkab2Rquag6R0Sc1SWUYTj20yPEVqmvCVkxLsDC3CRQ==\" crossorigin=\"anonymous\" referrerpolicy=\"no-referrer\"></script>";
+
+            
+            $document->body .= "<script>".file_get_contents(__DIR__."/script.js")."</script>";
+
+        }
+
+        
+        //   $menu["text_editing"]= "<a {ATTR} href='/mrp/text_editing'>Text editor</a>";
+
 
         //$uriM = new UriManager();
         //$document->setDocument("<html><head></head><body><h1>hallo</h1></body></html>");
 
     }
 
-    public function onFront($main) {
-        
+    public function onFront($main)
+    {
+
         //echo "SAYA AKTIV";
-       // echo "im in front <i>'print from plugin text editor'</i>";
+        // echo "im in front <i>'print from plugin text editor'</i>";
     }
 }
 

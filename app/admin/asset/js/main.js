@@ -13,7 +13,7 @@ let TODO = {
     delete: (E) => actionDelete(E),
     switch: (E) => actionSwitch(E)
 },
-    hookUrl = "/mrp/api/hook"
+    hookUrl = "/app/admin/api/hook"
 
 window.addEventListener("load", () => {
 

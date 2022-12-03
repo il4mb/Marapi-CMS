@@ -22,9 +22,21 @@ use classes\UriManager;
 require_once $_SERVER['DOCUMENT_ROOT'] . '/module/init.php';
 
 try {
-    
     $uriManager = new UriManager();
     $path = $uriManager->getPath();
+    
+
+    if (array_key_exists(1, $path) && $path[1] == "api") {
+
+        if(array_key_exists(2, $path) && $path[2] == "hook") {
+
+            require_once __DIR__."/../api/hook/main.php";
+            exit;
+        }
+    }
+
+    
+    
 
     if (!array_key_exists('1', $path) ||  array_key_exists('1', $path) && $path[1] == "") {
 

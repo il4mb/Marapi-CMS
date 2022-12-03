@@ -22,7 +22,7 @@ use module\shortCode;
 class DOCUMENT
 {
 
-    private $html, $head, $body, $container = "";
+    public $html, $head, $body, $container = "";
 
     public $ShortCode;
 
