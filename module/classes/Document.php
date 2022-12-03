@@ -97,6 +97,16 @@ class DOCUMENT
         return $this->container;
     }
 
+    function getHtml($path) {
+
+        $html = file_get_contents($path);
+
+        preg_match_all('/(?<=\{)[A-Z_]+(?=\})/', $html, $matchSc);
+        $this->shortCode = array_merge($matchSc[0], $this->shortCode);
+
+        return $html;
+    }
+
     /**
      * render new html document
      *
@@ -116,6 +126,7 @@ class DOCUMENT
                 }
             }
         }
+
         // CLEAR ALL SC
         if ($flush) {
             foreach ($this->shortCode as $code) {

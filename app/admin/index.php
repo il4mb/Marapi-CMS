@@ -108,7 +108,7 @@ try {
         return $_html; 
     });
 
-    print($document->render());
+    print($document->render(false));
     
     exit;
 
