@@ -18,7 +18,6 @@
 
 namespace classes;
 
-use module\Panel;
 
 class Main
 {
