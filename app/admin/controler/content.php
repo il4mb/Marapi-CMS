@@ -2,7 +2,7 @@
 
 use classes\CONN;
 
-$html = "<h1>hallo world</h1>";
+$html = "<div class='toolbar'></div>";
 $conn = new CONN();
 $PDO = $conn->_PDO();
 

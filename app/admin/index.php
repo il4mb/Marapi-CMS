@@ -61,7 +61,7 @@ try {
 
         default:
             $html = file_get_contents(__DIR__ . "/layout/main.html");
-            $document->setShortCodes(["container", "page_title", "menus"]);
+            $document->setShortCodes(["container", "page_title", "menus", "tool_item"]);
     }
 
     $document->setDocument($html);
@@ -86,8 +86,8 @@ try {
             }
         } else $menu[$key] = str_replace("{ATTR}", "", $menu[$key]);
     }
-    $document->addOnGetShortCodeHandler(function($code) use ($menu, $path, $html, $document) { 
 
+    $document->addOnGetShortCodeHandler(function($code) use ($menu, $path, $html, $document) { 
         $_html = "";
         switch ($code) {
             case "menus" :

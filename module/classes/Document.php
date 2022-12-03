@@ -98,7 +98,7 @@ class DOCUMENT
      *
      * @return string final HTML
      */
-    function render()
+    function render($flush = True)
     {
 
         foreach ($this->onGetShortCodeHandlers as $handler) {
@@ -109,6 +109,15 @@ class DOCUMENT
                 if (strlen($response) > 0) {
 
                     $this->body = str_replace("{" . strtoupper($code) . "}", $response, $this->body);
+                }
+            }
+        }
+        // CLEAR ALL SC
+        if ($flush) {
+            foreach ($this->shortCode as $code) {
+                if (strlen($code) > 0) {
+
+                    $this->body = str_replace("{" . strtoupper($code) . "}", "", $this->body);
                 }
             }
         }

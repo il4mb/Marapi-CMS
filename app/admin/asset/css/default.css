@@ -88,3 +88,13 @@ input[type="submit"] {
 .align-center {
     text-align: center;
 }
+.toolbar {
+    background-color: rgb(202, 202, 202);
+
+    display: flex;
+    align-content: center;
+    align-items: center;
+}
+.toolbar .body {
+    margin-left: auto;
+}
