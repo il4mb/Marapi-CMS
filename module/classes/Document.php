@@ -18,37 +18,22 @@
 
 namespace classes;
 
+use module\shortCode;
+
 class DOCUMENT
 {
 
-    private $html, $head, $body, $container = "", $shortCode = [], $onGetShortCodeHandlers = [];
+    private $html, $head, $body, $container = "";
+
+    public $ShortCode;
+
     function __construct($html)
     {
 
+        $this->ShortCode = new shortCode();
+
         if ($html != null)
             $this->setDocument($html);
-    }
-
-    function setShortCodes($shortCodes)
-    {
-        $this->shortCode = $shortCodes;
-    }
-    function getShortCodes()
-    {
-        return $this->shortCode;
-    }
-
-    function addOnGetShortCodeHandler($handler)
-    {
-        array_push($this->onGetShortCodeHandlers, $handler);
-    }
-    function onGetShortcode($callBack)
-    {
-
-        if (gettype($callBack) == "object") {
-
-            return $callBack();
-        } else return "";
     }
 
     function setDocument($html)
@@ -58,9 +43,7 @@ class DOCUMENT
         if (preg_match('/(?:<head[^>]*>)(.*)<\/head>/isU', $this->html, $match)) $this->head = $match[1];
         if (preg_match('/(?:<body[^>]*>)(.*)<\/body>/isU', $this->html, $match)) $this->body = $match[1];
 
-
-        preg_match_all('/(?<=\{)[A-Z_]+(?=\})/', $this->html, $matchSc);
-        $this->setShortCodes($matchSc[0]);
+        $this->ShortCode->analyze($this->html);
     }
 
     function setHead($html)
@@ -97,12 +80,11 @@ class DOCUMENT
         return $this->container;
     }
 
-    function getHtml($path) {
+    function getHtmlFile($path) {
 
         $html = file_get_contents($path);
 
-        preg_match_all('/(?<=\{)[A-Z_]+(?=\})/', $html, $matchSc);
-        $this->shortCode = array_merge($matchSc[0], $this->shortCode);
+        $this->ShortCode->analyze($html);
 
         return $html;
     }
@@ -112,30 +94,10 @@ class DOCUMENT
      *
      * @return string final HTML
      */
-    function render($flush = True)
+    function render()
     {
 
-        foreach ($this->onGetShortCodeHandlers as $handler) {
-
-            foreach ($this->shortCode as $code) {
-
-                $response = $handler($code);
-                if (strlen($response) > 0) {
-
-                    $this->body = str_replace("{" . strtoupper($code) . "}", $response, $this->body);
-                }
-            }
-        }
-
-        // CLEAR ALL SC
-        if ($flush) {
-            foreach ($this->shortCode as $code) {
-                if (strlen($code) > 0) {
-
-                    $this->body = str_replace("{" . strtoupper($code) . "}", "", $this->body);
-                }
-            }
-        }
+        $this->body = $this->ShortCode->render($this->body);
 
 
         if (strlen($this->body) > 0 && strlen($this->head) > 0) {

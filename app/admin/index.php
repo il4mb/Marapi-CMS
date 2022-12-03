@@ -31,6 +31,7 @@ try {
 
         header("Location: /mrp/dashboard/");
     }
+
     if (array_key_exists('1', $path) && $path[1] != "login" && !isset($_COOKIE['user'])) {
 
         header("Location: /mrp/login/");
@@ -68,7 +69,6 @@ try {
     $document->setDocument($html);
     
     $listPlugin = Plugin::getActivePlugin();
-    //print_r($listPlugin);
 
     foreach ($listPlugin as $plugin) {
 
@@ -89,7 +89,7 @@ try {
         } else $menu[$key] = str_replace("{ATTR}", "", $menu[$key]);
     }
 
-    $document->addOnGetShortCodeHandler(function($code) use ($menu, $path, $html, $document) { 
+    $document->ShortCode->addOnRender(function($code) use ($menu, $path, $html, $document) { 
         $_html = "";
         switch ($code) {
             case "MENUS" :

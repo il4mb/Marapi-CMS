@@ -41,7 +41,7 @@ $stmt = $PDO->prepare($sql);
 $stmt->execute([]);
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$html = $this->getHtml(__DIR__."/html/content.html");
+$html = $this->getHtmlFile(__DIR__."/html/content.html");
 
 foreach ($result as $content) {
 

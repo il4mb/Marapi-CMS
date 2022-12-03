@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2022 Ilham B
  *
@@ -14,7 +15,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace classes;
+
+use module\Panel;
 
 class Main
 {
@@ -23,10 +27,27 @@ class Main
 
     function __construct()
     {
+        $uriM = new UriManager();
+        $paths = $uriM->getPath();
 
+        if(array_key_exists(0, $paths)) {
+            $conf = json_decode(file_get_contents($_SERVER['DOCUMENT_ROOT']."/app/.json"), true);
+            if($paths[0] == $conf['privateZone']) {
+
+                $this->PrivateZone();
+
+                return;
+            }
+        }
+
+        $this->PublicZone();
+    }
+
+    private function PublicZone()
+    {
         // INIT THEME
         $this->theme = THEME::getActiveTheme();
-    
+
         // INIT PLUGIN
         $listPlugin = Plugin::getActivePlugin();
 
@@ -43,5 +64,10 @@ class Main
         }
 
         $this->view->render(); # RENDER
+    }
+    private function PrivateZone()
+    {
+
+        require_once $_SERVER['DOCUMENT_ROOT']."/app/admin/index.php";
     }
 }
