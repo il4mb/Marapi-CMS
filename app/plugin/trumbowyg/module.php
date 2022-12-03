@@ -13,19 +13,27 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- * 
- * - This file is part of /app/admin/index.php
  */
 
- $html = "";
-switch($path[1]) {
-    case "content" :
+use classes\PluginInterface;
 
-        $html = "<div class=\"input-group\" style=\"margin-right: auto;\">
-        <input placeholder=\"search...\" style=\"width: unset;\"/>
-        <button><i class=\"micon-search\"></i></button>
-    </div><a href='new/' class='btn text-primary bg-primary'><i class='micon-add'></i> Add</a>";
-        break;
+class module implements PluginInterface {
+
+    public function onPanel($document) {
+
+     //   $menu["text_editing"]= "<a {ATTR} href='/mrp/text_editing'>Text editor</a>";
+        echo "SAYA AKTIV";
+
+        //$uriM = new UriManager();
+        //$document->setDocument("<html><head></head><body><h1>hallo</h1></body></html>");
+
+    }
+
+    public function onFront($main) {
+        
+        //echo "SAYA AKTIV";
+       // echo "im in front <i>'print from plugin text editor'</i>";
+    }
 }
 
-return $html;
+return new module();

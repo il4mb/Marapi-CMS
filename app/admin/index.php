@@ -68,6 +68,8 @@ try {
     $document->setDocument($html);
     
     $listPlugin = Plugin::getActivePlugin();
+    //print_r($listPlugin);
+
     foreach ($listPlugin as $plugin) {
 
         $plugin->callOnPanel($document);

@@ -106,3 +106,15 @@ input[type="submit"] {
 .toolbar .body > * {
     margin: 0 15px;
 }
+.btn {
+    text-decoration: none;
+    border-radius: 5px;
+    vertical-align: middle;
+    line-height: 2.2em;
+    padding: 0 1em;
+}
+.btn:has([class^="micon"]):hover {
+    transition: .25s;
+    color: rgb(80, 80, 80) !important;
+    transform: scale(1.1);
+}

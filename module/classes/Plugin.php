@@ -147,10 +147,7 @@ class Plugin
      */
     public function callOnPanel($document)
     {
-
-        ob_start();
         $this->module()->onPanel($document);
-        ob_clean();
     }
 
     /**
