@@ -10,6 +10,7 @@ try {
 
 	$DB = new PDO("mysql:host=$host;dbname=$database", $user, $pass);
 	$DB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	
 } catch (PDOException $e) {
 
 	echo "<h1>ERROR CONNECTION</h1>

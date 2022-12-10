@@ -17,7 +17,7 @@ $ench = new ENCH($loged);
 $loged = (array)$ench->decrypt();
 
 
-$html = file_get_contents(__DIR__."/html/usersFragment.html");
+$html = file_get_contents(__DIR__."/fragment.html");
 
 $html .= "<ul class='list-item'>";
 foreach ($result as $user) {

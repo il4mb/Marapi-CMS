@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2022 Ilham B
  *
@@ -22,26 +23,26 @@ use classes\UriManager;
 require_once $_SERVER['DOCUMENT_ROOT'] . '/module/init.php';
 
 try {
+
     $uriManager = new UriManager();
     $path = $uriManager->getPath();
 
 
     if (array_key_exists(1, $path) && $path[1] == "api") {
 
-        if(array_key_exists(2, $path) && $path[2] == "hook") {
+        if (array_key_exists(2, $path) && $path[2] == "hook") {
 
-            require_once __DIR__."/../api/hook/main.php";
+            require_once __DIR__ . "/../api/hook/main.php";
             exit;
         }
     } elseif (array_key_exists(1, $path) && $path[1] == "install") {
 
-         require_once __DIR__."/../install/index.php";
+        require_once __DIR__ . "/../install/index.php";
         exit;
-        
     }
 
-    
-    
+
+
 
     if (!array_key_exists('1', $path) ||  array_key_exists('1', $path) && $path[1] == "") {
 
@@ -78,12 +79,12 @@ try {
 
         default:
             $html = file_get_contents(__DIR__ . "/layout/main.html");
-          //  $document->setShortCodes(["container", "page_title", "menus", "tool_item"]);
+            //  $document->setShortCodes(["container", "page_title", "menus", "tool_item"]);
     }
 
     // SET DOCUMENT HTML
     $document->setDocument($html);
-    
+
     $listPlugin = Plugin::getActivePlugin();
 
     foreach ($listPlugin as $plugin) {
@@ -97,43 +98,44 @@ try {
 
             $menu[$key] = str_replace("{ATTR}", "class='active'", $menu[$key]);
 
-            $controller = $_SERVER['DOCUMENT_ROOT'] . "/app/admin/controler/" . $path[1] . ".php";
-            
+            $controller = initController($key);
+
             if (is_file($controller)) {
 
                 $document->setControler($controller);
             }
 
+            
         } else $menu[$key] = str_replace("{ATTR}", "", $menu[$key]);
     }
 
-    $document->ShortCode->addOnRender(function($code) 
-        use ($menu, $path, $document) { 
+    $document->ShortCode->addOnRender(function ($code)
+    use ($menu, $path, $document) {
 
         $_html = "";
         switch ($code) {
 
-            case "MENUS" :
+            case "MENUS":
                 $_html = implode("\n", $menu);
                 break;
             case "PAGE_TITLE":
                 $_html = $path[1];
                 break;
-            case "CONTAINER" :
+            case "CONTAINER":
                 $_html = $document->getController();
                 break;
             case "TOOL_ITEM":
-                $_html = require_once __DIR__.'/controler/_toolitem.php';
+                $_html = require_once __DIR__ . '/controler/_toolitem.php';
                 break;
         }
-        return $_html; 
+        return $_html;
     });
 
     print($document->render(false));
-    
+
     exit;
+} catch (Exception $e) {
 
-} catch(Exception $e) {
-
-    print "<h1 style='color: red'>ERROR</h1><p>".$e->getMessage()."</p>";
+    print "<h1 style='color: red'>ERROR</h1><p>" . $e->getMessage() . "</p>";
+    exit;
 }

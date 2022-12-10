@@ -18,6 +18,12 @@
 use classes\CONN;
 use classes\UriManager;
 
+$path = $_SERVER['DOCUMENT_ROOT']."/app/contents";
+if(! file_exists($path)) {
+    mkdir($path);
+}
+
+
 $html = "";
 
 $uriManager = new UriManager();
@@ -26,12 +32,8 @@ $path = $uriManager->getPath();
 if( array_key_exists(2, $path) && $path[2] == "new" ) {
 
     
-    return file_get_contents(__DIR__."/html/editing.html");
+    return file_get_contents(__DIR__."/editing.html");
 }
-
-
-
-
 
 $conn = new CONN();
 $PDO = $conn->_PDO();
@@ -41,7 +43,7 @@ $stmt = $PDO->prepare($sql);
 $stmt->execute([]);
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$html = $this->getHtmlFile(__DIR__."/html/content.html");
+$html = $this->getHtmlFile(__DIR__."/content.html");
 
 foreach ($result as $content) {
 

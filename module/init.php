@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2022 Ilham B
  *
@@ -15,21 +16,21 @@
  * limitations under the License.
  */
 
-$list = scandir($_SERVER['DOCUMENT_ROOT']."/module/interface");
-foreach( $list AS $file ) {
+$list = scandir($_SERVER['DOCUMENT_ROOT'] . "/module/interface");
+foreach ($list as $file) {
 
-    if(is_file($_SERVER['DOCUMENT_ROOT']."/module/interface/".$file)) {
+    if (is_file($_SERVER['DOCUMENT_ROOT'] . "/module/interface/" . $file)) {
 
-        include_once $_SERVER['DOCUMENT_ROOT']."/module/interface/".$file;
+        include_once $_SERVER['DOCUMENT_ROOT'] . "/module/interface/" . $file;
     }
 }
 
-$list = scandir($_SERVER['DOCUMENT_ROOT']."/module/classes");
-foreach( $list AS $file ) {
+$list = scandir($_SERVER['DOCUMENT_ROOT'] . "/module/classes");
+foreach ($list as $file) {
 
-    if(is_file($_SERVER['DOCUMENT_ROOT']."/module/classes/".$file)) {
+    if (is_file($_SERVER['DOCUMENT_ROOT'] . "/module/classes/" . $file)) {
 
-        include_once $_SERVER['DOCUMENT_ROOT']."/module/classes/".$file;
+        include_once $_SERVER['DOCUMENT_ROOT'] . "/module/classes/" . $file;
     }
 }
 
@@ -39,7 +40,8 @@ foreach( $list AS $file ) {
  * 
  * @param String $dir - full path directory address
  */
-function deleteDirectory($dir) {
+function deleteDirectory($dir)
+{
     if (!file_exists($dir)) {
         return true;
     }
@@ -56,13 +58,13 @@ function deleteDirectory($dir) {
         if (!deleteDirectory($dir . DIRECTORY_SEPARATOR . $item)) {
             return false;
         }
-
     }
 
     return rmdir($dir);
 }
 
-function generateRandomString($length = 10) {
+function generateRandomString($length = 10)
+{
     $characters = '_abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);
     $randomString = '';
@@ -70,4 +72,24 @@ function generateRandomString($length = 10) {
         $randomString .= $characters[rand(0, $charactersLength - 1)];
     }
     return $randomString;
+}
+
+function initController($base)
+{
+    $controller = $_SERVER['DOCUMENT_ROOT'] . "/app/admin/controler/" . $base;
+    if (!file_exists($controller)) {
+        mkdir($controller);
+    }
+
+    $controller .= "/main.php";
+    if (!file_exists($controller) && !is_file($controller)) {
+
+        $pathinfo = pathinfo($controller);
+        $file = fopen($controller, "w+") or die("Unable to open file!");
+        $txt = "<?php \n//Edit this file and return you html \nreturn \"<p>Edit this file at <b><i>" . $pathinfo['dirname'] . "/</i></b> file name is <b><i>" .  $pathinfo['basename'] . "</i></b></p>\";";
+        fwrite($file, $txt);
+        fclose($file);
+    }
+
+    return $controller;
 }
