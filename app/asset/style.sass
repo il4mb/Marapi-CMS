@@ -1,6 +1,6 @@
-$danger: 255 91 91
 $colorNames: 'primary', 'success', 'warning', 'danger', 'info', 'secondary', 'white'
-:root 
+
+:root
     --c-danger: 255 91 91
     --c-warning: 249 212 2
     --c-success: 111 212 134
@@ -18,21 +18,63 @@ $colorNames: 'primary', 'success', 'warning', 'danger', 'info', 'secondary', 'wh
     --float-8: .8
     --float-9: .9
     --float-10: 1.0
-    
-@font-face 
+
+@font-face
     font-family: "Ubuntu"
     src: url("../font/Ubuntu/Ubuntu-Regular.ttf")
 
-body 
+/* GLOBAL */
+body
     font-family: Ubuntu, sans-serif
 
+/* COLORS */
 @each $name in $colorNames
 
     .text-#{$name}
         color: var(--c-#{$name})
-    
-    .bg-#{$name} 
+
+    .bg-#{$name}
         background-color: var(--c-#{$name})
 
-    .bg-#{$name}.text-#{$name} 
+    .bg-#{$name}.text-#{$name}
         background-color: rgb(var(--c-#{$name}) /var(--float-3))
+
+/* MARGIN & PADDING */
+@for $i from 1 through 6
+
+    $x: calc($i /1.6) + rem
+
+    @if $i == 6
+        $x: auto !important
+        $i: auto
+
+    .m-#{$i}
+        margin: $x
+
+    .ms-#{$i}
+        margin-left: $x
+
+    .me-#{$i}
+        margin-right: $x
+
+    .mt-#{$i}
+        margin-top: $x
+
+    .mb-#{$i}
+        margin-bottom: $x
+
+
+    .p-#{$i}
+        margin: $x
+
+    .ps-#{$i}
+        margin-left: $x
+
+    .pe-#{$i}
+        margin-right: $x
+
+    .pt-#{$i}
+        margin-top: $x
+
+    .pb-#{$i}
+        margin-bottom: $x
