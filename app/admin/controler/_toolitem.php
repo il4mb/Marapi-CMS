@@ -23,8 +23,8 @@ switch($path[1]) {
 
         $html = "<div class=\"input-group\" style=\"margin-right: auto;\">
         <input placeholder=\"search...\" style=\"width: unset;\"/>
-        <button><i class=\"micon-search\"></i></button>
-    </div><a href='new/' class='btn text-primary bg-primary'><i class='micon-add'></i> Add</a>";
+        <button class='btn'><i class=\"ic-search\"></i></button>
+    </div><a href='new/' class='btn text-primary bg-primary'><i class='ic-add'></i> Add</a>";
         break;
 }
 
