@@ -33,6 +33,11 @@ try {
             require_once __DIR__."/../api/hook/main.php";
             exit;
         }
+    } elseif (array_key_exists(1, $path) && $path[1] == "install") {
+
+         require_once __DIR__."/../install/index.php";
+        exit;
+        
     }
 
     

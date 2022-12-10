@@ -22,7 +22,7 @@ if (0 == strcmp(strtolower($_SERVER["HTTP_SEC_FETCH_MODE"]), "cors")) {
 
             if ($DB) {
 
-                $text = "<?php\n### GENERATE BY SYSTEM\n\$host = \"$host\";\n\$database = \"$database\";\n\$user = \"$user\";\n\$pass = \"$password\";\n\n\$DB = null;\ntry {\n\n\t\$DB = new PDO(\"mysql:host=\$host;dbname=\$database\", \$user, \$pass);\n\t\$DB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);\n} catch (PDOException \$e) {\n\n\tthrow new PDOException(\$e);\n\texit;\n}";
+                $text = "<?php\n### GENERATE BY SYSTEM\n\$host = \"$host\";\n\$database = \"$database\";\n\$user = \"$user\";\n\$pass = \"$password\";\n\n\$DB = null;\ntry {\n\n\t\$DB = new PDO(\"mysql:host=\$host;dbname=\$database\", \$user, \$pass);\n\t\$DB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);\n} catch (PDOException \$e) {\n\n\techo \"<h1>ERROR CONNECTION</h1>\n\t<h4>Message :</h4>\n\t<p>\".\$e->getMessage().\"</p>\t<a href='/mrp/install'>Fix with installer</a>\";\n\texit;\n}";
 
                 $stream = fopen($_SERVER['DOCUMENT_ROOT'] . "/core/connetion/PDO.php", "w+");
                 fwrite($stream, $text);
@@ -89,4 +89,4 @@ if (0 == strcmp(strtolower($_SERVER["HTTP_SEC_FETCH_MODE"]), "cors")) {
     exit;
 }
 
-echo file_get_contents("./index.html");
+echo file_get_contents(__DIR__."/index.html");

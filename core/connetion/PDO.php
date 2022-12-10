@@ -12,6 +12,8 @@ try {
 	$DB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
 
-	throw new PDOException($e);
+	echo "<h1>ERROR CONNECTION</h1>
+	<h4>Message :</h4>
+	<p>".$e->getMessage()."</p>	<a href='/mrp/install'>Fix with installer</a>";
 	exit;
 }
