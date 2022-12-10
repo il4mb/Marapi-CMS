@@ -74,7 +74,7 @@
 }
 .text-info.bg-info {
     background-color: rgb(var(--co-info) /var(--float-3));
-}
+} 
 .text-secondary.bg-secondary {
     background-color: rgb(var(--co-secondary) /var(--float-3))
 }

@@ -1,0 +1,111 @@
+:root {
+  --c-danger: 255 91 91;
+  --c-warning: 249 212 2;
+  --c-success: 111 212 134;
+  --c-primary: 56 145 255;
+  --c-info: 0 178 191;
+  --c-secondary: 138 138 138;
+  --c-white: 255 255 255;
+  --float-1: .1;
+  --float-2: .2;
+  --float-3: .3;
+  --float-4: .4;
+  --float-5: .5;
+  --float-6: .6;
+  --float-7: .7;
+  --float-8: .8;
+  --float-9: .9;
+  --float-10: 1.0;
+}
+
+@font-face {
+  font-family: "Ubuntu";
+  src: url("../font/Ubuntu/Ubuntu-Regular.ttf");
+}
+body {
+  font-family: Ubuntu, sans-serif;
+}
+
+.text-primary {
+  color: var(--c-primary);
+}
+
+.bg-primary {
+  background-color: var(--c-primary);
+}
+
+.bg-primary.text-primary {
+  background-color: rgb(var(--c-primary)/var(--float-3));
+}
+
+.text-success {
+  color: var(--c-success);
+}
+
+.bg-success {
+  background-color: var(--c-success);
+}
+
+.bg-success.text-success {
+  background-color: rgb(var(--c-success)/var(--float-3));
+}
+
+.text-warning {
+  color: var(--c-warning);
+}
+
+.bg-warning {
+  background-color: var(--c-warning);
+}
+
+.bg-warning.text-warning {
+  background-color: rgb(var(--c-warning)/var(--float-3));
+}
+
+.text-danger {
+  color: var(--c-danger);
+}
+
+.bg-danger {
+  background-color: var(--c-danger);
+}
+
+.bg-danger.text-danger {
+  background-color: rgb(var(--c-danger)/var(--float-3));
+}
+
+.text-info {
+  color: var(--c-info);
+}
+
+.bg-info {
+  background-color: var(--c-info);
+}
+
+.bg-info.text-info {
+  background-color: rgb(var(--c-info)/var(--float-3));
+}
+
+.text-secondary {
+  color: var(--c-secondary);
+}
+
+.bg-secondary {
+  background-color: var(--c-secondary);
+}
+
+.bg-secondary.text-secondary {
+  background-color: rgb(var(--c-secondary)/var(--float-3));
+}
+
+.text-white {
+  color: var(--c-white);
+}
+
+.bg-white {
+  background-color: var(--c-white);
+}
+
+.bg-white.text-white {
+  background-color: rgb(var(--c-white)/var(--float-3));
+}/*# sourceMappingURL=style.css.map */

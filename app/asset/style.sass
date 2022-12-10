@@ -1,0 +1,38 @@
+$danger: 255 91 91
+$colorNames: 'primary', 'success', 'warning', 'danger', 'info', 'secondary', 'white'
+:root 
+    --c-danger: 255 91 91
+    --c-warning: 249 212 2
+    --c-success: 111 212 134
+    --c-primary: 56 145 255
+    --c-info: 0 178 191
+    --c-secondary: 138 138 138
+    --c-white: 255 255 255
+    --float-1: .1
+    --float-2: .2
+    --float-3: .3
+    --float-4: .4
+    --float-5: .5
+    --float-6: .6
+    --float-7: .7
+    --float-8: .8
+    --float-9: .9
+    --float-10: 1.0
+    
+@font-face 
+    font-family: "Ubuntu"
+    src: url("../font/Ubuntu/Ubuntu-Regular.ttf")
+
+body 
+    font-family: Ubuntu, sans-serif
+
+@each $name in $colorNames
+
+    .text-#{$name}
+        color: var(--c-#{$name})
+    
+    .bg-#{$name} 
+        background-color: var(--c-#{$name})
+
+    .bg-#{$name}.text-#{$name} 
+        background-color: rgb(var(--c-#{$name}) /var(--float-3))

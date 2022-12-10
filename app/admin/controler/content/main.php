@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2022 Ilham B
  *
@@ -15,47 +16,69 @@
  * limitations under the License.
  * 
  */
+
 use classes\CONN;
 use classes\UriManager;
 
-$path = $_SERVER['DOCUMENT_ROOT']."/app/contents";
-if(! file_exists($path)) {
-    mkdir($path);
+$content_path = $_SERVER['DOCUMENT_ROOT'] . "/app/contents";
+if (!file_exists($content_path)) {
+    mkdir($content_path);
 }
-
-
-$html = "";
 
 $uriManager = new UriManager();
 $path = $uriManager->getPath();
 
-if( array_key_exists(2, $path) && $path[2] == "new" ) {
+if (array_key_exists(2, $path) && $path[2] == "new") {
 
-    
-    return file_get_contents(__DIR__."/editing.html");
+
+    return file_get_contents(__DIR__ . "/editing.html");
 }
+
 
 $conn = new CONN();
 $PDO = $conn->_PDO();
 
-$sql = "SELECT * FROM `contents`";
-$stmt = $PDO->prepare($sql);
-$stmt->execute([]);
-$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$scandir = scandir($content_path);
+$scandir = array_values(array_filter($scandir, function ($e) {
 
-$html = $this->getHtmlFile(__DIR__."/content.html");
-
-foreach ($result as $content) {
-
-    $id = $content['id'];
-    $content = $content['html'];
-    $publish = $content['publish'];
-    $modify = $content['modify'];
-    $author = $content['author'];
+    $pathinfo = pathinfo($e);
+    return $e != "." && $e != ".." && $pathinfo['extension'] == 'html';
+}));
 
 
-    $html .= "<h4>$id</h4>";
+$html = $this->getHtmlFile(__DIR__ . "/content.html");
+$contentHTML = "<div class=\"content-wrapper\">";
 
+foreach ($scandir as $key) {
+
+    $key = str_replace(".html", "", $key);
+
+    $stmt = $PDO->prepare("SELECT * FROM contents WHERE id=?");
+    $stmt->execute([$key]);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    $title = "No title";
+    $description = "No description";
+    $date = "~";
+    $author = "~";
+
+    if ($result != null) {
+
+        $title = $result['title'];
+        $description = $result['description'];
+        $date = $result['date'];
+        $author = $result['author'];
+    }
+
+    $contentHTML .= "<div>\n
+    <h4>$title</h4>
+    <p>$description</p>
+    <span>$author</span><span>$date</span>
+    </div>";
 }
+
+$contentHTML .= "</div>";
+
+$html .= $contentHTML;
 
 return $html;
