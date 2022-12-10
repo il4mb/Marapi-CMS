@@ -21,8 +21,8 @@
 switch($path[1]) {
     case "content" :
 
-        $html = "<div class=\"input-group\" style=\"margin-right: auto;\">
-        <input placeholder=\"search...\" style=\"width: unset;\"/>
+        $html = "<div class=\"input-group me-auto\">
+        <input class='m-form' placeholder=\"search...\" style=\"width: unset;\"/>
         <button class='btn'><i class=\"ic-search\"></i></button>
     </div><a href='new/' class='btn text-primary bg-primary'><i class='ic-add'></i> Add</a>";
         break;

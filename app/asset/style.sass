@@ -1,8 +1,9 @@
 $colorNames: 'primary', 'success', 'warning', 'danger', 'info', 'secondary', 'white'
-$widths: ('sm': 800px, 'md': 1000px, 'lg': 1200px, 'xl': 1400px)
+$widths: ('sm': 1000px, 'md': 1400px, 'lg': 1600px, 'xl': 2000px)
+$files: "./layer.css", "./icons.css"
 
-
-@import url("./icons.css")
+@each $val in $files
+    @import url($val)
 :root
     --c-danger: 255 91 91
     --c-warning: 249 212 2
@@ -27,22 +28,22 @@ $widths: ('sm': 800px, 'md': 1000px, 'lg': 1200px, 'xl': 1400px)
     src: url("../font/Ubuntu/Ubuntu-Regular.ttf")
 
 /* GLOBAL */
-html 
+html
     box-sizing: border-box
-*, *:before, *:after 
+*, *:before, *:after
     box-sizing: inherit
 body
     font-family: Ubuntu, sans-serif
     color: #171717
     padding: 0
     margin: 0
-nav 
+nav
     display: flex
     background-color: #ffffff
     padding: 12px
     box-shadow: 1px 2px 8px 1px #00000045
     align-items: center
-nav a 
+nav a
     color: #171717 !important
     text-decoration: none!important
 
@@ -52,28 +53,28 @@ nav a
     width: 100%
     max-width: map-get($widths, 'lg')
     margin: auto
-    padding: 0 .5em
+
 @each $key, $value in $widths
-    .continer-#{$key}
-        width: 100%
-        max-width: $value
+    .container-#{$key}
+        width: 100% !important
+        max-width: $value !important
 
 /* COLORS */
 @each $name in $colorNames
 
     .text-#{$name}
-        color: var(--c-#{$name})
+        color: rgb(var(--c-#{$name}))
 
     .bg-#{$name}
-        background-color: var(--c-#{$name})
+        background-color: rgb(var(--c-#{$name}))
 
     .bg-#{$name}.text-#{$name}
         background-color: rgb(var(--c-#{$name}) /var(--float-3))
 
 /* MARGIN & PADDING */
-@for $i from 1 through 6
+@for $i from 0 through 6
 
-    $x: calc($i /1.6) + rem
+    $x: calc($i /3) + rem !important
 
     @if $i == 6
         $x: auto !important
@@ -94,25 +95,65 @@ nav a
     .mb-#{$i}
         margin-bottom: $x
 
-
     .p-#{$i}
-        margin: $x
+        padding: $x
 
     .ps-#{$i}
-        margin-left: $x
+        padding-left: $x
 
     .pe-#{$i}
-        margin-right: $x
+        padding-right: $x
 
     .pt-#{$i}
-        margin-top: $x
+        padding-top: $x
 
     .pb-#{$i}
-        margin-bottom: $x
+        padding-bottom: $x
 
+/* INPUT */
+.m-form
+    font-size: medium
+    border: 1px solid grey
+    border-radius: 5px
+    padding: 8px 10px
+
+.m-form:focus-visible
+    outline: none
+    box-shadow: 0px 0px 4px 2px rgb(var(--c-primary) /var(--float-4))
+    z-index: 400
+
+/* BUTTON */
+.btn
+    text-decoration: none
+    border-radius: 5px
+    vertical-align: middle
+    margin: 0 .3rem
+    padding: 7px 1em
+    border: none
+    font-size: medium
+    &:disabled
+        color: rgb(var(--c-secondary) /var(--float-4)) !important
+        background-color: rgb(var(--c-secondary) /var(--float-2)) !important
+        &:hover
+            transform: none !important
+    &:hover
+        outline: none
+        box-shadow: 0px 0px 4px 2px rgb(var(--c-primary) /var(--float-4))
+
+*:not(button).btn
+    line-height: 1.5em
+
+/* FLEX */
+.flex
+    display: flex !important
+.j-center
+    justify-content: center
+.a-center
+    align-items: center
 /* VARIABLE */
-
-.mrp-logo 
+.content-wrapper
+    padding: 15px
+.mrp-logo
     width: 55px
     height: 55px
     object-fit: contain
@@ -120,7 +161,8 @@ nav a
     padding: 15px
     border-radius: 13px
     box-shadow: -2px 2px 5px rgb(0 0 0 /.5)
-.mrp-navbar 
+
+.mrp-navbar
     position: fixed
     left: 0
     top: 0
@@ -131,14 +173,14 @@ nav a
     box-shadow: 2px 0px 8px 10px rgba(0, 0, 0, 0.095)
     transition: .5s
     z-index: 9999
-.mrp-navbar.close 
+.mrp-navbar.close
     transition-delay: .25s
     max-width: 0
-.mrp-navbar.close>.mrp-nav-body 
+.mrp-navbar.close>.mrp-nav-body
     margin-left: -285px
-.mrp-navbar.open>.mrp-nav-body 
+.mrp-navbar.open>.mrp-nav-body
     max-width: 250px
-.mrp-nav-body 
+.mrp-nav-body
     transition: .25s
     position: fixed
     overflow: hidden
@@ -147,7 +189,7 @@ nav a
     max-width: 250px
     background-color: white
     overflow: hidden
-.mrp-nav-body>a 
+.mrp-nav-body>a
     width: 100%
     width: -webkit-fill-available
     display: block
@@ -157,26 +199,25 @@ nav a
     cursor: pointer
     text-decoration: none
     color: #1f1f1f
-.mrp-nav-body>hr 
+.mrp-nav-body>hr
     margin-bottom: 2em
     border-top: none
-.mrp-nav-body>a:nth-child(3) 
+.mrp-nav-body>a:nth-child(3)
     margin-top: 1em
-.mrp-nav-body>a:hover 
+.mrp-nav-body>a:hover
     background-color: rgba(0, 0, 0, 0.814)
     color: white
-.mrp-nav-body>a.active 
+.mrp-nav-body>a.active
     background: red
     color: white
 
-
-.toolbar 
+.toolbar
     background-color: rgb(246 246 246)
     display: flex
     align-content: stretch
     align-items: stretch
 
-.toolbar .body 
+.toolbar .body
     margin-left: auto
     display: flex
     align-content: center
@@ -185,42 +226,205 @@ nav a
     flex-wrap: wrap
     flex-direction: row
 
-.toolbar .body > * 
+.toolbar .body > *
     margin: 0 15px
 
-.btn 
-    text-decoration: none
-    border-radius: 5px
-    vertical-align: middle
-    line-height: 2.2em
-    padding: 0 1em
+.page-title
+    padding: 15px 10px 15px 25px
+    font-size: 20px
+    font-weight: 700
+    background: rgb(214 214 214 / 50%)
+    color: black
 
-.btn:has([class^="ic-"]):hover 
-    transition: .25s
-    color: rgb(80, 80, 80) !important
-    transform: scale(1.1)
+.card-theme
+    margin: 18px
+    overflow: hidden
+    width: 100%
+    max-width: 360px
+    box-shadow: -1px 1px 4px -1px grey
+    position: relative
 
+.card-theme>.thumbnail,
+.theme-thumbnail
+    background-color: black
+    background: linear-gradient(203deg, black, #00748f)
+    height: auto
+    width: 100%
+    aspect-ratio: 2
+    position: relative
 
+.card-theme>.title
+    margin: 0.5em 0
+    padding: 2.5px 15px
 
-@media only screen and (max-width: 800px) 
-    [class^="container"] 
-        padding: 0 .5em
+.status
+    position: absolute
+    top: calc(2.5%)
+    right: calc(5%)
 
-@media only screen and (min-width: 1199px) 
-    .content-wrapper
-        padding: 15px
-    .mrp-navbar 
-        max-width: 250px !important
-    
-    .mrp-navbar .mrp-nav-body 
+.action
+    position: absolute
+    bottom: calc(5%)
+    right: calc(5%)
+
+.bottom-right
+    position: absolute
+    bottom: calc(5%)
+    right: calc(5%)
+
+.tooltip
+    cursor: pointer
+    opacity: var(--float-5)
+
+    &:hover
+        opacity: var(--float-10)
+
+.list-item
+    margin-left: 0 !important
+    padding-left: 0 !important
+
+.list-item,
+.list-item>li
+    list-style: none !important
+
+ul.list-item>li 
+    border-bottom: #d2d2d2 solid .5px
+
+ul.list-item>li:nth-of-type(odd) 
+    background-color: #f1f1f1
+
+    &:last-child
+        border-bottom: none !important
+
+.item
+    padding: 12px 0
+
+    & .item-title
+        margin-top: 0 !important
+
+    &-body
+        padding: 2.5px 8px
+
+    &-body.d-flex
+        display: flex
+        flex-direction: row
+        flex-wrap: wrap
+        align-content: flex-start
+        justify-content: space-around
+        align-items: flex-end
+
+.action-wrapper
+    display: flex
+
+    &>*
+        transition: .25s
+        border-right: #b7b7b7 solid 0.5px
+        padding: 0 12px
+
+    &>*:last-child
+        border-right: none !important
+
+    &>*:first-child
         margin-left: 0 !important
-    
-    body:has(>.mrp-navbar) 
+        padding-left: 0 !important
+
+    &>.action-btn:hover
+        cursor: pointer
+        color: var(--cl-primary)
+
+.d-flex>.col
+    flex-grow: 1
+
+.align-items-center
+    align-items: center
+
+.input-group
+    border: .5px solid #CDCDCD
+    border-radius: 5px
+    display: flex
+    padding: 0
+    margin: 5px
+
+    & > *
+        margin: 0 !important
+
+    & > input
+        border: none
+        outline: none
+        box-shadow: none
+
+    & *:not(:first-child) & *:not(:last-child)
+        border-radius: 0px
+    & *:first-child
+        border: 5px !important
+        border-top-right-radius: 0px !important
+        border-bottom-right-radius: 0px !important
+
+    & *:last-child
+        border: 5px !important
+        border-top-left-radius: 0px !important
+        border-bottom-left-radius: 0px !important
+
+.loading-animation
+    position: fixed
+    top: 0
+    left: 0
+    width: 100%
+    height: 10px
+    z-index: 99999
+    overflow: hidden
+
+    &::before
+        content: "Loading..."
+        position: fixed
+        left: 50%
+        transform: translateX(-50%)
+        top: 10px
+        background-color: rgb(247, 247, 247)
+        border-radius: 5px
+        border-radius: 5px
+        padding: 5px 15px
+        box-shadow: 0px 1px rgb(0 0 0 /.5)
+
+    &::after
+        content: ""
+        position: fixed
+        left: 50%
+        transform: translateX(-50%)
+        background: linear-gradient(to right, rgb(var(--c-danger)), rgb(var(--c-primary)), rgb(var(--c-danger)))
+        background-size: 100vw
+        background-position: center
+        animation: loading 2s infinite
+        transform-origin: center
+        width: 100%
+        height: 2.5px
+        margin: auto
+        border-radius: 15px
+        box-shadow: 0px 0px 0px 0.5px white
+
+@keyframes loading
+    0%
+        width: 10%
+
+    50%
+        width: 100%
+
+    100%
+        width: 10%
+
+@media only screen and (min-width: 1199px)
+
+    .mrp-navbar
+        max-width: 250px !important
+
+    .mrp-navbar .mrp-nav-body
+        margin-left: 0 !important
+
+    body
         margin-left: 251px !important
-    
-    [trigger="navbar"] 
+
+    [trigger="navbar"]
         display: none !important
-    
-    nav .brand 
+
+    nav .brand
         display: none
-    

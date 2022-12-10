@@ -148,14 +148,14 @@ function actionConfirm(data) {
 
         return [
             DOM("button", {
-                attr: { class: "text-secondary bg-secondary" },
+                attr: { class: "btn text-secondary bg-secondary" },
                 inner: "close",
                 todo: E => {
                     E.addEventListener('click', () => callBack.cancel(layer))
                 }
             }),
             DOM("button", {
-                attr: { class: "text-danger bg-danger" },
+                attr: { class: "btn text-danger bg-danger" },
                 inner: "confirm",
                 todo: E => {
                     E.addEventListener('click', () => callBack.confirm(layer))

@@ -16,8 +16,9 @@ $loged = $_COOKIE['user'];
 $ench = new ENCH($loged);
 $loged = (array)$ench->decrypt();
 
-
 $html = file_get_contents(__DIR__."/fragment.html");
+
+$html .= "<div class='content-wrapper'>";
 
 $html .= "<ul class='list-item'>";
 foreach ($result as $user) {
@@ -75,6 +76,9 @@ foreach ($result as $user) {
     </li>";
 }
 $html .= "</ul>";
+
+
+$html .= "</div>";
 
 
 return $html;

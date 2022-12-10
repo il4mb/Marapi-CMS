@@ -187,7 +187,7 @@ function mLayer(element) {
         }).setFooter(() => {
             return [
                 DOM("button", {
-                    attr: { class: 'text-danger bg-danger' },
+                    attr: { class: 'btn text-danger bg-danger' },
                     inner: "delete",
                     todo: E => {
                         if (data['active'] === true) { E.disabled = true }
@@ -270,7 +270,7 @@ function mLayer(element) {
                     }
                 }),
                 DOM("button", {
-                    attr: { class: 'text-primary bg-primary' },
+                    attr: { class: 'btn text-primary bg-primary' },
                     inner: "active",
                     todo: E => {
                         if (data['active'] === true) { E.disabled = true }

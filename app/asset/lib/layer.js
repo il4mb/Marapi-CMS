@@ -16,10 +16,10 @@ export class Layer {
             attr: { class: "head" }
         })
 
-        this.closeHandle = DOM("a", {
-            attr: { class: "close btn cursor-pointer", title: "close" },
+        this.closeHandle = DOM("button", {
+            attr: { class: "close btn cursor-pointer p-0", title: "close" },
             inner: DOM("i", {
-                attr: { class: "micon-x-fill" }
+                attr: { class: "ic-x-fill" }
             })
         })
         this.title = DOM("h4", {
