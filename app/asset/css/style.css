@@ -491,52 +491,40 @@ nav a {
   display: flex !important;
   align-items: center;
 }
-
 .flex-row {
   flex-direction: row !important;
 }
-
 .flex-column {
   flex-direction: column !important;
 }
-
 .flex-row-reverse {
   flex-direction: row-reverse !important;
 }
-
 .flex-column-reverse {
   flex-direction: column-reverse !important;
 }
-
 .flex-no-wrap {
   flex-wrap: no-wrap !important;
 }
-
 .flex-wrap {
   flex-wrap: wrap !important;
 }
-
-.align-center {
+.flex.align-center {
   align-content: center !important;
 }
-
-.align-flex-start {
+.flex.align-flex-start {
   align-content: flex-start !important;
 }
-
-.align-flex-end {
+.flex.align-flex-end {
   align-content: flex-end !important;
 }
-
-.align-space-around {
+.flex.align-space-around {
   align-content: space-around !important;
 }
-
-.align-space-between {
+.flex.align-space-between {
   align-content: space-between !important;
 }
-
-.align-stretch {
+.flex.align-stretch {
   align-content: stretch !important;
 }
 
