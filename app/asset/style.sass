@@ -51,7 +51,8 @@ nav
 nav a
     color: #171717 !important
     text-decoration: none!important
-
+a 
+    text-decoration: none !important
 /* CONTAINERS */
 [class^="container"] 
     position: relative
@@ -148,6 +149,7 @@ nav a
     display: flex
     padding: 0
     margin: 5px
+    width: auto
 
     & > *
         margin: 0 !important
@@ -178,6 +180,7 @@ nav a
     padding: 7px 1em
     border: none
     font-size: medium
+    
     &:disabled
         color: rgb(var(--c-secondary) /var(--float-4)) !important
         background-color: rgb(var(--c-secondary) /var(--float-2)) !important
@@ -219,9 +222,7 @@ $align-items: center, flex-start, flex-end, stretch, baseline
         &.align-#{$var}
             align-items: $var !important
 
-
 $sizes: (xs: 576px, sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl: 1400px)
-
 
 /* VARIABLE */
 .content-wrapper
@@ -285,7 +286,6 @@ $sizes: (xs: 576px, sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl: 1400px)
             color: white
 
 .toolbar
-    background-color: rgb(246 246 246)
     display: flex
     align-content: stretch
     align-items: stretch
@@ -293,19 +293,19 @@ $sizes: (xs: 576px, sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl: 1400px)
         margin-left: auto
         display: flex
         align-content: center
-        align-items: stretch
+        align-items: center
         justify-content: space-evenly
-        flex-wrap: wrap
+        flex-wrap: nowrap
         flex-direction: row
         & > *
             margin: 0 15px
-
-.page-title
-    padding: 15px 10px 15px 25px
-    font-size: 20px
-    font-weight: 700
-    background: rgb(214 214 214 / 50%)
-    color: black
+    &>.page-title
+        padding: 0px 15px
+        font-size: 25px
+        font-weight: 700
+        /* background: rgba(214, 214, 214, 0.5); */
+        line-height: 2em
+        color: black
 
 .card-theme
     margin: 18px

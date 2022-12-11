@@ -60,6 +60,10 @@ nav a {
   text-decoration: none !important;
 }
 
+a {
+  text-decoration: none !important;
+}
+
 /* CONTAINERS */
 [class^=container] {
   position: relative;
@@ -1319,6 +1323,7 @@ nav a {
   display: flex;
   padding: 0;
   margin: 5px;
+  width: auto;
 }
 .input-group > * {
   margin: 0 !important;
@@ -1518,7 +1523,6 @@ nav a {
 }
 
 .toolbar {
-  background-color: rgb(246, 246, 246);
   display: flex;
   align-content: stretch;
   align-items: stretch;
@@ -1527,20 +1531,20 @@ nav a {
   margin-left: auto;
   display: flex;
   align-content: center;
-  align-items: stretch;
+  align-items: center;
   justify-content: space-evenly;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   flex-direction: row;
 }
 .toolbar > .body > * {
   margin: 0 15px;
 }
-
-.page-title {
-  padding: 15px 10px 15px 25px;
-  font-size: 20px;
+.toolbar > .page-title {
+  padding: 0px 15px;
+  font-size: 25px;
   font-weight: 700;
-  background: rgba(214, 214, 214, 0.5);
+  /* background: rgba(214, 214, 214, 0.5); */
+  line-height: 2em;
   color: black;
 }
 
