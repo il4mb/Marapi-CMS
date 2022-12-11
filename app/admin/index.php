@@ -94,18 +94,19 @@ try {
 
     foreach ($menu as $key => $val) {
 
-        if ($path[1] == $key) {
+        if (gettype($key) == "string" && 0 == strcmp(strtolower($path[1]), strtolower($key))) {
 
             $menu[$key] = str_replace("{ATTR}", "class='active'", $menu[$key]);
 
-            $controller = initController($key);
+            if (array_key_exists($key, $menu)) {
+               
+                $controller = initController($key);
 
-            if (is_file($controller)) {
+                if (is_file($controller)) {
 
-                $document->setControler($controller);
+                    $document->setControler($controller);
+                }
             }
-
-            
         } else $menu[$key] = str_replace("{ATTR}", "", $menu[$key]);
     }
 

@@ -9,7 +9,7 @@ $_data = ["theme" => $list];
 $passData = "<script>window.MARAPI = " . json_encode($_data) . "</script>";
 $this->head .= $passData;
 $html = "<div class='content-wrapper'>";
-$html .= "<div class='flex j-center'>";
+$html .= "<div class='flex flex-wrap'>";
 foreach ($list as $key => $val) {
 
     /**
@@ -18,7 +18,7 @@ foreach ($list as $key => $val) {
     $active = THEME::getActiveTheme();
     $params = $val->params;
 
-    $active_tooltip = "\n<a trigger='layer' data='theme.". $key ."' class='bottom-right btn text-primary p-0'><i class='ic-front'></i></a>";
+    $active_tooltip = "\n<a trigger='layer' data='theme.". $key ."' class='btn text-primary ps-2 pe-2 pt-1 pb-1 ms-auto'><i class='ic-front'></i></a>";
     if(0 == strcmp(strtolower($active->path), strtolower($val->path))) { 
         $active_tooltip .= "\n<a class='text-success status p-0'><i class='ic-check2-circle'></i> Active</a>";
     }
@@ -32,8 +32,12 @@ foreach ($list as $key => $val) {
 
     $html .= "<div class='card-theme'>";
     $html .= "<div class='thumbnail'></div>";
-    $html .= "<h4 class='title'>$title</h4>";
-    $html .= "$active_tooltip</div>";
+
+    $html.="<div class='flex p-1'>
+                <h4 class='title mt-0 mb-0'>$title</h4>
+                $active_tooltip</div>";
+
+    $html .= "</div>";
 }
 $html .= "</div>";
 $html .= "</div>";

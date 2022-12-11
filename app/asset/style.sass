@@ -139,17 +139,41 @@ nav a
     &:hover
         outline: none
         box-shadow: 0px 0px 4px 2px rgb(var(--c-primary) /var(--float-4))
+    &:is(:not(button))
+        line-height: 1.5em
 
-*:not(button).btn
-    line-height: 1.5em
+    
+$flex-direction: row, column, row-reverse, column-reverse
+$flex-wrap: no-wrap, wrap
+$align-content: center, flex-start, flex-end, space-around, space-between, stretch
+$justify-content: center, flex-start, flex-end, space-between, space-around, space-evenly
+$align-items: center, flex-start, flex-end, stretch, baseline
 
 /* FLEX */
 .flex
     display: flex !important
-.j-center
-    justify-content: center
-.a-center
     align-items: center
+
+@each $var in $flex-direction
+    .flex-#{$var}
+        flex-direction: $var !important
+
+@each $var in $flex-wrap
+    .flex-#{$var}
+        flex-wrap: $var !important
+
+@each $var in $align-content
+    .align-#{$var}
+        align-content: $var !important
+
+@each $var in $justify-content
+    .justify-#{$var}
+        justify-content: $var !important
+     
+@each $var in $align-items
+    .align-#{$var}
+        align-items: $var !important
+
 /* VARIABLE */
 .content-wrapper
     padding: 15px
