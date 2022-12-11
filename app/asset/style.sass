@@ -1,9 +1,10 @@
 $colorNames: 'primary', 'success', 'warning', 'danger', 'info', 'secondary', 'white'
 $widths: ('sm': 1000px, 'md': 1400px, 'lg': 1600px, 'xl': 2000px)
-$files: "./layer.css", "./icons.css"
+$files: "./layer.css", "./icons.css", "./bootstrap.css"
 
 @each $val in $files
     @import url($val)
+
 :root
     --c-danger: 255 91 91
     --c-warning: 249 212 2
@@ -30,10 +31,14 @@ $files: "./layer.css", "./icons.css"
 /* GLOBAL */
 html
     box-sizing: border-box
-*, *:before, *:after
-    box-sizing: inherit
-body
+*
     font-family: Ubuntu, sans-serif
+    box-sizing: inherit
+    &:before
+        box-sizing: inherit
+    &:after
+        box-sizing: inherit
+body
     color: #171717
     padding: 0
     margin: 0
@@ -64,17 +69,17 @@ nav a
 
     .text-#{$name}
         color: rgb(var(--c-#{$name})) !important
-        
+
         &.bg-#{$name}
             background-color: rgb(var(--c-#{$name}) /var(--float-3))
         &.hover-#{$name}
             &:hover
-                color: rgb(var(--c-#{$name}) /var(--float-3)) !important
+                color: rgb(var(--c-#{$name}) /var(--float-5)) !important
 
-    .hover-#{$name}   
+    .hover-#{$name}
         &:hover
-             color: rgb(var(--c-#{$name})) !important
-    
+            color: rgb(var(--c-#{$name})) !important
+
     .bg-#{$name}
         background-color: rgb(var(--c-#{$name}))
 
@@ -116,23 +121,58 @@ nav a
 
     .pb-#{$i}
         padding-bottom: $x
+/* WIDTH */
+@for $var from 1 through 100
+    .w-#{$var}
+        width: $var + 0%
+    .h-#{$var}
+        width: $var + 0%
 
 /* INPUT */
 .m-form
-    font-size: medium
-    border: 1px solid grey
-    border-radius: 5px
-    padding: 8px 10px
+    display: block
+    font-size: 1em
+    border: 1px solid #CDCDCD
+    border-radius: 2px
+    padding: .5em .75em
+    color: #424242
+    min-width: 180px
+    &:focus-visible
+        outline: none
+        box-shadow: 0px 0px 4px 2px rgb(var(--c-primary) /var(--float-4))
+        z-index: 400
 
-.m-form:focus-visible
-    outline: none
-    box-shadow: 0px 0px 4px 2px rgb(var(--c-primary) /var(--float-4))
-    z-index: 400
+.input-group
+    border: .5px solid #CDCDCD
+    border-radius: 2px
+    display: flex
+    padding: 0
+    margin: 5px
+
+    & > *
+        margin: 0 !important
+
+    & > input
+        border: none
+        outline: none
+        box-shadow: none
+
+    & *:not(:first-child) & *:not(:last-child)
+        border-radius: 0px
+    & *:first-child
+        border: 5px !important
+        border-top-right-radius: 0px !important
+        border-bottom-right-radius: 0px !important
+
+    & *:last-child
+        border: 5px !important
+        border-top-left-radius: 0px !important
+        border-bottom-left-radius: 0px !important
 
 /* BUTTON */
 .btn
     text-decoration: none
-    border-radius: 5px
+    border-radius: 2px
     vertical-align: middle
     margin: 0 .3rem
     padding: 7px 1em
@@ -154,7 +194,6 @@ $flex-wrap: no-wrap, wrap
 $align-content: center, flex-start, flex-end, space-around, space-between, stretch
 $justify-content: center, flex-start, flex-end, space-between, space-around, space-evenly
 $align-items: center, flex-start, flex-end, stretch, baseline
-
 /* FLEX */
 .flex
     display: flex !important
@@ -179,6 +218,10 @@ $align-items: center, flex-start, flex-end, stretch, baseline
     @each $var in $align-items
         &.align-#{$var}
             align-items: $var !important
+
+
+$sizes: (xs: 576px, sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl: 1400px)
+
 
 /* VARIABLE */
 .content-wrapper
@@ -210,36 +253,36 @@ $align-items: center, flex-start, flex-end, stretch, baseline
         margin-left: -285px
     &.open>.mrp-nav-body
         max-width: 250px
-.mrp-nav-body
-    transition: .25s
-    position: fixed
-    overflow: hidden
-    height: 100vh
-    width: 100%
-    max-width: 250px
-    background-color: white
-    overflow: hidden
-    &>a
+    &>.mrp-nav-body
+        transition: .25s
+        position: fixed
+        overflow: hidden
+        height: 100vh
         width: 100%
-        width: -webkit-fill-available
-        display: block
-        padding: 8px 15px
-        font-size: 18px
-        font-weight: 700
-        cursor: pointer
-        text-decoration: none
-        color: #1f1f1f
-    &>hr
-        margin-bottom: 2em
-        border-top: none
-    &>a:nth-child(3)
-        margin-top: 1em
-    &>a:hover
-        background-color: rgba(0, 0, 0, 0.814)
-        color: white
-    &>a.active
-        background: red
-        color: white
+        max-width: 250px
+        background-color: white
+        overflow: hidden
+        &>a
+            width: 100%
+            width: -webkit-fill-available
+            display: block
+            padding: 8px 15px
+            font-size: 18px
+            font-weight: 700
+            cursor: pointer
+            text-decoration: none
+            color: #1f1f1f
+        &>hr
+            margin-bottom: 2em
+            border-top: none
+        &>a:nth-child(3)
+            margin-top: 1em
+        &>a:hover
+            background-color: rgba(0, 0, 0, 0.814)
+            color: white
+        &>a.active
+            background: red
+            color: white
 
 .toolbar
     background-color: rgb(246 246 246)
@@ -362,36 +405,6 @@ ul.list-item>li:nth-of-type(odd)
 
 .d-flex>.col
     flex-grow: 1
-
-.align-items-center
-    align-items: center
-
-.input-group
-    border: .5px solid #CDCDCD
-    border-radius: 5px
-    display: flex
-    padding: 0
-    margin: 5px
-
-    & > *
-        margin: 0 !important
-
-    & > input
-        border: none
-        outline: none
-        box-shadow: none
-
-    & *:not(:first-child) & *:not(:last-child)
-        border-radius: 0px
-    & *:first-child
-        border: 5px !important
-        border-top-right-radius: 0px !important
-        border-bottom-right-radius: 0px !important
-
-    & *:last-child
-        border: 5px !important
-        border-top-left-radius: 0px !important
-        border-bottom-left-radius: 0px !important
 
 .loading-animation
     position: fixed
