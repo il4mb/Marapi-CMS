@@ -83,87 +83,129 @@ nav a {
 
 /* COLORS */
 .text-primary {
-  color: rgb(var(--c-primary));
+  color: rgb(var(--c-primary)) !important;
+}
+.text-primary.bg-primary {
+  background-color: rgb(var(--c-primary)/var(--float-3));
+}
+.text-primary.hover-primary:hover {
+  color: rgb(var(--c-primary)/var(--float-3)) !important;
+}
+
+.hover-primary:hover {
+  color: rgb(var(--c-primary)) !important;
 }
 
 .bg-primary {
-  background-color: rgb(var(--c-primary));
-}
-
-.bg-primary.text-primary {
-  background-color: rgb(var(--c-primary)/var(--float-3));
+  background-color: rgb(var(--c-primary)) !important;
 }
 
 .text-success {
-  color: rgb(var(--c-success));
+  color: rgb(var(--c-success)) !important;
+}
+.text-success.bg-success {
+  background-color: rgb(var(--c-success)/var(--float-3));
+}
+.text-success.hover-success:hover {
+  color: rgb(var(--c-success)/var(--float-3)) !important;
+}
+
+.hover-success:hover {
+  color: rgb(var(--c-success)) !important;
 }
 
 .bg-success {
-  background-color: rgb(var(--c-success));
-}
-
-.bg-success.text-success {
-  background-color: rgb(var(--c-success)/var(--float-3));
+  background-color: rgb(var(--c-success)) !important;
 }
 
 .text-warning {
-  color: rgb(var(--c-warning));
+  color: rgb(var(--c-warning)) !important;
+}
+.text-warning.bg-warning {
+  background-color: rgb(var(--c-warning)/var(--float-3));
+}
+.text-warning.hover-warning:hover {
+  color: rgb(var(--c-warning)/var(--float-3)) !important;
+}
+
+.hover-warning:hover {
+  color: rgb(var(--c-warning)) !important;
 }
 
 .bg-warning {
-  background-color: rgb(var(--c-warning));
-}
-
-.bg-warning.text-warning {
-  background-color: rgb(var(--c-warning)/var(--float-3));
+  background-color: rgb(var(--c-warning)) !important;
 }
 
 .text-danger {
-  color: rgb(var(--c-danger));
+  color: rgb(var(--c-danger)) !important;
+}
+.text-danger.bg-danger {
+  background-color: rgb(var(--c-danger)/var(--float-3));
+}
+.text-danger.hover-danger:hover {
+  color: rgb(var(--c-danger)/var(--float-3)) !important;
+}
+
+.hover-danger:hover {
+  color: rgb(var(--c-danger)) !important;
 }
 
 .bg-danger {
-  background-color: rgb(var(--c-danger));
-}
-
-.bg-danger.text-danger {
-  background-color: rgb(var(--c-danger)/var(--float-3));
+  background-color: rgb(var(--c-danger)) !important;
 }
 
 .text-info {
-  color: rgb(var(--c-info));
+  color: rgb(var(--c-info)) !important;
+}
+.text-info.bg-info {
+  background-color: rgb(var(--c-info)/var(--float-3));
+}
+.text-info.hover-info:hover {
+  color: rgb(var(--c-info)/var(--float-3)) !important;
+}
+
+.hover-info:hover {
+  color: rgb(var(--c-info)) !important;
 }
 
 .bg-info {
-  background-color: rgb(var(--c-info));
-}
-
-.bg-info.text-info {
-  background-color: rgb(var(--c-info)/var(--float-3));
+  background-color: rgb(var(--c-info)) !important;
 }
 
 .text-secondary {
-  color: rgb(var(--c-secondary));
+  color: rgb(var(--c-secondary)) !important;
+}
+.text-secondary.bg-secondary {
+  background-color: rgb(var(--c-secondary)/var(--float-3));
+}
+.text-secondary.hover-secondary:hover {
+  color: rgb(var(--c-secondary)/var(--float-3)) !important;
+}
+
+.hover-secondary:hover {
+  color: rgb(var(--c-secondary)) !important;
 }
 
 .bg-secondary {
-  background-color: rgb(var(--c-secondary));
-}
-
-.bg-secondary.text-secondary {
-  background-color: rgb(var(--c-secondary)/var(--float-3));
+  background-color: rgb(var(--c-secondary)) !important;
 }
 
 .text-white {
-  color: rgb(var(--c-white));
+  color: rgb(var(--c-white)) !important;
+}
+.text-white.bg-white {
+  background-color: rgb(var(--c-white)/var(--float-3));
+}
+.text-white.hover-white:hover {
+  color: rgb(var(--c-white)/var(--float-3)) !important;
+}
+
+.hover-white:hover {
+  color: rgb(var(--c-white)) !important;
 }
 
 .bg-white {
-  background-color: rgb(var(--c-white));
-}
-
-.bg-white.text-white {
-  background-color: rgb(var(--c-white)/var(--float-3));
+  background-color: rgb(var(--c-white)) !important;
 }
 
 /* MARGIN & PADDING */
@@ -527,48 +569,37 @@ nav a {
 .flex.align-stretch {
   align-content: stretch !important;
 }
-
-.justify-center {
+.flex.justify-center {
   justify-content: center !important;
 }
-
-.justify-flex-start {
+.flex.justify-flex-start {
   justify-content: flex-start !important;
 }
-
-.justify-flex-end {
+.flex.justify-flex-end {
   justify-content: flex-end !important;
 }
-
-.justify-space-between {
+.flex.justify-space-between {
   justify-content: space-between !important;
 }
-
-.justify-space-around {
+.flex.justify-space-around {
   justify-content: space-around !important;
 }
-
-.justify-space-evenly {
+.flex.justify-space-evenly {
   justify-content: space-evenly !important;
 }
-
-.align-center {
+.flex.align-center {
   align-items: center !important;
 }
-
-.align-flex-start {
+.flex.align-flex-start {
   align-items: flex-start !important;
 }
-
-.align-flex-end {
+.flex.align-flex-end {
   align-items: flex-end !important;
 }
-
-.align-stretch {
+.flex.align-stretch {
   align-items: stretch !important;
 }
-
-.align-baseline {
+.flex.align-baseline {
   align-items: baseline !important;
 }
 
@@ -600,16 +631,13 @@ nav a {
   transition: 0.5s;
   z-index: 9999;
 }
-
 .mrp-navbar.close {
   transition-delay: 0.25s;
   max-width: 0;
 }
-
 .mrp-navbar.close > .mrp-nav-body {
   margin-left: -285px;
 }
-
 .mrp-navbar.open > .mrp-nav-body {
   max-width: 250px;
 }
@@ -624,7 +652,6 @@ nav a {
   background-color: white;
   overflow: hidden;
 }
-
 .mrp-nav-body > a {
   width: 100%;
   width: -webkit-fill-available;
@@ -636,21 +663,17 @@ nav a {
   text-decoration: none;
   color: #1f1f1f;
 }
-
 .mrp-nav-body > hr {
   margin-bottom: 2em;
   border-top: none;
 }
-
 .mrp-nav-body > a:nth-child(3) {
   margin-top: 1em;
 }
-
 .mrp-nav-body > a:hover {
   background-color: rgba(0, 0, 0, 0.814);
   color: white;
 }
-
 .mrp-nav-body > a.active {
   background: red;
   color: white;
@@ -662,8 +685,7 @@ nav a {
   align-content: stretch;
   align-items: stretch;
 }
-
-.toolbar .body {
+.toolbar > .body {
   margin-left: auto;
   display: flex;
   align-content: center;
@@ -672,8 +694,7 @@ nav a {
   flex-wrap: wrap;
   flex-direction: row;
 }
-
-.toolbar .body > * {
+.toolbar > .body > * {
   margin: 0 15px;
 }
 
@@ -693,9 +714,8 @@ nav a {
   box-shadow: -1px 1px 4px -1px grey;
   position: relative;
 }
-
 .card-theme > .thumbnail,
-.theme-thumbnail {
+.card-theme .theme-thumbnail {
   background-color: black;
   background: linear-gradient(203deg, black, #00748f);
   height: auto;
@@ -703,7 +723,6 @@ nav a {
   aspect-ratio: 2;
   position: relative;
 }
-
 .card-theme > .title {
   margin: 0.5em 0;
   padding: 2.5px 15px;

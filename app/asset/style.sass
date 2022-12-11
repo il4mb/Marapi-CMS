@@ -63,13 +63,20 @@ nav a
 @each $name in $colorNames
 
     .text-#{$name}
-        color: rgb(var(--c-#{$name}))
+        color: rgb(var(--c-#{$name})) !important
+        
+        &.bg-#{$name}
+            background-color: rgb(var(--c-#{$name}) /var(--float-3))
+        &.hover-#{$name}
+            &:hover
+                color: rgb(var(--c-#{$name}) /var(--float-3)) !important
 
+    .hover-#{$name}   
+        &:hover
+             color: rgb(var(--c-#{$name})) !important
+    
     .bg-#{$name}
-        background-color: rgb(var(--c-#{$name}))
-
-    .bg-#{$name}.text-#{$name}
-        background-color: rgb(var(--c-#{$name}) /var(--float-3))
+        background-color: rgb(var(--c-#{$name})) !important
 
 /* MARGIN & PADDING */
 @for $i from 0 through 6
@@ -166,7 +173,7 @@ $align-items: center, flex-start, flex-end, stretch, baseline
             align-content: $var !important
 
     @each $var in $justify-content
-    &.justify-#{$var}
+        &.justify-#{$var}
             justify-content: $var !important
 
     @each $var in $align-items
@@ -196,13 +203,13 @@ $align-items: center, flex-start, flex-end, stretch, baseline
     box-shadow: 2px 0px 8px 10px rgba(0, 0, 0, 0.095)
     transition: .5s
     z-index: 9999
-.mrp-navbar.close
-    transition-delay: .25s
-    max-width: 0
-.mrp-navbar.close>.mrp-nav-body
-    margin-left: -285px
-.mrp-navbar.open>.mrp-nav-body
-    max-width: 250px
+    &.close
+        transition-delay: .25s
+        max-width: 0
+    &.close>.mrp-nav-body
+        margin-left: -285px
+    &.open>.mrp-nav-body
+        max-width: 250px
 .mrp-nav-body
     transition: .25s
     position: fixed
@@ -212,45 +219,43 @@ $align-items: center, flex-start, flex-end, stretch, baseline
     max-width: 250px
     background-color: white
     overflow: hidden
-.mrp-nav-body>a
-    width: 100%
-    width: -webkit-fill-available
-    display: block
-    padding: 8px 15px
-    font-size: 18px
-    font-weight: 700
-    cursor: pointer
-    text-decoration: none
-    color: #1f1f1f
-.mrp-nav-body>hr
-    margin-bottom: 2em
-    border-top: none
-.mrp-nav-body>a:nth-child(3)
-    margin-top: 1em
-.mrp-nav-body>a:hover
-    background-color: rgba(0, 0, 0, 0.814)
-    color: white
-.mrp-nav-body>a.active
-    background: red
-    color: white
+    &>a
+        width: 100%
+        width: -webkit-fill-available
+        display: block
+        padding: 8px 15px
+        font-size: 18px
+        font-weight: 700
+        cursor: pointer
+        text-decoration: none
+        color: #1f1f1f
+    &>hr
+        margin-bottom: 2em
+        border-top: none
+    &>a:nth-child(3)
+        margin-top: 1em
+    &>a:hover
+        background-color: rgba(0, 0, 0, 0.814)
+        color: white
+    &>a.active
+        background: red
+        color: white
 
 .toolbar
     background-color: rgb(246 246 246)
     display: flex
     align-content: stretch
     align-items: stretch
-
-.toolbar .body
-    margin-left: auto
-    display: flex
-    align-content: center
-    align-items: stretch
-    justify-content: space-evenly
-    flex-wrap: wrap
-    flex-direction: row
-
-.toolbar .body > *
-    margin: 0 15px
+    &>.body
+        margin-left: auto
+        display: flex
+        align-content: center
+        align-items: stretch
+        justify-content: space-evenly
+        flex-wrap: wrap
+        flex-direction: row
+        & > *
+            margin: 0 15px
 
 .page-title
     padding: 15px 10px 15px 25px
@@ -267,18 +272,18 @@ $align-items: center, flex-start, flex-end, stretch, baseline
     box-shadow: -1px 1px 4px -1px grey
     position: relative
 
-.card-theme>.thumbnail,
-.theme-thumbnail
-    background-color: black
-    background: linear-gradient(203deg, black, #00748f)
-    height: auto
-    width: 100%
-    aspect-ratio: 2
-    position: relative
+    &>.thumbnail,
+    .theme-thumbnail
+        background-color: black
+        background: linear-gradient(203deg, black, #00748f)
+        height: auto
+        width: 100%
+        aspect-ratio: 2
+        position: relative
 
-.card-theme>.title
-    margin: 0.5em 0
-    padding: 2.5px 15px
+    &>.title
+        margin: 0.5em 0
+        padding: 2.5px 15px
 
 .status
     position: absolute
