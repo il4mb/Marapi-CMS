@@ -97,7 +97,7 @@ nav a {
 }
 
 .bg-primary {
-  background-color: rgb(var(--c-primary)) !important;
+  background-color: rgb(var(--c-primary));
 }
 
 .text-success {
@@ -115,7 +115,7 @@ nav a {
 }
 
 .bg-success {
-  background-color: rgb(var(--c-success)) !important;
+  background-color: rgb(var(--c-success));
 }
 
 .text-warning {
@@ -133,7 +133,7 @@ nav a {
 }
 
 .bg-warning {
-  background-color: rgb(var(--c-warning)) !important;
+  background-color: rgb(var(--c-warning));
 }
 
 .text-danger {
@@ -151,7 +151,7 @@ nav a {
 }
 
 .bg-danger {
-  background-color: rgb(var(--c-danger)) !important;
+  background-color: rgb(var(--c-danger));
 }
 
 .text-info {
@@ -169,7 +169,7 @@ nav a {
 }
 
 .bg-info {
-  background-color: rgb(var(--c-info)) !important;
+  background-color: rgb(var(--c-info));
 }
 
 .text-secondary {
@@ -187,7 +187,7 @@ nav a {
 }
 
 .bg-secondary {
-  background-color: rgb(var(--c-secondary)) !important;
+  background-color: rgb(var(--c-secondary));
 }
 
 .text-white {
@@ -205,7 +205,7 @@ nav a {
 }
 
 .bg-white {
-  background-color: rgb(var(--c-white)) !important;
+  background-color: rgb(var(--c-white));
 }
 
 /* MARGIN & PADDING */
