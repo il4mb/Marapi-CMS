@@ -53,6 +53,15 @@ nav a
     text-decoration: none!important
 a 
     text-decoration: none !important
+$list-w-val: fit-content, max-content, min-content, none
+@each $val in $list-w-val
+    .max-w-#{$val}
+        max-width: $val
+
+    .min-w-#{$val}
+        min-width: $val
+     
+
 /* CONTAINERS */
 [class^="container"] 
     position: relative
@@ -137,7 +146,8 @@ a
     border-radius: 2px
     padding: .5em .75em
     color: #424242
-    min-width: 180px
+    width: 100%
+
     &:focus-visible
         outline: none
         box-shadow: 0px 0px 4px 2px rgb(var(--c-primary) /var(--float-4))
@@ -148,8 +158,9 @@ a
     border-radius: 2px
     display: flex
     padding: 0
-    margin: 5px
-    width: auto
+    margin: 0 5px !important
+    width: 100%
+    min-width: 260px
 
     & > *
         margin: 0 !important
@@ -177,9 +188,7 @@ a
     border-radius: 2px
     vertical-align: middle
     margin: 0 .3rem
-    padding: 7px 1em
     border: none
-    font-size: medium
     
     &:disabled
         color: rgb(var(--c-secondary) /var(--float-4)) !important
@@ -193,7 +202,7 @@ a
         line-height: 1.5em
 
 $flex-direction: row, column, row-reverse, column-reverse
-$flex-wrap: no-wrap, wrap
+$flex-wrap: nowrap, wrap
 $align-content: center, flex-start, flex-end, space-around, space-between, stretch
 $justify-content: center, flex-start, flex-end, space-between, space-around, space-evenly
 $align-items: center, flex-start, flex-end, stretch, baseline
@@ -211,7 +220,7 @@ $align-items: center, flex-start, flex-end, stretch, baseline
             flex-wrap: $var !important
 
     @each $var in $align-content
-        &.align-#{$var}
+        &.content-#{$var}
             align-content: $var !important
 
     @each $var in $justify-content
@@ -219,7 +228,7 @@ $align-items: center, flex-start, flex-end, stretch, baseline
             justify-content: $var !important
 
     @each $var in $align-items
-        &.align-#{$var}
+        &.items-#{$var}
             align-items: $var !important
 
 $sizes: (xs: 576px, sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl: 1400px)
@@ -290,14 +299,14 @@ $sizes: (xs: 576px, sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl: 1400px)
     align-content: stretch
     align-items: stretch
     &>.body
+        position: relative
         margin-left: auto
         display: flex
         align-content: center
         align-items: center
-        justify-content: space-evenly
-        flex-wrap: nowrap
         flex-direction: row
         & > *
+            flex: 1
             margin: 0 15px
     &>.page-title
         padding: 0px 15px
@@ -334,11 +343,6 @@ $sizes: (xs: 576px, sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl: 1400px)
     right: calc(5%)
 
 .action
-    position: absolute
-    bottom: calc(5%)
-    right: calc(5%)
-
-.bottom-right
     position: absolute
     bottom: calc(5%)
     right: calc(5%)
@@ -469,3 +473,17 @@ ul.list-item>li:nth-of-type(odd)
 
     nav .brand
         display: none
+
+.content
+    &>.meta 
+        transition: .5s
+        transition-timing-function: ease
+        max-height: 0
+        overflow: hidden
+        border-bottom: 1px solid grey
+
+    &:hover
+        background-color: rgb(var(--c-primary) /var(--float-1))
+        &>.meta
+            height: max-content
+            max-height: 100px

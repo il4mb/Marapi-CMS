@@ -47,7 +47,7 @@ $scandir = array_values(array_filter($scandir, function ($e) {
 
 
 $html = $this->getHtmlFile(__DIR__ . "/content.html");
-$contentHTML = "<div class=\"content-wrapper\">";
+$contentHTML = "<ol class=\"ms-5 content-wrapper\">";
 
 foreach ($scandir as $key) {
 
@@ -70,14 +70,27 @@ foreach ($scandir as $key) {
         $author = $result['author'];
     }
 
-    $contentHTML .= "<div>\n
-    <h4>$title</h4>
-    <p>$description</p>
-    <span>$author</span><span>$date</span>
-    </div>";
+    $contentHTML .= "<li class='p-2 content'>\n
+                     <h4>$title</h4>
+                        <div class='meta hidden'>
+                            <div class='flex items-flex-end'>
+
+                                <div class='me-auto'>
+                                    <p>$description</p>
+                                    <span>$author</span><span>$date</span>
+                                </div>
+
+                                <div class='ms-auto mb-1'>
+                                    <button class='btn btn-sm bg-primary'>EDIT</button>
+                                    <button class='btn btn-sm bg-danger'>DELETE</button>
+                                </div>
+
+                            </div>
+                        </div>
+                     </li>";
 }
 
-$contentHTML .= "</div>";
+$contentHTML .= "</ol>";
 
 $html .= $contentHTML;
 
