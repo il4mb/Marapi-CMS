@@ -30,6 +30,11 @@ class shortCode
         $this->codes = array_merge($this->codes, $codes[0]);
     }
 
+    public function addShortCode($code) {
+        
+        array_push($this->codes, $code);
+    }
+
     public function addOnRender($handler)
     {
 

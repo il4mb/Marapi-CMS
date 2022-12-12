@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2022 Ilham B
  *
@@ -17,11 +18,13 @@
 
 namespace classes;
 
-class UriManager {
+class UriManager
+{
 
     public $path, $query;
 
-    function __construct() {
+    function __construct()
+    {
 
         $this->path = $_SERVER['REQUEST_URI'];
         $exploded = explode("?", $this->path);
@@ -30,10 +33,12 @@ class UriManager {
         $this->query = array_key_exists(1, $exploded) ? $exploded[1] : null;
     }
 
-    public function getPath() {
+    public function getPath()
+    {
 
-        
+
+        $this->path = str_replace(SELF_PATH, "", $this->path);
+
         return array_slice(explode("/", $this->path), 1);
     }
-
 }

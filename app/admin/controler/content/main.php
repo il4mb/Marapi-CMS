@@ -20,7 +20,7 @@
 use classes\CONN;
 use classes\UriManager;
 
-$content_path = $_SERVER['DOCUMENT_ROOT'] . "/app/contents";
+$content_path = $_SERVER['SELF_ROOT'] . "/app/contents";
 if (!file_exists($content_path)) {
     mkdir($content_path);
 }
@@ -71,18 +71,19 @@ foreach ($scandir as $key) {
     }
 
     $contentHTML .= "<li class='p-2 content'>\n
-                     <h4>$title</h4>
-                        <div class='meta hidden'>
+                     $title
+                        <div class='meta hidden font-medium'>
                             <div class='flex items-flex-end'>
 
                                 <div class='me-auto'>
-                                    <p>$description</p>
-                                    <span>$author</span><span>$date</span>
+                                    <p class='font-small ps-2'>$description</p>
+                                    <span class='text-secondary font-x-small'><i class='ic-person'></i>$author</span>
+                                    <span class='ms-3 text-secondary font-x-small'><i class='ic-clock'></i>$date</span>
                                 </div>
 
                                 <div class='ms-auto mb-1'>
-                                    <button class='btn btn-sm bg-primary'>EDIT</button>
-                                    <button class='btn btn-sm bg-danger'>DELETE</button>
+                                    <a class='btn btn-sm bg-primary text-white' href='{SELF_PATH}/'>EDIT</a>
+                                    <a class='btn btn-sm bg-danger text-white'>DELETE</a>
                                 </div>
 
                             </div>

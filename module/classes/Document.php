@@ -73,7 +73,7 @@ class DOCUMENT
             $this->container = include_once($php);
         }
     }
-    function getController()
+    function getController() 
     {
 
         return $this->container;
@@ -95,13 +95,12 @@ class DOCUMENT
      */
     function render()
     {
-
-        $this->body = $this->ShortCode->render($this->body);
-
-
         if (strlen($this->body) > 0 && strlen($this->head) > 0) {
 
-            return "<!DOCTYPE html>\r\n<html>\n  <head>\n" . $this->head . "\n  </head>\n  <body>\n" . $this->body . "\n  </body>\n</html>";
+            $HTML =  "<!DOCTYPE html>\r\n<html>\n  <head>\n" . $this->head . "\n  </head>\n  <body>\n" . $this->body . "\n  </body>\n</html>";
+
+            return $this->ShortCode->render($HTML);
+
         } else if (strlen($this->container) > 0) return $this->container;
     }
 }

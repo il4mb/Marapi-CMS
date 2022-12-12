@@ -30,7 +30,7 @@ class Main
         $paths = $uriM->getPath();
 
         if(array_key_exists(0, $paths)) {
-            $conf = json_decode(file_get_contents($_SERVER['DOCUMENT_ROOT']."/app/.json"), true);
+            $conf = json_decode(file_get_contents($_SERVER['SELF_ROOT']."/app/.json"), true);
             if($paths[0] == $conf['privateZone']) {
 
                 $this->PrivateZone();
@@ -67,6 +67,6 @@ class Main
     private function PrivateZone()
     {
 
-        require_once $_SERVER['DOCUMENT_ROOT']."/app/admin/index.php";
+        require_once $_SERVER['SELF_ROOT']."/app/admin/index.php";
     }
 }

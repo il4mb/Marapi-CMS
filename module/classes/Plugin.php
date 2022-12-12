@@ -170,7 +170,7 @@ class Plugin
     public function setActive()
     {
 
-        $relativePath = substr($this->path, strlen($_SERVER['DOCUMENT_ROOT']));
+        $relativePath = substr($this->path, strlen($_SERVER['SELF_ROOT']));
 
         $conn = new CONN();
         $DB = $conn->_PDO();
@@ -195,7 +195,7 @@ class Plugin
     public function setInactive()
     {
 
-        $relativePath = substr($this->path, strlen($_SERVER['DOCUMENT_ROOT']));
+        $relativePath = substr($this->path, strlen($_SERVER['SELF_ROOT']));
         $conn = new CONN();
         $DB = $conn->_PDO();
 
@@ -221,7 +221,7 @@ class Plugin
     public function is_active(): bool
     {
 
-        $relativePath = substr($this->path, strlen($_SERVER['DOCUMENT_ROOT']));
+        $relativePath = substr($this->path, strlen($_SERVER['SELF_ROOT']));
         $conn = new CONN();
         $DB = $conn->_PDO();
 
@@ -269,9 +269,9 @@ class Plugin
 
             $relativePath = $value['path'];
 
-            if (is_file($_SERVER['DOCUMENT_ROOT'] . $relativePath . "/.plugin")) {
+            if (is_file($_SERVER['SELF_ROOT'] . $relativePath . "/.plugin")) {
 
-                $plugin = new Plugin($_SERVER['DOCUMENT_ROOT'] . $relativePath);
+                $plugin = new Plugin($_SERVER['SELF_ROOT'] . $relativePath);
                 array_push($plugins,  $plugin);
             } else {
 
@@ -291,7 +291,7 @@ class Plugin
     public static function getListPlugin()
     {
 
-        $directory = $_SERVER["DOCUMENT_ROOT"] . self::$relativeDirectory;
+        $directory = $_SERVER["SELF_ROOT"] . self::$relativeDirectory;
         $listDir = scandir($directory);
 
         $plugins = [];
@@ -317,7 +317,7 @@ class Plugin
 
     static function getByRegCode($regCode) {
 
-        $directory = $_SERVER["DOCUMENT_ROOT"] . self::$relativeDirectory;
+        $directory = $_SERVER["SELF_ROOT"] . self::$relativeDirectory;
         $listDir = scandir($directory);
 
         foreach ($listDir as $child) {

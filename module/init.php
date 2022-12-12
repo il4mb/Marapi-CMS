@@ -16,21 +16,21 @@
  * limitations under the License.
  */
 
-$list = scandir($_SERVER['DOCUMENT_ROOT'] . "/module/interface");
+$list = scandir($_SERVER['SELF_ROOT'] . "/module/interface");
 foreach ($list as $file) {
 
-    if (is_file($_SERVER['DOCUMENT_ROOT'] . "/module/interface/" . $file)) {
+    if (is_file($_SERVER['SELF_ROOT'] . "/module/interface/" . $file)) {
 
-        include_once $_SERVER['DOCUMENT_ROOT'] . "/module/interface/" . $file;
+        include_once $_SERVER['SELF_ROOT'] . "/module/interface/" . $file;
     }
 }
 
-$list = scandir($_SERVER['DOCUMENT_ROOT'] . "/module/classes");
+$list = scandir($_SERVER['SELF_ROOT'] . "/module/classes");
 foreach ($list as $file) {
 
-    if (is_file($_SERVER['DOCUMENT_ROOT'] . "/module/classes/" . $file)) {
+    if (is_file($_SERVER['SELF_ROOT'] . "/module/classes/" . $file)) {
 
-        include_once $_SERVER['DOCUMENT_ROOT'] . "/module/classes/" . $file;
+        include_once $_SERVER['SELF_ROOT'] . "/module/classes/" . $file;
     }
 }
 
@@ -76,7 +76,7 @@ function generateRandomString($length = 10)
 
 function initController($base)
 {
-    $controller = $_SERVER['DOCUMENT_ROOT'] . "/app/admin/controler/" . $base;
+    $controller = $_SERVER['SELF_ROOT'] . "/app/admin/controler/" . $base;
     if (!file_exists($controller)) {
         mkdir($controller);
     }

@@ -14,6 +14,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+$SELFT_PATH = "";
+if(strlen(str_replace($_SERVER['DOCUMENT_ROOT'], "", str_replace("\\", "/", __DIR__))) > 0) {
+
+    $SELFT_PATH = "/".str_replace($_SERVER['DOCUMENT_ROOT'], "", str_replace("\\", "/", __DIR__));
+} 
+
+define("SELF_PATH", $SELFT_PATH);
+$_SERVER['SELF_ROOT'] = __DIR__;
+
 require_once __DIR__."/module/init.php";
 
 use classes\Main;

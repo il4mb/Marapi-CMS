@@ -17,7 +17,7 @@ foreach ($plugins AS $key => $plugin) {
     $setting = function() use ($plugin) {
 
         if($plugin->is_active() && $plugin->is_setting_exist()) {
-            return "<a href='/mrp/setting/".$plugin->regCode()."' class='action-btn'>Setting</a>";
+            return "<a href='{SELF_PATH}/mrp/setting/".$plugin->regCode()."' class='action-btn'>Setting</a>";
         }
     };
 

@@ -20,7 +20,7 @@ use classes\DOCUMENT;
 use classes\Plugin;
 use classes\UriManager;
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/module/init.php';
+require_once $_SERVER['SELF_ROOT'] . '/module/init.php';
 
 try {
 
@@ -43,29 +43,28 @@ try {
 
 
 
-
     if (!array_key_exists('1', $path) ||  array_key_exists('1', $path) && $path[1] == "") {
 
-        header("Location: /mrp/dashboard/");
+       header("Location: ".SELF_PATH."/mrp/dashboard/");
     }
 
     if (array_key_exists('1', $path) && $path[1] != "login" && !isset($_COOKIE['user'])) {
 
-        header("Location: /mrp/login/");
+        header("Location: ".SELF_PATH."/mrp/login/");
     }
 
     $menu = [
-        "dashboard" => "<a {ATTR} style=\"font-weight: 900; padding: 15px 15px;\" href=\"/mrp/dashboard/\">\n\t<svg width=\"40\" height=\"28\" color=\"currentColor\" version=\"1.1\" viewBox=\"0 0 126.4 97.009\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:cc=\"http://creativecommons.org/ns#\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\">\n\t\t<g transform=\"translate(-38.675 -125.31)\">\n\t\t\t<path d=\"m93.979 136.81 8.7573 11.332 13.744-22.837 48.59 96.886-20.335-0.0209-29.298-58.489-10.509 14.449-8.472-8.9149-31.166 52.807s-26.691 0.2253-26.615 0.10806z\" fill=\"currentColor\" stroke-width=\".26458\"/>\n\t\t</g>\n\t</svg>\n\t<span style='margin-left:-2px'>arapi</span>\n\t<small class='text-secondary'><i>Dasborad</i></small>\n</a>",
+        "dashboard" => "<a {ATTR} style=\"font-weight: 900; padding: 15px 15px;\" href=\"{SELF_PATH}/mrp/dashboard/\">\n\t<svg width=\"40\" height=\"28\" color=\"currentColor\" version=\"1.1\" viewBox=\"0 0 126.4 97.009\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:cc=\"http://creativecommons.org/ns#\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\">\n\t\t<g transform=\"translate(-38.675 -125.31)\">\n\t\t\t<path d=\"m93.979 136.81 8.7573 11.332 13.744-22.837 48.59 96.886-20.335-0.0209-29.298-58.489-10.509 14.449-8.472-8.9149-31.166 52.807s-26.691 0.2253-26.615 0.10806z\" fill=\"currentColor\" stroke-width=\".26458\"/>\n\t\t</g>\n\t</svg>\n\t<span style='margin-left:-2px'>arapi</span>\n\t<small class='text-secondary'><i>Dasborad</i></small>\n</a>",
         "<hr/>",
-        'content' => '<a {ATTR} href="/mrp/content/">CONTENT</a>',
-        'page' => '<a {ATTR} href="/mrp/page/">PAGE</a>',
-        'menu' => '<a {ATTR} href="/mrp/menu/">MENU</a>',
+        'content' => '<a {ATTR} href="{SELF_PATH}/mrp/content/">CONTENT</a>',
+        'page' => '<a {ATTR} href="{SELF_PATH}/mrp/page/">PAGE</a>',
+        'menu' => '<a {ATTR} href="{SELF_PATH}/mrp/menu/">MENU</a>',
         '<hr/>',
-        'theme' => '<a {ATTR} href="/mrp/theme/">THEME</a>',
-        'plugin' => '<a {ATTR} href="/mrp/plugin/">PLUGIN</a>',
-        'users' => '<a {ATTR} href="/mrp/users/">USERS</a>',
+        'theme' => '<a {ATTR} href="{SELF_PATH}/mrp/theme/">THEME</a>',
+        'plugin' => '<a {ATTR} href="{SELF_PATH}/mrp/plugin/">PLUGIN</a>',
+        'users' => '<a {ATTR} href="{SELF_PATH}/mrp/users/">USERS</a>',
         '<hr/>',
-        'setting' => '<a {ATTR} href="/mrp/setting">SETTING</a>'
+        'setting' => '<a {ATTR} href="{SELF_PATH}/mrp/setting">SETTING</a>'
     ];
 
     $html = "";
@@ -85,12 +84,16 @@ try {
     // SET DOCUMENT HTML
     $document->setDocument($html);
 
+
+
     $listPlugin = Plugin::getActivePlugin();
 
     foreach ($listPlugin as $plugin) {
 
         $plugin->callOnPanel($document);
     }
+
+
 
     foreach ($menu as $key => $val) {
 
@@ -110,32 +113,44 @@ try {
         } else $menu[$key] = str_replace("{ATTR}", "", $menu[$key]);
     }
 
+
+
+    $document->ShortCode->addShortCode("SELF_PATH");
+
     $document->ShortCode->addOnRender(function ($code)
     use ($menu, $path, $document) {
 
-        $_html = "";
+        $value = "";
         switch ($code) {
 
             case "MENUS":
-                $_html = implode("\n", $menu);
+                $value = implode("\n", $menu);
                 break;
             case "PAGE_TITLE":
-                $_html = $path[1];
+                $value = $path[1];
                 break;
             case "CONTAINER":
-                $_html = $document->getController();
+                $value = $document->getController();
                 break;
             case "TOOL_ITEM":
-                $_html = require_once __DIR__ . '/controler/_toolitem.php';
+                $value = require_once __DIR__ . '/controler/_toolitem.php';
                 break;
+            case "SELF_PATH":
+                $value = SELF_PATH;
         }
-        return $_html;
+        return $value;
     });
 
-    print($document->render(false));
 
+
+    print($document->render(false));
     exit;
+
+
+
 } catch (Exception $e) {
+
+
 
     print "<h1 style='color: red'>ERROR</h1><p>" . $e->getMessage() . "</p>";
     exit;

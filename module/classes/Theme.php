@@ -66,10 +66,10 @@ class THEME
      */
     public static function getActiveTheme()
     {
-        $conf_path = $_SERVER['DOCUMENT_ROOT'] . "/conf-data.json";
+        $conf_path = $_SERVER['SELF_ROOT'] . "/conf-data.json";
 
         $json = new Json($conf_path);
-        $pathActive = $_SERVER['DOCUMENT_ROOT'] . $json->data['theme'];
+        $pathActive = $_SERVER['SELF_ROOT'] . $json->data['theme'];
         
         return self::getThemeFromPath($pathActive);
         
@@ -80,7 +80,7 @@ class THEME
 
         $listTheme = [];
 
-        $this->path = $_SERVER['DOCUMENT_ROOT'] . "/app/theme";
+        $this->path = $_SERVER['SELF_ROOT'] . "/app/theme";
         $path = $this->path;
 
         if (file_exists($this->path)) {
