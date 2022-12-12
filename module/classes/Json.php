@@ -38,4 +38,9 @@ class Json {
         }
     }
 
+    public function getData() {
+        
+        return $this->data;
+    }
+
 }

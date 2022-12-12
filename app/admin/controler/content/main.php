@@ -25,18 +25,12 @@ if (!file_exists($content_path)) {
     mkdir($content_path);
 }
 
-$uriManager = new UriManager();
-$path = $uriManager->getPath();
-
-if (array_key_exists(2, $path) && $path[2] == "new") {
-
-
-    return file_get_contents(__DIR__ . "/editing.html");
-}
 
 
 $conn = new CONN();
 $PDO = $conn->_PDO();
+
+
 
 $scandir = scandir($content_path);
 $scandir = array_values(array_filter($scandir, function ($e) {
@@ -70,6 +64,8 @@ foreach ($scandir as $key) {
         $author = $result['author'];
     }
 
+    $editPath = "{ADMIN_PATH}/editor/?edit=" . $key;
+
     $contentHTML .= "<li class='p-2 content'>\n
                      $title
                         <div class='meta hidden font-medium'>
@@ -82,7 +78,7 @@ foreach ($scandir as $key) {
                                 </div>
 
                                 <div class='ms-auto mb-1'>
-                                    <a class='btn btn-sm bg-primary text-white' href='{SELF_PATH}/'>EDIT</a>
+                                    <a class='btn btn-sm bg-primary text-white' href='$editPath'>EDIT</a>
                                     <a class='btn btn-sm bg-danger text-white'>DELETE</a>
                                 </div>
 

@@ -23,15 +23,18 @@ class Main
 {
 
     public THEME $theme;
+    public $config;
 
     function __construct()
     {
         $uriM = new UriManager();
         $paths = $uriM->getPath();
 
+        $this->config = (new Json($_SERVER['SELF_ROOT']."/app/.json"))->getData();
+
         if(array_key_exists(0, $paths)) {
-            $conf = json_decode(file_get_contents($_SERVER['SELF_ROOT']."/app/.json"), true);
-            if($paths[0] == $conf['privateZone']) {
+
+            if($paths[0] == $this->config['privateZone']) {
 
                 $this->PrivateZone();
 

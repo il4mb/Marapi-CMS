@@ -20,7 +20,10 @@ use classes\DOCUMENT;
 use classes\Plugin;
 use classes\UriManager;
 
-require_once $_SERVER['SELF_ROOT'] . '/module/init.php';
+//require_once $_SERVER['SELF_ROOT'] . '/module/init.php';
+
+define("ADMIN_PATH", SELF_PATH . "/" . $this->config['privateZone']);
+
 
 try {
 
@@ -45,12 +48,12 @@ try {
 
     if (!array_key_exists('1', $path) ||  array_key_exists('1', $path) && $path[1] == "") {
 
-       header("Location: ".SELF_PATH."/mrp/dashboard/");
+        header("Location: " . SELF_PATH . "/mrp/dashboard/");
     }
 
     if (array_key_exists('1', $path) && $path[1] != "login" && !isset($_COOKIE['user'])) {
 
-        header("Location: ".SELF_PATH."/mrp/login/");
+        header("Location: " . SELF_PATH . "/mrp/login/");
     }
 
     $menu = [
@@ -94,7 +97,6 @@ try {
     }
 
 
-
     foreach ($menu as $key => $val) {
 
         if (gettype($key) == "string" && 0 == strcmp(strtolower($path[1]), strtolower($key))) {
@@ -102,7 +104,7 @@ try {
             $menu[$key] = str_replace("{ATTR}", "class='active'", $menu[$key]);
 
             if (array_key_exists($key, $menu)) {
-               
+
                 $controller = initController($key);
 
                 if (is_file($controller)) {
@@ -110,12 +112,25 @@ try {
                     $document->setControler($controller);
                 }
             }
-        } else $menu[$key] = str_replace("{ATTR}", "", $menu[$key]);
+        } else {
+
+            $menu[$key] = str_replace("{ATTR}", "", $menu[$key]);
+        }
+    }
+
+    if (strlen($document->getController()) <= 0) {
+
+        $notMenuControler = $_SERVER['SELF_ROOT'] . "/app/admin/controler/" . $path[1] . "/main.php";
+        if (file_exists($notMenuControler)) {
+
+            $document->setControler($notMenuControler);
+        }
     }
 
 
 
     $document->ShortCode->addShortCode("SELF_PATH");
+    $document->ShortCode->addShortCode("ADMIN_PATH");
 
     $document->ShortCode->addOnRender(function ($code)
     use ($menu, $path, $document) {
@@ -137,6 +152,9 @@ try {
                 break;
             case "SELF_PATH":
                 $value = SELF_PATH;
+                break;
+            case "ADMIN_PATH":
+                $value = ADMIN_PATH;
         }
         return $value;
     });
@@ -145,9 +163,6 @@ try {
 
     print($document->render(false));
     exit;
-
-
-
 } catch (Exception $e) {
 
 

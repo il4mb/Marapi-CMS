@@ -30,8 +30,7 @@ class module implements PluginInterface
 
         if (array_key_exists(1, $path) 
             && array_key_exists(2, $path) 
-            && $path[1] == "content" 
-            && $path[2] == "new") {
+            && $path[1] == "editor") {
 
             $document->head .= "
             \n<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.26.0/ui/trumbowyg.min.css\" integrity=\"sha512-Zi7Hb6P4D2nWzFhzFeyk4hzWxBu/dttyPIw/ZqvtIkxpe/oCAYXs7+tjVhIDASEJiU3lwSkAZ9szA3ss3W0Vug==\" crossorigin=\"anonymous\" referrerpolicy=\"no-referrer\" />
@@ -42,13 +41,6 @@ class module implements PluginInterface
             $document->body .= "<script>".file_get_contents(__DIR__."/script.js")."</script>";
 
         }
-
-        
-        //   $menu["text_editing"]= "<a {ATTR} href='/mrp/text_editing'>Text editor</a>";
-
-
-        //$uriM = new UriManager();
-        //$document->setDocument("<html><head></head><body><h1>hallo</h1></body></html>");
 
     }
 
