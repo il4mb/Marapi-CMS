@@ -135,34 +135,32 @@ try {
     $document->ShortCode->addOnRender(function ($code)
     use ($menu, $path, $document) {
 
-        $value = "";
         switch ($code) {
-
             case "MENUS":
-                $value = implode("\n", $menu);
+                return implode("\n", $menu);
                 break;
             case "PAGE_TITLE":
-                $value = $path[1];
+                return $path[1];
                 break;
             case "CONTAINER":
-                $value = $document->getController();
+                return $document->getController();
                 break;
             case "TOOL_ITEM":
-                $value = require_once __DIR__ . '/controler/_toolitem.php';
+                return require_once __DIR__ . '/controler/_toolitem.php';
                 break;
             case "SELF_PATH":
-                $value = SELF_PATH;
+                return SELF_PATH;
                 break;
             case "ADMIN_PATH":
-                $value = ADMIN_PATH;
+                return ADMIN_PATH;
+                break;
         }
-        return $value;
     });
-
 
 
     print($document->render(false));
     exit;
+
 } catch (Exception $e) {
 
 

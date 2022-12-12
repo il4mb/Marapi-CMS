@@ -32,6 +32,7 @@ class VIEW
     public function brand($brand) {
 
         $this->html = str_replace("[BRAND]", $brand, $this->html);
+        $this->html = str_replace("[CONTENT]", file_get_contents($_SERVER['SELF_ROOT']."/app/contents/test copy.html"), $this->html);
     }
 
     public function render()

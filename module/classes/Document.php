@@ -71,6 +71,9 @@ class DOCUMENT
         if (is_file($php)) {
             
             $this->container = include_once($php);
+        } else if (is_string($php)) {
+
+            $this->container = $php;
         }
     }
     function getController() 
@@ -101,6 +104,6 @@ class DOCUMENT
 
             return $this->ShortCode->render($HTML);
 
-        } else if (strlen($this->container) > 0) return $this->container;
+        }// else if (strlen($this->container) > 0) return $this->container;
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2022 Ilham B
  *
@@ -28,11 +29,14 @@ class shortCode
         preg_match_all('/(?<=\{)[A-Z_]+(?=\})/', $html, $codes);
 
         $this->codes = array_merge($this->codes, $codes[0]);
+        //$this->codes = array_unique($this->codes);
     }
 
-    public function addShortCode($code) {
-        
+    public function addShortCode($code)
+    {
+
         array_push($this->codes, $code);
+        //$this->codes = array_unique($this->codes);
     }
 
     public function addOnRender($handler)
@@ -51,15 +55,15 @@ class shortCode
         foreach ($this->onRenderHandler as $handler) {
 
             if (gettype($handler) == "object")
-                foreach ($this->codes as $code) {
+                foreach ($this->codes AS $key => $code) {
 
                     $response = $handler($code);
-                    if ($clear) {
+
+                    if (is_string($response)) {
+
                         $html = str_replace("{" . strtoupper($code) . "}", $response, $html);
-                    } else {
-                        if (strlen($response) > 0) {
-                            $html = str_replace("{" . strtoupper($code) . "}", $response, $html);
-                        }
+
+                        unset($this->codes[$key]);
                     }
                 }
         }
